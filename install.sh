@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# https://zhuanlan.zhihu.com/p/445331508
+# http://xfyuan.github.io/2021/02/neovim-builtin-lsp-basic-configuration/
+# http://vimdoc.sourceforge.net/htmldoc/intro.html#key-notation
+# https://zhuanlan.zhihu.com/p/382092667
+# https://github.com/nshen/learn-neovim-lua
+# https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/jdtls/README.md
+# https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md
+# https://www.xwxwgo.com/post/2022/01/18/neovim%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/
+# https://github.com/mhinz/vim-startify
+# https://github.com/lxyoucan/nvim-as-java-ide/blob/main/nvim/init.lua
+# https://blog.csdn.net/lxyoucan/article/details/123448313
+# https://github.com/williamboman/nvim-lsp-installer#available-lsps
+# https://github.com/ayamir/nvimdots
+# https://github.com/LunarVim/LunarVim
+
+
+# 安装插件
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+pipi pyls-flake8 pylsp-mypy pyls-isort
