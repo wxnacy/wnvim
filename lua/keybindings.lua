@@ -23,6 +23,18 @@ map("n", "<leader><leader>w", ":w !sudo tee % > /dev/null", opt)
 -- 快速保存退出
 map("n", "<leader>wq", ":wq<CR>", opt)
 
+-- 光标移动
+map("n", "<C-e>", "A", opt)
+map("i", "<C-e>", "<esc>A", opt)
+map("n", "<C-a>", "I", opt)
+map("i", "<C-a>", "<esc>I", opt)
+-- TODO 光标后移，在开头时有 BUG
+map("i", "<C-f>", "<esc>lli", opt)
+map("i", "<C-b>", "<esc>i", opt)
+-- 向后删除数据 TODO 光标后移，在开头时有 BUG
+map("i", "<C-d>", "<esc>lxi", opt)
+-- map("n", "<C-j>", "<C-e>", opt)
+
 -- 窗口调整
 map("n", "<C-h>", "<C-w>h", opt)
 map("n", "<C-j>", "<C-w>j", opt)
