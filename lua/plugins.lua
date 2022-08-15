@@ -3,6 +3,7 @@ local map = vim.api.nvim_set_keymap
 local opt = {noremap = true, silent = true }
 
 map("n", "<leader>ps", ":PackerSync<CR>", opt)
+map("n", "<leader>pi", ":PackerInstall<CR>", opt)
 
 return require('packer').startup(function()
     -- Packer can manage itself
@@ -12,6 +13,8 @@ return require('packer').startup(function()
         "ellisonleao/gruvbox.nvim",
         requires = {"rktjmp/lush.nvim"}
     }
+    -- 快速注释
+    use { 'scrooloose/nerdcommenter' }
     -- nvim-tree
     use {
         'kyazdani42/nvim-tree.lua',
