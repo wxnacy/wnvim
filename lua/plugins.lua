@@ -66,7 +66,12 @@ return packer.startup(function()
 	-- https://github.com/michaelb/sniprun
 	-- 需要下载 rust
 	-- brew install rust
-	packer.use { 'michaelb/sniprun', run = 'bash ./install.sh'}
+	packer.use {
+		'michaelb/sniprun',
+		run = 'bash ./install.sh',
+		-- https://github.com/rcarriga/nvim-notify
+		requires = "rcarriga/nvim-notify"
+	}
 	-- lspconfig
 	packer.use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
 	-- nvim-cmp
