@@ -22,6 +22,7 @@ return packer.startup(function()
 		requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
 	})
 	--https://github.com/nvim-telescope/telescope.nvim#getting-started
+	-- brew install fd
 	packer.use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.0',
 		requires = { {'nvim-lua/plenary.nvim'} }
