@@ -14,10 +14,17 @@
 # https://github.com/williamboman/nvim-lsp-installer#available-lsps
 # https://github.com/ayamir/nvimdots
 # https://github.com/LunarVim/LunarVim
+#https://github.com/glepnir/nvim-lua-guide-zh
+#https://learnku.com/articles/68258
+#https://github.com/glepnir/dashboard-nvim
 
+# python >= 3.7
+
+npm install -g neovim
 
 # 安装插件
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-pipi pyls-flake8 pylsp-mypy pyls-isort
+pipi pynvim neovim pyls-flake8 pylsp-mypy pyls-isort
+/Users/wxnacy/.pyenv/versions/3.7.12/bin/python3 -m pip install pynvim

@@ -5,6 +5,7 @@ vim.keymap.set('n', '<Leader>tt', ':NvimTreeToggle<CR>')
 vim.keymap.set('n', 'tt', ':NvimTreeToggle<CR>')
 
 require("nvim-tree").setup({
+	open_on_setup = true,
   sort_by = "case_sensitive",
   view = {
     adaptive_size = true,
@@ -20,4 +21,9 @@ require("nvim-tree").setup({
   filters = {
     dotfiles = true,
   },
+  actions = {
+	  remove_file = {
+          close_window = true,
+        },
+  }
 })

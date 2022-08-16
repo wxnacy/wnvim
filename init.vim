@@ -1,20 +1,14 @@
 " set runtimepath^=~/.vim runtimepath+=~/.vim/after
 " let &packpath = &runtimepath
-" source ~/.vimrc
+source ~/.vim/vimrcs/mapping.vim
 
-" leader
-" let mapleader = ';'
-" let g:mapleader = ';'
-
-lua require('basic')
+"lua require('basic')
 lua require('keybindings')
 lua require('plugins')
-lua require('plugin-config/nvim-tree')
-lua require('plugin-config/nvim-treesitter')
-lua require('plugin-config/bufferline')
-lua require('lsp/setup')
-lua require('lsp/nvim-cmp')
-
+lua require('plugin-config')
+lua require('lsp')
 
 set background=dark
-colorscheme gruvbox
+" colorscheme nord
+" colorscheme gruvbox
+colorscheme zephyr

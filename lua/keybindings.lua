@@ -7,7 +7,7 @@ local map = vim.api.nvim_set_keymap
 local opt = {noremap = true, silent = true }
 
 -- 去掉高亮
-map("n", "<leader>nh", ":nohls", opt)
+map("n", "<leader>nh", ":nohls<CR>", opt)
 -- 快速返回常用模式
 map("i", "jk", "<ESC>", opt)
 map("v", "jk", "<ESC>", opt)
@@ -15,11 +15,11 @@ map("v", "jk", "<ESC>", opt)
 -- 快速退出
 map("n", "<leader>q", ":q<CR>", opt)
 -- 不保存修改退出
-map("n", "<leader><leader>q", ":q!<CR>", opt)
+map("n", "<leader>Q", ":q!<CR>", opt)
 -- 快速保存
 map("n", "<leader>w", ":w<CR>", opt)
 -- 没有保存权限时，使用 sudo 身份保存
-map("n", "<leader><leader>w", ":w !sudo tee % > /dev/null", opt)
+map("n", "<leader>W", ":w !sudo tee % > /dev/null<CR>", opt)
 -- 快速保存退出
 map("n", "<leader>wq", ":wq<CR>", opt)
 
@@ -41,6 +41,19 @@ map("n", "<C-j>", "<C-w>j", opt)
 map("n", "<C-k>", "<C-w>k", opt)
 map("n", "<C-l>", "<C-w>l", opt)
 
+-- 文本操作 {{{
+-- 选中全部
+map("n", "<leader>sa", "ggVG", opt)
+-- 选中到行尾
+map("n", "vig", "vg_", opt)
+-- 快速选中当前行有效文字区域
+map("n", "vv", "g_v0", opt)
+-- 模拟IDE<tab>键，单行的缩紧退回和选中模式下的缩进退回
+map("n", "<tab>", "V>", opt)
+-- }}}
+
+--map("n", "<tabl")
+map("n", "yp", "yyp", opt)
 
 local pluginKeys = {}
 
@@ -51,6 +64,7 @@ pluginKeys.maplsp = function(mapbuf)
   -- code action
   mapbuf('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
   -- go xx
+  mapbuf('n', '<leader>g', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
   mapbuf('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
   mapbuf('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)
   mapbuf('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
