@@ -72,6 +72,11 @@ return packer.startup(function()
 		-- https://github.com/rcarriga/nvim-notify
 		requires = "rcarriga/nvim-notify"
 	}
+	packer.use {
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim"
+	}
+
 	-- lspconfig
 	packer.use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
 	-- nvim-cmp
