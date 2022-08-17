@@ -46,6 +46,8 @@ map("n", "<C-l>", "<C-w>l", opt)
 map("n", "<leader>sa", "ggVG", opt)
 -- 选中到行尾
 map("n", "vig", "vg_", opt)
+map("n", "dig", "dg_", opt)
+map("n", "cig", "dg_a", opt)
 -- 快速选中当前行有效文字区域
 map("n", "vv", "g_v0", opt)
 -- 模拟IDE<tab>键，单行的缩紧退回和选中模式下的缩进退回
