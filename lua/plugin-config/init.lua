@@ -11,6 +11,7 @@ require('plugin-config/todo-comments')
 require('plugin-config/telescope')
 require('plugin-config/vim-fugitive')
 require('plugin-config/gitsigns')
+require('plugin-config/vim-illuminate')
 
 -- for nerdcommenter 快速注释
 vim.g.NERDSpaceDelims = 1

@@ -35,6 +35,8 @@ return packer.startup(function()
     packer.use {'glepnir/dashboard-nvim'}
     -- 缩进美化展示
     packer.use "lukas-reineke/indent-blankline.nvim"
+    -- 多光标选择
+    packer.use { "mg979/vim-visual-multi" }
     -- ============================ 主题/美观 end
     -- 快速注释
     packer.use { 'scrooloose/nerdcommenter' }
