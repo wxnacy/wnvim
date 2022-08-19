@@ -10,7 +10,7 @@ local opt = {noremap = true, silent = true }
 map("n", "<leader>nh", ":nohls<CR>", opt)
 -- 快速返回常用模式
 map("i", "jk", "<ESC>", opt)
-map("v", "jk", "<ESC>", opt)
+map("v", "JK", "<ESC>", opt)
 
 -- 快速退出
 map("n", "<leader>q", ":q<CR>", opt)

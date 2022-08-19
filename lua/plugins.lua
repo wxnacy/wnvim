@@ -32,18 +32,27 @@ return packer.startup(function()
     -- telescope ui 选择
     packer.use {'nvim-telescope/telescope-ui-select.nvim' }
     -- dashboard
+    -- https://github.com/glepnir/dashboard-nvim
     packer.use {'glepnir/dashboard-nvim'}
     -- 缩进美化展示
     packer.use "lukas-reineke/indent-blankline.nvim"
     -- 多光标选择
     packer.use { "mg979/vim-visual-multi" }
     -- ============================ 主题/美观 end
+    -- tagbar
+    packer.use { "liuchengxu/vista.vim" }
     -- 快速注释
     packer.use { 'scrooloose/nerdcommenter' }
     -- 底部状态栏
     packer.use { 'bling/vim-airline' }
     -- 快速跳转
-    packer.use { 'Lokaltog/vim-easymotion' }
+    -- packer.use { 'Lokaltog/vim-easymotion' }
+    -- 快速跳转用来代替 vim-easymotion
+    -- https://github.com/phaazon/hop.nvim
+    packer.use {
+        'phaazon/hop.nvim',
+        branch = 'v2', -- optional but strongly recommended
+    }
     -- 快速去掉行尾空格
     packer.use { 'bronson/vim-trailing-whitespace' }
     -- 成对标签自动补全
@@ -75,6 +84,8 @@ return packer.startup(function()
     -- bufferline.nvim
     packer.use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
     -- ============================ 代码相关 begin
+    -- for go
+    packer.use { 'fatih/vim-go' }
     -- 高亮相同单词
     packer.use {'RRethy/vim-illuminate'}
     -- 代码片段运行
