@@ -114,4 +114,10 @@ pluginKeys.cmp = function(cmp)
   }
 end
 
+-- pluginKeys.keymap_vim_better_whitespace = {
+    -- normal_mode = {
+        -- ['<leader><space>'] = ':StripWhitespace<CR>'
+    -- }
+-- }
+
 return pluginKeys

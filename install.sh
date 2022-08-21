@@ -14,9 +14,9 @@
 # https://github.com/williamboman/nvim-lsp-installer#available-lsps
 # https://github.com/ayamir/nvimdots
 # https://github.com/LunarVim/LunarVim
-#https://github.com/glepnir/nvim-lua-guide-zh
-#https://learnku.com/articles/68258
-#https://github.com/glepnir/dashboard-nvim
+# https://github.com/glepnir/nvim-lua-guide-zh
+# https://learnku.com/articles/68258
+# https://github.com/glepnir/dashboard-nvim
 
 # python >= 3.7
 

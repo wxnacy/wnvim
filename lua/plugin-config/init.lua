@@ -15,10 +15,11 @@ require('plugin-config/vim-illuminate')
 require('plugin-config/hop')
 require('plugin-config/vista')
 require('plugin-config/dashboard-nvim')
+require('plugin-config/lualine')
 
 -- for nerdcommenter 快速注释
 vim.g.NERDSpaceDelims = 1
 
 -- vim-trailing-whitespace
-vim.keymap.set('n', '<leader><space>', ':FixWhitespace<cr>')
-
+-- vim.keymap.set('n', '<leader><space>', ':FixWhitespace<cr>')
+vim.keymap.set('n', '<leader><space>', ':StripWhitespace<CR>')

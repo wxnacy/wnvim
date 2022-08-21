@@ -7,7 +7,8 @@ vim.keymap.set('n', '<leader>fm', '<cmd>Telescope help_tags<cr>')
 vim.keymap.set('n', '<leader>fk', '<cmd>Telescope keymaps<cr>')
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope oldfiles<cr>')
 vim.keymap.set('n', '<leader>fs', '<cmd>Telescope search_history<cr>')
-vim.keymap.set('n', 'gl', '<cmd>Telescope git_commits<cr>')
+vim.keymap.set('n', '<leader>gs', '<cmd>Telescope git_status<cr>')
+vim.keymap.set('n', '<leader>gl', '<cmd>Telescope git_commits<cr>')
 vim.keymap.set('n', 'gcb', '<cmd>Telescope git_branches<cr>')
 
 local actions = require "telescope.actions"
