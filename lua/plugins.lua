@@ -1,12 +1,38 @@
-local map = vim.api.nvim_set_keymap
-local opt = {noremap = true, silent = true }
-
-map("n", "<leader>ps", ":PackerSync<CR>", opt)
-map("n", "<leader>pi", ":PackerInstall<CR>", opt)
-
-local is_install_plugin = require("utils").is_install_plugin
 local config = require("config")
-local packer = require('packer')
+-- local packer = require('packer')
+local utils = require("utils")
+local is_install_plugin = require("utils").is_install_plugin
+
+-- 判断是否安装 packer 插件管理器
+local fn = vim.fn
+local install_path = config.PLUGIN_HOME .. "/packer.nvim"
+local is_new_install
+if not is_install_plugin("packer.nvim") then
+  vim.notify("正在安装Pakcer.nvim，请稍后...")
+  is_new_install = fn.system({
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    -- "https://gitcode.net/mirrors/wbthomason/packer.nvim",
+    install_path,
+  })
+
+  -- https://github.com/wbthomason/packer.nvim/issues/750
+  local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
+  if not string.find(vim.o.runtimepath, rtp_addition) then
+    vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
+  end
+  vim.notify("Packer.nvim 安装完毕")
+end
+
+-- 没有成功安装直接返回
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  vim.notify("没有安装 packer.nvim")
+  return
+end
 
 packer.reset()
 packer.startup(function(use)
@@ -135,21 +161,25 @@ packer.startup(function(use)
     -- lspkind
     use 'onsails/lspkind-nvim'
     -- ============================ 代码相关 end
+    -- 新安装时执行同步操作
+    if is_new_install then
+      packer.sync()
+    end
 end)
 
 -- 启动插件
 local function setup_plugin()
-    -- for _, value in pairs(plugin_setups) do
-        -- -- vim.notify(name)
-        -- pcall(value)
-    -- end
     if is_install_plugin("wvim") then
         vim.api.nvim_command("source" .. config.PLUGIN_HOME .. "/wvim/vimrcs/basic.vim")
         vim.api.nvim_command("source" .. config.PLUGIN_HOME .. "/wvim/vimrcs/mapping.vim")
     end
 
-    require("plugin-config")
+    if is_install_plugin("packer.nvim") then
+        vim.keymap.set("n", "<leader>ps", ":PackerSync<CR>")
+        vim.keymap.set("n", "<leader>pi", ":PackerInstall<CR>")
+    end
 
+    require("plugin-config")
 
     -- 设置主题
     vim.o.background = "dark"
@@ -165,10 +195,8 @@ local function setup_plugin()
     -- nord
     -- onedark
     -- nightfox
-    local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-    if not status_ok then
+    if not utils.can_success_run_cmd("colorscheme " .. colorscheme) then
         vim.notify("colorscheme: " .. colorscheme .. " 没有找到！")
-    return
     end
 
 end
