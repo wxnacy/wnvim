@@ -17,6 +17,7 @@
 # https://github.com/glepnir/nvim-lua-guide-zh
 # https://learnku.com/articles/68258
 # https://github.com/glepnir/dashboard-nvim
+# https://zhuanlan.zhihu.com/p/551941252
 
 # python >= 3.7
 

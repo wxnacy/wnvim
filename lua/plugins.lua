@@ -4,6 +4,8 @@ local opt = {noremap = true, silent = true }
 map("n", "<leader>ps", ":PackerSync<CR>", opt)
 map("n", "<leader>pi", ":PackerInstall<CR>", opt)
 
+local is_install_plugin = require("utils").is_install_plugin
+local config = require("config")
 local packer = require('packer')
 
 packer.reset()
@@ -141,11 +143,39 @@ local function setup_plugin()
         -- -- vim.notify(name)
         -- pcall(value)
     -- end
-    -- vim.notify("ww")
+    if is_install_plugin("wvim") then
+        vim.api.nvim_command("source" .. config.PLUGIN_HOME .. "/wvim/vimrcs/basic.vim")
+        vim.api.nvim_command("source" .. config.PLUGIN_HOME .. "/wvim/vimrcs/mapping.vim")
+    end
+
+    require("plugin-config")
+
+
+    -- 设置主题
+    vim.o.background = "dark"
+    vim.g.tokyonight_style = "storm" -- day / night
+    -- 半透明
+    -- vim.g.tokyonight_transparent = true
+    -- vim.g.tokyonight_transparent_sidebar = true
+    local colorscheme = "tokyonight"
+    -- tokyonight
+    -- OceanicNext
+    -- gruvbox
+    -- zephyr
+    -- nord
+    -- onedark
+    -- nightfox
+    local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+    if not status_ok then
+        vim.notify("colorscheme: " .. colorscheme .. " 没有找到！")
+    return
+    end
+
 end
 
 local M = {}
 
+-- 启动方法
 M.setup = function ()
     setup_plugin()
 end

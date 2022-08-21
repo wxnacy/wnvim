@@ -10,7 +10,9 @@ M.autocmd = vim.api.nvim_create_autocmd
 ---------------------------------- 常量 begin
 -- nvim home 路径
 M.HOME = vim.fn.stdpath("config")
+-- 插件 home 路径
+M.PLUGIN_HOME = vim.fn.stdpath("data") .. "/site/pack/packer/start"
 ---------------------------------- 常量 end
-vim.notify("ww")
+-- vim.notify("ww")
 
 return M
