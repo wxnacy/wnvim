@@ -161,6 +161,12 @@ packer.startup(function(use)
     -- lspkind
     use 'onsails/lspkind-nvim'
     -- ============================ 代码相关 end
+
+    -- ============================ 工具相关 begin
+    -- 多终端
+    use {"akinsho/toggleterm.nvim", tag = 'v2.*'}
+    -- ============================ 工具相关 end
+
     -- 新安装时执行同步操作
     if is_new_install then
       packer.sync()
@@ -199,6 +205,11 @@ local function setup_plugin()
         vim.notify("colorscheme: " .. colorscheme .. " 没有找到！")
     end
 
+    local ok, toggleterm = utils.require('toggleterm')
+    if ok then
+        -- https://github.com/akinsho/toggleterm.nvim
+        toggleterm.setup()
+    end
 end
 
 local M = {}

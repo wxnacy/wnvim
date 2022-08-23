@@ -23,6 +23,11 @@ M.can_require = function (module)
     end
 end
 
+-- 动态导入
+M.require = function (module)
+    return pcall(require, module)
+end
+
 -- 运行命令
 M.run_cmd = function (cmd)
     return pcall(vim.cmd, cmd)

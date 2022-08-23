@@ -1,4 +1,5 @@
 vim.keymap.set("n", "<leader><leader>w", ":HopWord<CR>")
+vim.keymap.set("n", "<leader><leader>b", ":HopWord<CR>")
 vim.keymap.set("n", "<leader>/", ":HopPattern<CR>")
 -- place this in one of your configuration file(s)
 vim.api.nvim_set_keymap('', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
