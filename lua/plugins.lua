@@ -8,30 +8,30 @@ local fn = vim.fn
 local install_path = config.PLUGIN_HOME .. "/packer.nvim"
 local is_new_install
 if not is_install_plugin("packer.nvim") then
-  vim.notify("正在安装Pakcer.nvim，请稍后...")
-  is_new_install = fn.system({
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    -- "https://gitcode.net/mirrors/wbthomason/packer.nvim",
-    install_path,
-  })
+    vim.notify("正在安装Pakcer.nvim，请稍后...")
+    is_new_install = fn.system({
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/wbthomason/packer.nvim",
+        -- "https://gitcode.net/mirrors/wbthomason/packer.nvim",
+        install_path,
+    })
 
-  -- https://github.com/wbthomason/packer.nvim/issues/750
-  local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
-  if not string.find(vim.o.runtimepath, rtp_addition) then
-    vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
-  end
-  vim.notify("Packer.nvim 安装完毕")
+    -- https://github.com/wbthomason/packer.nvim/issues/750
+    local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
+    if not string.find(vim.o.runtimepath, rtp_addition) then
+        vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
+    end
+    vim.notify("Packer.nvim 安装完毕")
 end
 
 -- 没有成功安装直接返回
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-  vim.notify("没有安装 packer.nvim")
-  return
+    vim.notify("没有安装 packer.nvim")
+    return
 end
 
 packer.reset()
@@ -169,7 +169,7 @@ packer.startup(function(use)
 
     -- 新安装时执行同步操作
     if is_new_install then
-      packer.sync()
+        packer.sync()
     end
 end)
 
@@ -210,8 +210,20 @@ local function setup_plugin()
         -- https://github.com/akinsho/toggleterm.nvim
         toggleterm.setup()
     end
+    -- https://github.com/hrsh7th/vim-vsnip
     if utils.is_install_plugin('vim-vsnip') then
-        vim.g.vsnip_snippet_dir = os.getenv("HOME") .. '/Documents/Configs/nvim_plugins/vsnip'
+        vim.cmd([[
+        imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+        smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+        imap <expr> <C-n>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-n>'
+        smap <expr> <C-n>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-n>'
+        imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+        smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+        imap <expr> <C-p>   vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-p>'
+        smap <expr> <C-p>   vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-p>'
+        ]])
+        -- 设置代码片段目录
+        vim.g.vsnip_snippet_dir = config.CONFIG_HOME .. '/vsnip'
     end
 end
 
