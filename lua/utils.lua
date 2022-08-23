@@ -5,12 +5,16 @@ local fn = vim.fn
 M.is_install_plugin = function (name)
 
     local install_path = fn.stdpath("data") .. "/site/pack/packer/start/" .. name
-    if fn.empty(fn.glob(install_path)) > 0 then
+    return M.is_dir_exists(install_path)
+end
+
+-- 目录是否存在
+M.is_dir_exists = function (dirname)
+    if fn.empty(fn.glob(dirname)) > 0 then
         return false
     else
         return true
     end
-    -- 使用模块判断
 end
 
 -- 是否可以导入模块

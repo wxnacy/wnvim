@@ -210,6 +210,9 @@ local function setup_plugin()
         -- https://github.com/akinsho/toggleterm.nvim
         toggleterm.setup()
     end
+    if utils.is_install_plugin('vim-vsnip') then
+        vim.g.vsnip_snippet_dir = os.getenv("HOME") .. '/Documents/Configs/nvim_plugins/vsnip'
+    end
 end
 
 local M = {}
