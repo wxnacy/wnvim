@@ -225,6 +225,12 @@ local function setup_plugin()
         -- 设置代码片段目录
         vim.g.vsnip_snippet_dir = config.CONFIG_HOME .. '/vsnip'
     end
+    if utils.is_install_plugin('vim-better-whilespace') then
+        vim.cmd([[
+            let g:better_whitespace_filetypes_blacklist = ['dashboard']
+        ]])
+    end
+
 end
 
 local M = {}
