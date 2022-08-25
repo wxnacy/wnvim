@@ -18,6 +18,7 @@
 # https://learnku.com/articles/68258
 # https://github.com/glepnir/dashboard-nvim
 # https://zhuanlan.zhihu.com/p/551941252
+# https://github.com/kevinhwang91/rnvimr
 
 # python >= 3.7
 
