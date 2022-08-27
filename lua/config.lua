@@ -14,8 +14,6 @@ M.HOME = vim.fn.stdpath("config")
 M.PLUGIN_HOME = vim.fn.stdpath("data") .. "/site/pack/packer/start"
 -- 配置 home 路径
 M.CONFIG_HOME = os.getenv("HOME") .. "/Documents/Configs/nvim_configs"
--- 本地 home 路径
--- M.CONFIG_HOME = os.getenv("HOME") .. "/Documents/Configs/nvim_configs"
 ---------------------------------- 常量 end
 
 return M

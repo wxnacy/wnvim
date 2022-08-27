@@ -37,18 +37,48 @@
 -- for key, value in pairs(plugin_setups) do
     -- print(key, value)
 -- end
-local finders = require "telescope.finders"
-local pickers = require "telescope.pickers"
-local conf = require("telescope.config").values
-local colors = function(opts)
-  opts = opts or {}
-  pickers.new(opts, {
-    prompt_title = "colors",
-    finder = finders.new_table {
-      results = { "red", "green", "blue" }
-    },
-    sorter = conf.generic_sorter(opts),
-  }):find()
+-- local finders = require "telescope.finders"
+-- local pickers = require "telescope.pickers"
+-- local conf = require("telescope.config").values
+-- local colors = function(opts)
+  -- opts = opts or {}
+  -- pickers.new(opts, {
+    -- prompt_title = "colors",
+    -- finder = finders.new_table {
+      -- results = { "red", "green", "blue" }
+    -- },
+    -- sorter = conf.generic_sorter(opts),
+  -- }):find()
+-- end
+-- -- colors()
+-- colors(require("telescope.themes").get_dropdown{})
+
+
+-- print(vim.fn.globpath(vim.fn.stdpath("config"), "ss.lua"))
+-- local tmp = vim.split(vim.fn.globpath(vim.fn.stdpath("config"), "lug/plugin-config/*.lua"), "\n")
+-- for _, f in ipairs(tmp) do
+    -- print(f)
+-- end
+--
+
+
+-- local api = vim.api
+-- local command = api.n/Users/wxnacy/.local/share/nvim/site/pack/packer/startvim_create_user_command
+
+-- command("DiffviewRefresh", function()
+  -- diffview.emit("refresh_files")
+-- end, { nargs = 0, bang = true })
+
+-- local res = require("local-nvim-plugin")
+-- print(res.name)
+
+local m = {"ww", name = "wxnacy", 1}
+print(type(m))
+print(m[1])
+print(m[2])
+print(m['name'])
+
+array = {"Lua", "Tutorial"}
+for i= 0, 2 do
+   print(array[i])
 end
--- colors()
-colors(require("telescope.themes").get_dropdown{})

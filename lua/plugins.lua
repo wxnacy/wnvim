@@ -116,6 +116,8 @@ packer.startup(function(use)
     use { 'lewis6991/gitsigns.nvim' }
     -- diffview 查看文件不同
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+    -- simnalamburt/vim-mundo 文件历史记录
+    use { 'simnalamburt/vim-mundo' }
     -- 通知
     -- https://github.com/rcarriga/nvim-notify
     use { 'rcarriga/nvim-notify' }
