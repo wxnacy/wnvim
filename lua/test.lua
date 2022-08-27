@@ -72,13 +72,19 @@
 -- local res = require("local-nvim-plugin")
 -- print(res.name)
 
-local m = {"ww", name = "wxnacy", 1}
-print(type(m))
-print(m[1])
-print(m[2])
-print(m['name'])
+-- local m = {"ww", name = "wxnacy", 1}
+-- print(type(m))
+-- print(m[1])
+-- print(m[2])
+-- print(m['name'])
 
-array = {"Lua", "Tutorial"}
-for i= 0, 2 do
-   print(array[i])
-end
+-- array = {"Lua", "Tutorial"}
+-- table.insert(array, "ww")
+-- for _ , value in ipairs(array ) do
+    -- print(value)
+-- end
+--
+
+-- for key, value in pairs(require("telescope.builtin")) do print(key) end
+
+-- for key, value in pairs(require("telescope.command").get_extensions_subcommand()) do print(key) end

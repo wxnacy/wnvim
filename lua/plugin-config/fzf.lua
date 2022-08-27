@@ -1,10 +1,10 @@
 -- https://github.com/junegunn/fzf.vim#commands
 --vim.keymap.set("n", "<Leader>fa", ":Rg<CR>")
-vim.keymap.set("n", "<Leader>gl", ":Commits<CR>")
+-- vim.keymap.set("n", "<Leader>gl", ":Commits<CR>")
 vim.keymap.set("n", "<Leader>fl", ":BLines<CR>")
-vim.keymap.set("n", "<Leader>fc", ":Commands<CR>")
+-- vim.keymap.set("n", "<Leader>fc", ":Commands<CR>")
 --vim.keymap.set("n", "<Leader>ff", ":Files<CR>")
-vim.keymap.set("n", "<Leader>p", ":Files<CR>")
+-- vim.keymap.set("n", "<Leader>p", ":Files<CR>")
 -- vim.keymap.set("n", "<Leader>fh", ":History<CR>")
 -- vim.keymap.set("n", "<Leader>fm", ":Files<CR>")
 

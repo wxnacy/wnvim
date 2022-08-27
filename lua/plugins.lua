@@ -59,6 +59,16 @@ packer.startup(function(use)
     }
     -- telescope ui 选择
     use {'nvim-telescope/telescope-ui-select.nvim' }
+    -- 文件浏览器
+    use { "nvim-telescope/telescope-file-browser.nvim" }
+    -- 管理项目 require file-browser
+    -- 管理 packer require file-browser
+    use { 'nvim-telescope/telescope-project.nvim' }
+    use { 'nvim-telescope/telescope-packer.nvim' }
+    -- 管理命令
+    use { "LinArcX/telescope-command-palette.nvim" }
+    -- telescope 快速跳转
+    use {'nvim-telescope/telescope-hop.nvim'}
     -- dashboard
     -- https://github.com/glepnir/dashboard-nvim
     use {'glepnir/dashboard-nvim'}
