@@ -110,10 +110,12 @@ packer.startup(function(use)
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
     -- nvim-treesitter
-    use { 'nvim-treesitter/nvim-treesitter', commit='11e88f6', run = ':TSUpdate'  }
+    use { 'nvim-treesitter/nvim-treesitter', commit='11e88f6', run = ':TSUpdate'}
     -- git 相关
     use { 'tpope/vim-fugitive' }
     use { 'lewis6991/gitsigns.nvim' }
+    -- diffview 查看文件不同
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
     -- 通知
     -- https://github.com/rcarriga/nvim-notify
     use { 'rcarriga/nvim-notify' }
@@ -224,11 +226,6 @@ local function setup_plugin()
         ]])
         -- 设置代码片段目录
         vim.g.vsnip_snippet_dir = config.CONFIG_HOME .. '/vsnip'
-    end
-    if utils.is_install_plugin('vim-better-whilespace') then
-        vim.cmd([[
-            let g:better_whitespace_filetypes_blacklist = ['dashboard']
-        ]])
     end
 
 end
