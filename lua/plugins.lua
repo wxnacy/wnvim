@@ -37,9 +37,11 @@ end
 packer.reset()
 packer.startup(function(use)
     -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+    use {'wbthomason/packer.nvim'}
     -- wvim 基础设置
-    use 'wxnacy/wvim'
+    use {'wxnacy/wvim'}
+    -- 中文帮助文档
+    use { 'yianwillis/vimcdoc' }
     -- ============================ 主题/美观 begin
     -- gruvbox theme
     use {
@@ -69,6 +71,13 @@ packer.startup(function(use)
     use { "LinArcX/telescope-command-palette.nvim" }
     -- telescope 快速跳转
     use {'nvim-telescope/telescope-hop.nvim'}
+    -- 使用 sqlite3 记录历史记录
+    use {
+        'nvim-telescope/telescope-smart-history.nvim',
+        requires = { "kkharji/sqlite.lua" }
+    }
+    -- 查找本地 git 仓库
+    use { 'cljoly/telescope-repo.nvim' }
     -- dashboard
     -- https://github.com/glepnir/dashboard-nvim
     use {'glepnir/dashboard-nvim'}

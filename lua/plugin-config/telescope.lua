@@ -4,6 +4,7 @@
 -- https://github.com/nvim-telescope/telescope.nvim
 -- https://github.com/nvim-telescope/telescope-file-browser.nvim
 -- https://github.com/nvim-telescope/telescope-project.nvim
+-- https://github.com/nvim-telescope/telescope-smart-history.nvim
 -- ===============================
 local ok, telescope = pcall(require, 'telescope')
 if not ok then
@@ -57,6 +58,10 @@ local setup_config = {
                 ["<space>"] = require("telescope").extensions.hop.hop,
             }
         },
+        history = {
+            path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+            limit = 100,
+        }
     },
 }
 
@@ -157,5 +162,7 @@ telescope.load_extension("project")
 telescope.load_extension("packer")
 telescope.load_extension('command_palette')
 telescope.load_extension('hop')
+-- telescope.load_extension('smart_history')
+telescope.load_extension('repo')
 
 
