@@ -10,10 +10,6 @@ local ok, telescope = pcall(require, 'telescope')
 if not ok then
     return
 end
--- ok, _ = pcall(require, "plenary")
--- if not ok then
-    -- return
--- end
 
 local config = require("config")
 local actions = require "telescope.actions"
@@ -39,14 +35,6 @@ if 1 == 1 then
 end
 
 
--- if pcall(require, "plenary") then
-    -- RELOAD = require("plenary.reload").reload_module
-    -- R = function(name)
-        -- RELOAD(name)
-        -- return require(name)
-    -- end
--- end
-
 -- setup config
 local setup_config = {
     defaults = {
@@ -59,6 +47,7 @@ local setup_config = {
             }
         },
         history = {
+            -- need smart_history
             path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
             limit = 100,
         }
@@ -156,13 +145,26 @@ extensions["ui-select"] = {
 setup_config.extensions = extensions
 
 telescope.setup(setup_config)
-telescope.load_extension("ui-select")
-telescope.load_extension("file_browser")
-telescope.load_extension("project")
-telescope.load_extension("packer")
-telescope.load_extension('command_palette')
-telescope.load_extension('hop')
--- telescope.load_extension('smart_history')
-telescope.load_extension('repo')
+
+-- 能否加载插件
+local function load_extension(module)
+    ok, _ = pcall(require, "telescope._extensions." .. module)
+    if not ok then
+        vim.notify("Telescope extension " .. module .. " not found")
+        return
+    end
+    telescope.load_extension(module)
+
+end
+
+
+load_extension("ui-select")
+load_extension("file_browser")
+load_extension("project")
+load_extension("packer")
+load_extension('command_palette')
+load_extension('hop')
+-- load_extension('smart_history')
+load_extension('repo')
 
 
