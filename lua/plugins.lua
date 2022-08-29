@@ -42,6 +42,8 @@ packer.startup(function(use)
     use {'wxnacy/wvim'}
     -- 中文帮助文档
     use { 'yianwillis/vimcdoc' }
+    -- 查看 lua 加载速度
+    use { 'lewis6991/impatient.nvim' }
     -- ============================ 主题/美观 begin
     -- gruvbox theme
     use {
@@ -248,6 +250,19 @@ local function setup_plugin()
         -- 设置代码片段目录
         vim.g.vsnip_snippet_dir = config.CONFIG_HOME .. '/vsnip'
     end
+
+    -- _G.__luacache_config = {
+        -- chunks = {
+            -- enable = true,
+            -- path = vim.fn.stdpath('cache')..'/luacache_chunks',
+        -- },
+        -- modpaths = {
+            -- enable = true,
+            -- path = vim.fn.stdpath('cache')..'/luacache_modpaths',
+        -- }
+    -- }
+    -- require('impatient')
+    -- require'impatient'.enable_profile()
 
 end
 
