@@ -62,7 +62,7 @@ packer.startup(function(use)
         requires = { {'nvim-lua/plenary.nvim'} }
     }
     -- telescope ui 选择
-    use {'nvim-telescope/telescope-ui-select.nvim' }
+    -- use {'nvim-telescope/telescope-ui-select.nvim' }
     -- 文件浏览器
     use { "nvim-telescope/telescope-file-browser.nvim" }
     -- 管理项目 require file-browser
@@ -74,12 +74,12 @@ packer.startup(function(use)
     -- telescope 快速跳转
     use {'nvim-telescope/telescope-hop.nvim'}
     -- 使用 sqlite3 记录历史记录
-    use {
-        'nvim-telescope/telescope-smart-history.nvim',
-        requires = { "kkharji/sqlite.lua" }
-    }
+    -- use {
+        -- 'nvim-telescope/telescope-smart-history.nvim',
+        -- requires = { "kkharji/sqlite.lua" }
+    -- }
     -- 查找本地 git 仓库
-    use { 'cljoly/telescope-repo.nvim' }
+    -- use { 'cljoly/telescope-repo.nvim' }
     -- dashboard
     -- https://github.com/glepnir/dashboard-nvim
     use {'glepnir/dashboard-nvim'}
@@ -252,19 +252,6 @@ local function setup_plugin()
         -- 设置代码片段目录
         vim.g.vsnip_snippet_dir = config.HOME .. '/config/vsnip'
     end
-
-    -- _G.__luacache_config = {
-        -- chunks = {
-            -- enable = true,
-            -- path = vim.fn.stdpath('cache')..'/luacache_chunks',
-        -- },
-        -- modpaths = {
-            -- enable = true,
-            -- path = vim.fn.stdpath('cache')..'/luacache_modpaths',
-        -- }
-    -- }
-    -- require('impatient')
-    -- require'impatient'.enable_profile()
 
 end
 

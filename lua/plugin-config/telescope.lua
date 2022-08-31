@@ -15,15 +15,15 @@ local config = require("config")
 local actions = require "telescope.actions"
 local fb_actions = require "telescope".extensions.file_browser.actions
 
+-- key mapping
 if 1 == 1 then
     vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
     vim.keymap.set('n', '<leader>fs', '<cmd>Telescope live_grep<cr>')
-    -- vim.keymap.set('n', '<leader>f', '<cmd>Telescope buffers<cr>')
+    vim.keymap.set('n', '<leader>fr', '<cmd>Telescope buffers<cr>')
     vim.keymap.set('n', '<leader>fc', '<cmd>Telescope commands<cr>')
     vim.keymap.set('n', '<leader>fm', '<cmd>Telescope help_tags<cr>')
     vim.keymap.set('n', '<leader>fk', '<cmd>Telescope keymaps<cr>')
     vim.keymap.set('n', '<leader>fh', '<cmd>Telescope oldfiles<cr>')
-    -- vim.keymap.set('n', '<leader>fs', '<cmd>Telescope search_history<cr>')
     vim.keymap.set('n', '<leader>gs', '<cmd>Telescope git_status<cr>')
     vim.keymap.set('n', '<leader>gl', '<cmd>Telescope git_commits<cr>')
     vim.keymap.set('n', 'gcb', '<cmd>Telescope git_branches<cr>')
@@ -46,11 +46,6 @@ local setup_config = {
                 ["<space>"] = require("telescope").extensions.hop.hop,
             }
         },
-        history = {
-            -- need smart_history
-            path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
-            limit = 100,
-        }
     },
 }
 
@@ -61,6 +56,7 @@ local extensions = {}
 local command_palette = {
     {
         "Vim",
+        { "List TODO files", ":TodoTelescope" },
         { "Reload plugin load file", ":source " .. config.HOME .. "/lua/plugins.lua" },
         { "Reload current file", ":source %" },
     },
@@ -136,11 +132,11 @@ extensions.project = {
 }
 
 -- ui-select config
-extensions["ui-select"] = {
-    require("telescope.themes").get_dropdown {
-        -- even more opts
-    }
-}
+-- extensions["ui-select"] = {
+    -- require("telescope.themes").get_dropdown {
+        -- -- even more opts
+    -- }
+-- }
 
 setup_config.extensions = extensions
 
@@ -158,13 +154,13 @@ local function load_extension(module)
 end
 
 
-load_extension("ui-select")
+-- load_extension("ui-select")
 load_extension("file_browser")
 load_extension("project")
 load_extension("packer")
 load_extension('command_palette')
 load_extension('hop')
 -- load_extension('smart_history')
-load_extension('repo')
+-- load_extension('repo')
 
 
