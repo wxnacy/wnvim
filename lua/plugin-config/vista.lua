@@ -5,24 +5,24 @@ vim.keymap.set('n', 'tb', ':Vista!!<cr>')
 vim.cmd([[
     let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 ]])
-vim.cmd([[ 
+vim.cmd([[
     let g:vista_default_executive = 'ctags'
 ]])
-vim.cmd([[ 
+vim.cmd([[
     let g:vista_executive_for = {
     \ 'cpp': 'vim_lsp',
     \ 'php': 'vim_lsp',
     \ }
 ]])
-vim.cmd([[ 
+vim.cmd([[
     let g:vista_ctags_cmd = {
       \ 'haskell': 'hasktags -x -o - -c',
       \ }
 ]])
-vim.cmd([[ 
+vim.cmd([[
     let g:vista_fzf_preview = ['right:50%']
 ]])
-vim.cmd([[ 
+vim.cmd([[
     let g:vista#renderer#enable_icon = 1
 ]])
 vim.cmd([[

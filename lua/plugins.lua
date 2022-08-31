@@ -201,8 +201,8 @@ end)
 -- 启动插件
 local function setup_plugin()
     if is_install_plugin("wvim") then
-        vim.api.nvim_command("source" .. config.PLUGIN_HOME .. "/wvim/vimrcs/basic.vim")
-        vim.api.nvim_command("source" .. config.PLUGIN_HOME .. "/wvim/vimrcs/mapping.vim")
+        vim.api.nvim_command("source " .. config.PLUGIN_HOME .. "/wvim/vimrcs/basic.vim")
+        vim.api.nvim_command("source " .. config.PLUGIN_HOME .. "/wvim/vimrcs/mapping.vim")
     end
 
     if is_install_plugin("packer.nvim") then
@@ -242,13 +242,15 @@ local function setup_plugin()
         smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
         imap <expr> <C-n>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-n>'
         smap <expr> <C-n>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-n>'
+        imap <expr> <C-l>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-n>'
+        smap <expr> <C-l>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-n>'
         imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
         smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
         imap <expr> <C-p>   vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-p>'
         smap <expr> <C-p>   vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-p>'
         ]])
         -- 设置代码片段目录
-        vim.g.vsnip_snippet_dir = config.CONFIG_HOME .. '/vsnip'
+        vim.g.vsnip_snippet_dir = config.HOME .. '/config/vsnip'
     end
 
     -- _G.__luacache_config = {

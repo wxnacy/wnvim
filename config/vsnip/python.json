@@ -1,0 +1,11 @@
+{
+  "classmethod": {
+    "prefix": ["defc"],
+    "body": [
+      "@classmethod",
+      "def ${1:function}(cls, $2):",
+      "    ${3:pass}"
+    ],
+    "description": "class method"
+  }
+}

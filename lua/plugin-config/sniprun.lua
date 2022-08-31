@@ -1,5 +1,6 @@
-vim.keymap.set('n', '<Leader>r', '<Plug>SnipRun', {silent = true})
--- vim.keymap.set('n', '<leader>ro', '<Plug>SnipRunOperator', {silent = true})
+-- 执行当前文件
+vim.keymap.set('n', '<Leader>r', 'ggvG<Plug>SnipRun', {silent = true})
+-- 执行选中片段
 vim.keymap.set('v', '<leader>r', '<Plug>SnipRun', {silent = true})
 return require('sniprun').setup({
 	display = {

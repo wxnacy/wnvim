@@ -130,7 +130,7 @@ extensions.project = {
     base_dirs = {
         {'~/Documents/Projects'},
         {'~/Documents/Configs'},
-        {'~/Projects', max_depth = 1},
+        {'~/Projects'},
         {config.PLUGIN_HOME},
     }
 }
