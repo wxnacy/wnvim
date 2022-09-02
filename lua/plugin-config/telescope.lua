@@ -58,6 +58,7 @@ local command_palette = {
         "Vim",
         { "List TODO files", ":TodoTelescope" },
         { "Reload plugin load file", ":source " .. config.HOME .. "/lua/plugins.lua" },
+        { "Reload nvim init.lua", ":source " .. config.HOME .. "/init.lua" },
         { "Reload current file", ":source %" },
     },
     {

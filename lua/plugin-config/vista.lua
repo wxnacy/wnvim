@@ -1,5 +1,4 @@
 -- vim.g.vista_fzf_preview = 'right:50%'
--- print("ww")
 vim.keymap.set('n', 'tb', ':Vista!!<cr>')
 -- vim.api.nvim_exec("let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]")
 vim.cmd([[

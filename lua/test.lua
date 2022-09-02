@@ -12,13 +12,11 @@
         -- 'nvim-lualine/lualine.nvim',
         -- requires = { 'kyazdani42/nvim-web-devicons', opt = true },
         -- config = function ()
-            -- print("w")
         -- end
     -- }
 -- }
 -- for _, value in ipairs(plugin_configs) do
     -- for _, n in ipairs(value) do
-        -- print(n)
     -- end
 -- end
 
@@ -35,7 +33,6 @@
     -- end
 -- }
 -- for key, value in pairs(plugin_setups) do
-    -- print(key, value)
 -- end
 -- local finders = require "telescope.finders"
 -- local pickers = require "telescope.pickers"
@@ -54,10 +51,8 @@
 -- colors(require("telescope.themes").get_dropdown{})
 
 
--- print(vim.fn.globpath(vim.fn.stdpath("config"), "ss.lua"))
 -- local tmp = vim.split(vim.fn.globpath(vim.fn.stdpath("config"), "lug/plugin-config/*.lua"), "\n")
 -- for _, f in ipairs(tmp) do
-    -- print(f)
 -- end
 --
 
@@ -69,22 +64,7 @@
   -- diffview.emit("refresh_files")
 -- end, { nargs = 0, bang = true })
 
--- local res = require("local-nvim-plugin")
--- print(res.name)
 
--- local m = {"ww", name = "wxnacy", 1}
--- print(type(m))
--- print(m[1])
--- print(m[2])
--- print(m['name'])
 
--- array = {"Lua", "Tutorial"}
--- table.insert(array, "ww")
--- for _ , value in ipairs(array ) do
-    -- print(value)
--- end
---
 
--- for key, value in pairs(require("telescope.builtin")) do print(key) end
 
--- for key, value in pairs(require("telescope.command").get_extensions_subcommand()) do print(key) end

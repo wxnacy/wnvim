@@ -13,11 +13,6 @@ vim.keymap.set('n', '<Leader>tt', ':NvimTreeToggle<CR>')
 vim.keymap.set('n', 'tt', ':NvimTreeToggle<CR>')
 -- 查找/关闭当前文件在目录中的位置
 vim.keymap.set('n', 'tf', ':NvimTreeFindFileToggle<CR>')
--- local tree_cb = require'nvim-tree.config'.nvim_tree_callback
--- local print_node_path = function(node)
-    -- print(node.absolute_path)
-    -- print(node)
--- end
 
 tree.setup({
     open_on_setup = true,
@@ -32,7 +27,6 @@ tree.setup({
                 { key = "O", action = "system_open" },
                 -- 显示帮助文档
                 { key = "?",action = "toggle_help" },
-                -- { key = "t", action = "print_path", action_cb = print_node_path },
             },
         },
     },

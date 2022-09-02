@@ -15,7 +15,6 @@ for name, _ in pairs(servers) do
   local server_is_found, server = lsp_installer.get_server(name)
   if server_is_found then
     if not server:is_installed() then
-      -- print("Installing " .. name)
       vim.notify("Installing " .. name)
       server:install()
       vim.notify("Success Install " .. name)
