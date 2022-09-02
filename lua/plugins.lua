@@ -55,6 +55,16 @@ packer.startup(function(use)
     use({ 'glepnir/zephyr-nvim', })
     -- 主题
     use { 'folke/tokyonight.nvim' }
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
     --https://github.com/nvim-telescope/telescope.nvim#getting-started
     -- brew install fd
     use {
@@ -251,6 +261,13 @@ local function setup_plugin()
         ]])
         -- 设置代码片段目录
         vim.g.vsnip_snippet_dir = config.HOME .. '/config/vsnip'
+    end
+
+    if utils.require('which-key') then
+        require("which-key").register({
+            ["?"] = { "<cmd>WhichKey <cr>", "Show Hot Key" },
+            -- ["<C-/>"] = { "<cmd>WhichKey <cr>", "Show Hot Key" },
+        })
     end
 
 end
