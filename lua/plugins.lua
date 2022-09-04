@@ -55,16 +55,16 @@ packer.startup(function(use)
     use({ 'glepnir/zephyr-nvim', })
     -- 主题
     use { 'folke/tokyonight.nvim' }
-    use {
-        "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
-        end
-    }
+    -- use {
+        -- "folke/which-key.nvim",
+        -- config = function()
+            -- require("which-key").setup {
+                -- -- your configuration comes here
+                -- -- or leave it empty to use the default settings
+                -- -- refer to the configuration section below
+            -- }
+        -- end
+    -- }
     --https://github.com/nvim-telescope/telescope.nvim#getting-started
     -- brew install fd
     use {
@@ -181,8 +181,15 @@ packer.startup(function(use)
         requires = "nvim-lua/plenary.nvim"
     }
 
+    -- nvim 包管理
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+    }
+
     -- lspconfig
-    use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
+    use {'neovim/nvim-lspconfig'}
+    -- use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
     -- nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }
     use 'hrsh7th/cmp-buffer'   -- { name = 'buffer' },
@@ -263,12 +270,12 @@ local function setup_plugin()
         vim.g.vsnip_snippet_dir = config.HOME .. '/config/vsnip'
     end
 
-    if utils.require('which-key') then
-        require("which-key").register({
-            ["?"] = { "<cmd>WhichKey <cr>", "Show Hot Key" },
-            -- ["<C-/>"] = { "<cmd>WhichKey <cr>", "Show Hot Key" },
-        })
-    end
+    -- if utils.require('which-key') then
+        -- require("which-key").register({
+            -- ["?"] = { "<cmd>WhichKey <cr>", "Show Hot Key" },
+            -- -- ["<C-/>"] = { "<cmd>WhichKey <cr>", "Show Hot Key" },
+        -- })
+    -- end
 
 end
 

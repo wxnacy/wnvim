@@ -4,3 +4,11 @@ vim.wo.colorcolumn = "80"
  --vim.g.NERDSpaceDelims = 0
 
 return {}
+
+-- local M = {}
+
+-- M.setup = function (opts)
+    -- require("lspconfig").pylsp.setup(opts)
+-- end
+
+-- return M

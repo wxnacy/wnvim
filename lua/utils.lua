@@ -47,4 +47,10 @@ M.can_success_run_cmd = function (cmd)
     end
 end
 
+M.notify_warn = function (msg)
+    vim.notify(msg, vim.log.levels.WARN, {
+        title = "wnvim"
+    })
+end
+
 return M

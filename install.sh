@@ -19,6 +19,7 @@
 # https://github.com/glepnir/dashboard-nvim
 # https://zhuanlan.zhihu.com/p/551941252
 # https://github.com/kevinhwang91/rnvimr
+# https://github.com/TheZoraiz/ascii-image-converter
 
 # python >= 3.7
 

@@ -2,6 +2,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 return {
+-- local config = {
   settings = {
     Lua = {
       runtime = {
@@ -25,3 +26,14 @@ return {
     },
   },
 }
+
+-- local M = {}
+
+-- M.setup = function (opts)
+    -- print('lua')
+    -- opts = vim.tbl_deep_extend("force", config, opts)
+    -- require("lspconfig").sumneko_lua.setup(opts)
+-- end
+
+-- return M
+

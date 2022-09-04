@@ -15,6 +15,7 @@ require('plugin-config/hop')
 require('plugin-config/vista')
 require('plugin-config/dashboard-nvim')
 require('plugin-config/lualine')
+require('plugin-config/mason')
 
 -- ===============================
 -- nerdcommenter 快速注释
