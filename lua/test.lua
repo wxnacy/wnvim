@@ -1,3 +1,11 @@
+local a = {1}
+table.insert(a, 2)
+table.insert(a, 3)
+-- table.insert(a, 0, 4)
+for _, value in ipairs(a) do
+    print(value)
+end
+
 -- require("utils").require("ssss", true)
 -- local plugin_configs = {
     -- -- Packer can manage itself

@@ -2,6 +2,7 @@ local config = require("config")
 -- local packer = require('packer')
 local utils = require("utils")
 local is_install_plugin = require("utils").is_install_plugin
+local plugin_config = require("plugin-config.config")
 
 -- 判断是否安装 packer 插件管理器
 local fn = vim.fn
@@ -107,10 +108,10 @@ packer.startup(function(use)
     -- use { 'bling/vim-airline' }
     -- 替换 vim-airline
     -- https://github.com/nvim-lualine/lualine.nvim
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    }
+    -- use {
+        -- 'nvim-lualine/lualine.nvim',
+        -- requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    -- }
     -- 快速跳转
     -- use { 'Lokaltog/vim-easymotion' }
     -- 快速跳转用来代替 vim-easymotion
@@ -212,6 +213,14 @@ packer.startup(function(use)
     -- 多终端
     use {"akinsho/toggleterm.nvim", tag = 'v2.*'}
     -- ============================ 工具相关 end
+
+    -- 动态加载插件
+    for _, _plugin in ipairs(plugin_config.plugins) do
+        use(_plugin)
+        if _plugin.config then
+            pcall(_plugin.config)
+        end
+    end
 
     -- 新安装时执行同步操作
     if is_new_install then

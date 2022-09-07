@@ -1,3 +1,4 @@
+local utils = require("utils")
 require('plugin-config/nvim-notify')
 require('plugin-config/nvim-tree')
 require('plugin-config/nvim-treesitter')
@@ -9,12 +10,12 @@ require('plugin-config/sniprun')
 require('plugin-config/todo-comments')
 require('plugin-config/telescope')
 require('plugin-config/vim-fugitive')
-require('plugin-config/gitsigns')
+-- require('plugin-config/gitsigns')
 require('plugin-config/vim-illuminate')
 require('plugin-config/hop')
 require('plugin-config/vista')
 require('plugin-config/dashboard-nvim')
-require('plugin-config/lualine')
+-- require('plugin-config/lualine')
 require('plugin-config/mason')
 require('plugin-config/null-ls')
 
@@ -47,3 +48,14 @@ if 1 == 1 then
     set undodir=~/.local/share/nvim/undo
     ]])
 end
+
+-- ===============================
+-- gitsigns
+-- git 相关操作
+-- https://github.com/lewis6991/gitsigns.nvim
+-- ===============================
+local gs_status, gitsigns = utils.require("gitsigns", true)
+if gs_status then
+    gitsigns.setup()
+end
+

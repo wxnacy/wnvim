@@ -1,3 +1,4 @@
+-- NOTE: 不再使用 nvim-lsp-installer 管理 lsp 插件，改用 mason 统一管理
 local lsp_installer = require "nvim-lsp-installer"
 
 -- 安装列表

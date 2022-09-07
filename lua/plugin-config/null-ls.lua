@@ -23,6 +23,8 @@ for _, item in ipairs(require("linter.config").servers) do
     end
 end
 
+-- table.insert(sources, null_ls.builtins.code_actions.gitsigns)
+
 -- 启动配置 https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/CONFIG.md
 null_ls.setup({
     sources = sources
