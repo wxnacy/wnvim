@@ -1,3 +1,4 @@
+-- require("utils").require("ssss", true)
 -- local plugin_configs = {
     -- -- Packer can manage itself
     -- -- {'wbthomason/packer.nvim'},
@@ -67,12 +68,13 @@
 
 
 
-local opt1 = {name = 1}
-local opt2 = {id = 2}
-local opt3 = vim.tbl_deep_extend("force", opt1, opt2)
-for key, value in pairs(opt3) do
-    print(key, value)
-end
+-- local opt1 = {name = 1}
+-- local opt2 = {id = 2}
+-- local opt3 = vim.tbl_deep_extend("force", opt1, opt2)
+-- for key, value in pairs(opt3) do
+    -- print(key, value)
+-- end
 
-print(opt1['name'])
-print(opt1['nme'])
+-- print(opt1['name'])
+-- print(opt1['nme'])
+-- require("utils").require("ssss")

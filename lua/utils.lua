@@ -28,8 +28,12 @@ M.can_require = function (module)
 end
 
 -- 动态导入
-M.require = function (module)
-    return pcall(require, module)
+M.require = function (module, is_warn_notify)
+    local ok, mod = pcall(require, module)
+    if not ok and is_warn_notify then
+        M.notify_not_installed(module)
+    end
+    return ok, mod
 end
 
 -- 运行命令
@@ -48,6 +52,14 @@ M.can_success_run_cmd = function (cmd)
 end
 
 M.notify_warn = function (msg)
+    vim.notify(msg, vim.log.levels.WARN, {
+        title = "wnvim"
+    })
+end
+
+-- 提示没有安装信息
+M.notify_not_installed = function (name)
+    local msg = name .. " is not installed"
     vim.notify(msg, vim.log.levels.WARN, {
         title = "wnvim"
     })

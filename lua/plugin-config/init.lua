@@ -16,6 +16,7 @@ require('plugin-config/vista')
 require('plugin-config/dashboard-nvim')
 require('plugin-config/lualine')
 require('plugin-config/mason')
+require('plugin-config/null-ls')
 
 -- ===============================
 -- nerdcommenter 快速注释

@@ -185,6 +185,7 @@ packer.startup(function(use)
     use {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
     }
 
     -- lspconfig
@@ -202,6 +203,9 @@ packer.startup(function(use)
     use 'rafamadriz/friendly-snippets'
     -- lspkind
     use 'onsails/lspkind-nvim'
+
+    -- Linters
+    use {"jose-elias-alvarez/null-ls.nvim"}
     -- ============================ 代码相关 end
 
     -- ============================ 工具相关 begin

@@ -4,19 +4,11 @@ if not ok then
     return
 end
 
--- 使用的服务
-local servers = {
-  sumneko_lua = require "lsp.lua", -- /lua/lsp/lua.lua
-  gopls = require "lsp.go", -- /lua/lsp/go.lua
-  -- pylsp = require "lsp.python",
-  jedi_language_server = require "lsp.python",
-  jdtls = require "lsp.java",
-}
-
+local lsp_config = require("lsp.config")
 
 -- 加载需要下载的 lsp server
 local ensure_installed = {}
-for lsp_name, _ in pairs(servers) do
+for lsp_name, _ in pairs(lsp_config.servers) do
     table.insert(ensure_installed, lsp_name)
 end
 
@@ -46,14 +38,15 @@ opts.flags = {
 
 -- 启动触发 lsp
 -- https://github.com/williamboman/nvim-config/blob/main/plugin/lsp/setup.lua
+local lspconfig = require("lspconfig")
 lsp_installer.setup_handlers {
     -- This is a default handler that will be called for each installed server (also for new servers that are installed during a session)
     function (server_name)
-        local language_config = servers[server_name]
+        local language_config = lsp_config.servers[server_name]
         if language_config then
             -- 加载本地配置并启动
             opts = vim.tbl_deep_extend("force", language_config, opts)
-            require("lspconfig")[server_name].setup(opts)
+            lspconfig[server_name].setup(opts)
         end
     end,
     -- You can also override the default handler for specific servers by providing them as keys, like so:
