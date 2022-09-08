@@ -6,7 +6,7 @@ vim.g.Lf_PreviewInPopup = 1
 -- vim.keymap.set("n", "<Leader>p", ":Leaderf file<CR>")
 -- vim.keymap.set("n", "<Leader>f", ":Leaderf mru --cwd<CR>")
 -- vim.keymap.set("n", "<Leader>fm", ":Leaderf mru<CR>")
-vim.keymap.set("n", "<Leader>fu", ":Leaderf function<CR>")
+-- vim.keymap.set("n", "<Leader>fu", ":Leaderf function<CR>")
 
 -- "===============================
 -- " :LeaderfInstallCExtension 安装 c 语言扩展，可以提高 10 倍速度

@@ -17,16 +17,19 @@ local fb_actions = require "telescope".extensions.file_browser.actions
 
 -- key mapping
 if 1 == 1 then
-    vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
-    vim.keymap.set('n', '<leader>fs', '<cmd>Telescope live_grep<cr>')
-    vim.keymap.set('n', '<leader>fr', '<cmd>Telescope buffers<cr>')
-    vim.keymap.set('n', '<leader>fc', '<cmd>Telescope commands<cr>')
-    vim.keymap.set('n', '<leader>fm', '<cmd>Telescope help_tags<cr>')
-    vim.keymap.set('n', '<leader>fk', '<cmd>Telescope keymaps<cr>')
-    vim.keymap.set('n', '<leader>fh', '<cmd>Telescope oldfiles<cr>')
-    vim.keymap.set('n', '<leader>gs', '<cmd>Telescope git_status<cr>')
-    vim.keymap.set('n', '<leader>gl', '<cmd>Telescope git_commits<cr>')
-    vim.keymap.set('n', 'gcb', '<cmd>Telescope git_branches<cr>')
+    vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')      -- 当前 cwd 文件路径搜索
+    vim.keymap.set('n', '<leader>fs', '<cmd>Telescope live_grep<cr>')       -- 文本模糊搜索
+    vim.keymap.set('n', '<leader>fr', '<cmd>Telescope buffers<cr>')         -- buffer 文件
+    vim.keymap.set('n', '<leader>fc', '<cmd>Telescope commands<cr>')        -- 命令
+    vim.keymap.set('n', '<leader>fm', '<cmd>Telescope help_tags<cr>')       -- 帮助文档
+    vim.keymap.set('n', '<leader>fk', '<cmd>Telescope keymaps<cr>')         -- 映射 keymap
+    vim.keymap.set('n', '<leader>fh', '<cmd>Telescope oldfiles<cr>')        -- 历史文件路径搜索
+    vim.keymap.set('n', '<leader>fu', '<cmd>Telescope treesitter<cr>')        -- 历史文件路径搜索
+    -- vim.keymap.set('n', '<leader>fu', '<cmd>Telescope treesitter theme=cursor<cr>')        -- 历史文件路径搜索
+    vim.keymap.set('n', '<leader>fl', '<cmd>Telescope current_buffer_fuzzy_find<cr>')        -- 搜索当前 buffer 行搜索
+    vim.keymap.set('n', '<leader>gs', '<cmd>Telescope git_status<cr>')      -- git 文件修改状态
+    vim.keymap.set('n', '<leader>gl', '<cmd>Telescope git_commits<cr>')     -- git 提交历史
+    vim.keymap.set('n', 'gcb', '<cmd>Telescope git_branches<cr>')           -- 切换分支
     -- need telescope-file-browser.nvim
     vim.keymap.set('n', '<leader>fb', '<cmd>Telescope file_browser<cr>')
     -- need nvim-telescope/telescope-project.nvim

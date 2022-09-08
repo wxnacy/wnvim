@@ -1,3 +1,4 @@
+-- vim.wo.colorcolumn = "120"
 -- 模式使用 mason 或者 lsp_installer 下载的 jdtls 无法使用
 -- https://github.com/lxyoucan/nvim-as-java-ide
 -- 按照文章中提示使用 https://download.eclipse.org/jdtls/milestones/1.9.0/jdt-language-server-1.9.0-202203031534.tar.gz 版本可以使用
