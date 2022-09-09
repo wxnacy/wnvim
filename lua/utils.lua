@@ -8,6 +8,10 @@ M.is_install_plugin = function (name)
     return M.is_dir_exists(install_path)
 end
 
+M.join_path = function (...)
+    return table.concat({...}, "/")
+end
+
 -- 目录是否存在
 M.is_dir_exists = function (dirname)
     if fn.empty(fn.glob(dirname)) > 0 then
