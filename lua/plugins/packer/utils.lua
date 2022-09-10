@@ -24,7 +24,7 @@ M.install_packer = function ()
             -- "https://gitcode.net/mirrors/wbthomason/packer.nvim",
             install_path,
         })
-        vim.cmd [[packadd packer.nvim]]
+        -- vim.cmd [[packadd packer.nvim]]
 
         -- https://github.com/wbthomason/packer.nvim/issues/750
         local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"

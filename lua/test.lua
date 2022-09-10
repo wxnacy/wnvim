@@ -1,5 +1,5 @@
-local result = table.concat({ "/s", "n" }, "/")
-print(result)
+-- local result = table.concat({ "/s", "n" }, "/")
+-- print(result)
 
 -- require("utils").require("ssss", true)
 -- local plugin_configs = {
@@ -77,6 +77,15 @@ print(result)
 -- for key, value in pairs(opt3) do
     -- print(key, value)
 -- end
+local a = {1, 2, 3}
+local b = {4, 5, 6}
+local c = {}
+for _, value in ipairs(a) do
+    table.insert(c, value)
+end
+for _, value in ipairs(c) do
+    print(value)
+end
 
 -- print(opt1['name'])
 -- print(opt1['nme'])

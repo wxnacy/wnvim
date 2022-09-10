@@ -21,12 +21,12 @@ lsp_installer.setup({
 })
 
 -- 触发方法
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     -- 绑定快捷键
     require('keybindings').maplsp(buf_set_keymap)
     -- 高亮相同单词
-    require 'illuminate'.on_attach()
+    require 'illuminate'.on_attach(client)
 end
 
 -- lsp 启动配置

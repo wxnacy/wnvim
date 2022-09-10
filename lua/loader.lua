@@ -11,8 +11,8 @@ end
 
 local function load_plugin()
     -- 加载插件
-    require('plugins').setup()
-    -- require('plugins.packer')
+    -- require('plugins').setup()
+    require('plugins.packer')
     require('lsp')
     require('autocmds')
 

@@ -1,5 +1,0 @@
--- vim.api.nvim_command [[ hi def link LspReferenceText CursorLine ]]
--- vim.api.nvim_command [[ hi def link LspReferenceWrite CursorLine ]]
--- vim.api.nvim_command [[ hi def link LspReferenceRead CursorLine ]]
--- vim.keymap.set('n', '<c-[>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>', {noremap=true})
--- vim.keymap.set('n', '<c-]>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>', {noremap=true})
