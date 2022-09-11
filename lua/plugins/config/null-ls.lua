@@ -3,6 +3,8 @@ if not ok then
     return
 end
 
+vim.keymap.set('n', '<leader>=', '<CMD>lua vim.lsp.buf.formatting()<CR>')
+
 -- 资源列表
 local sources = {}
 -- mason 安装目录
@@ -17,8 +19,11 @@ local append_sources = function (typ, servers)
             name = item
         end
 
+
         local package_path = mason_home .. "/packages/" .. name
         if require("utils").is_dir_exists(package_path) then
+            -- 名称以 mason 源为准，这里替换为 null-ls 可以使用的名称
+            name = name:gsub('-', '_')
             local source = null_ls.builtins[typ][name]
             table.insert(sources, source)
         end

@@ -53,6 +53,7 @@ local prettify_plugins = {
     --     lualine.nvim
     --     nvim-tree
     --     bufferline.nvim
+    --     diffview.nvim
     { 'kyazdani42/nvim-web-devicons' },
 
     {
@@ -97,7 +98,6 @@ local prettify_plugins = {
     -- https://github.com/nvim-lualine/lualine.nvim
     {
         'nvim-lualine/lualine.nvim',
-        -- requires = { 'kyazdani42/nvim-web-devicons', opt = true },
         config = function ()
             require('lualine').setup {
                 options = {
@@ -261,9 +261,6 @@ local other_plugins = {
     -- nvim-tree
     {
         'kyazdani42/nvim-tree.lua',
-        -- requires = {
-            -- 'kyazdani42/nvim-web-devicons', -- optional, for file icons
-        -- },
         config = function ()
             require("plugins.config.nvim-tree")
         end,

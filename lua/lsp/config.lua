@@ -12,8 +12,10 @@ M.servers = {
     jdtls = require "lsp.java",
     bashls = {},
     -- ["bash-language-server"] = {},
-    tsserver = {},
+    -- tsserver = {},
+    quick_lint_js = {},
     html = {},
+    yamlls = {},        -- yaml
     -- ["quick-lint-js"] = {},
 }
 

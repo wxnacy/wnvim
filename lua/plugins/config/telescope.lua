@@ -60,7 +60,6 @@ local extensions = {}
 local command_palette = {
     {
         "Vim",
-        { "Print workspace cwd", ":lua vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()[1]))" },
         { "List trouble files", ":Trouble" },
         { "List TODO files", ":TodoTelescope" },
         { "Reload plugin load file", ":source " .. config.HOME .. "/lua/plugins.lua" },
@@ -71,6 +70,11 @@ local command_palette = {
         "Telescope",
         -- { "Search packer projects", "<Cmd>Telescope packer<CR>" },
         { "Search packer projects", ":Telescope packer" },
+    },
+    {
+        "LSP",
+        { "Print workspace cwd", ":lua vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()[1]))" },
+        { "Format code", ":lua vim.lsp.buf.formatting()" },
     }
 }
 
