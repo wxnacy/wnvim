@@ -46,7 +46,7 @@ local basic_plugins = {
 }
 
 local prettify_plugins = {
-    -- ============================ 主题/美化
+    -- ============================ 美化
     -- icon 基础
     -- require by
     --     trouble.nvim
@@ -55,8 +55,8 @@ local prettify_plugins = {
     --     bufferline.nvim
     { 'kyazdani42/nvim-web-devicons' },
 
-    -- theme
     {
+        -- 主题
         { "ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"} },
         {'shaunsingh/nord.nvim'},
         { 'glepnir/zephyr-nvim' },
@@ -72,8 +72,8 @@ local prettify_plugins = {
         'RRethy/vim-illuminate',
     },
 
-    -- 缩进美化展示
     {
+        -- 缩进美化展示
         "lukas-reineke/indent-blankline.nvim",
         config = function ()
             -- https://github.com/lukas-reineke/indent-blankline.nvim
@@ -111,9 +111,9 @@ local prettify_plugins = {
 
 local code_plugins = {
     -- ============================ 代码相关
-    -- 代码片段运行
-    -- https://github.com/michaelb/sniprun
+
     {
+        -- 代码片段运行
         'michaelb/sniprun',
         -- 需要先下载 rust
         -- brew install rust
@@ -138,15 +138,15 @@ local code_plugins = {
         end
     },
 
-    -- lsp, dap, linter, formatter 包管理
     {
+        -- lsp, dap, linter, formatter 包管理
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
 
-    -- lsp 相关
     {
+        -- lsp 相关
         {'neovim/nvim-lspconfig'},
         {'rafamadriz/friendly-snippets'},
         {'onsails/lspkind-nvim'},
@@ -302,7 +302,6 @@ local other_plugins = {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim"
     },
-
 }
 
 local plugins = {}
