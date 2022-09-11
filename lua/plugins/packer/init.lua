@@ -50,7 +50,10 @@ local prettify_plugins = {
     -- icon 基础
     -- require by
     --     trouble.nvim
-    -- { 'kyazdani42/nvim-web-devicons' },
+    --     lualine.nvim
+    --     nvim-tree
+    --     bufferline.nvim
+    { 'kyazdani42/nvim-web-devicons' },
 
     -- theme
     {
@@ -94,7 +97,7 @@ local prettify_plugins = {
     -- https://github.com/nvim-lualine/lualine.nvim
     {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+        -- requires = { 'kyazdani42/nvim-web-devicons', opt = true },
         config = function ()
             require('lualine').setup {
                 options = {
@@ -258,9 +261,9 @@ local other_plugins = {
     -- nvim-tree
     {
         'kyazdani42/nvim-tree.lua',
-        requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icons
-        },
+        -- requires = {
+            -- 'kyazdani42/nvim-web-devicons', -- optional, for file icons
+        -- },
         config = function ()
             require("plugins.config.nvim-tree")
         end,
@@ -287,11 +290,10 @@ local other_plugins = {
     { 'simnalamburt/vim-mundo' },
 
     -- bufferline.nvim
-    {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'},
+    {'akinsho/bufferline.nvim'},
 
     {
         "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
         config = function()
             require("trouble").setup { }
         end
