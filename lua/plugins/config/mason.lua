@@ -42,21 +42,18 @@ end
 -- 确保下载的列表
 local ensure_installed = {}
 
--- 加载 lint 的下载列表
-for _, item in ipairs(require("linter.config").servers) do
-    local name
-    if type(item) == 'table' then
-        name = item[1]
-    else
-        name = item
+local append_ensure_installed = function (servers)
+    for _, item in ipairs(servers) do
+        table.insert(ensure_installed, item)
     end
-
-    table.insert(ensure_installed, name)
 end
--- print(ensure_installed)
+
+-- 加载 linter 的下载列表
+append_ensure_installed(require("linter.config").servers)
+-- 加载 formater 的下载列表
+append_ensure_installed(require("formatter.config").servers)
 
 mason_installer.setup {
-
   -- a list of all tools you want to ensure are installed upon
   -- start; they should be the names Mason uses for each tool
   ensure_installed = ensure_installed,

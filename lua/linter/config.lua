@@ -6,10 +6,10 @@ local M = {}
 -- null-ls 更加符合 mason 支持范围
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#diagnostics
 M.servers = {
-    "flake8",
-    "markdownlint",
-    "shellcheck",
-    "eslint_d",
+    "flake8",           -- python
+    "markdownlint",     -- markdown
+    "shellcheck",       -- shell
+    "eslint_d",         -- js
 }
 
 return M

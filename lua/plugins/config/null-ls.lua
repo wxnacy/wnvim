@@ -3,25 +3,32 @@ if not ok then
     return
 end
 
+-- 资源列表
 local sources = {}
-
+-- mason 安装目录
 local mason_home = require("mason.settings").current.install_root_dir
 
--- 加载 lint sources
-for _, item in ipairs(require("linter.config").servers) do
-    local name
-    if type(item) == 'table' then
-        name = item[1]
-    else
-        name = item
-    end
+local append_sources = function (typ, servers)
+    for _, item in ipairs(servers) do
+        local name
+        if type(item) == 'table' then
+            name = item[1]
+        else
+            name = item
+        end
 
-    local package_path = mason_home .. "/packages/" .. name
-    if require("utils").is_dir_exists(package_path) then
-        local source = null_ls.builtins.diagnostics[name]
-        table.insert(sources, source)
+        local package_path = mason_home .. "/packages/" .. name
+        if require("utils").is_dir_exists(package_path) then
+            local source = null_ls.builtins[typ][name]
+            table.insert(sources, source)
+        end
     end
 end
+
+-- 加载 lint sources
+append_sources('diagnostics', require("linter.config").servers)
+-- 加载 formater sources
+append_sources('formatting', require("formatter.config").servers)
 
 -- table.insert(sources, null_ls.builtins.code_actions.gitsigns)
 

@@ -5,6 +5,7 @@
 -- https://github.com/nvim-telescope/telescope-file-browser.nvim
 -- https://github.com/nvim-telescope/telescope-project.nvim
 -- https://github.com/nvim-telescope/telescope-smart-history.nvim
+-- brew install fd
 -- ===============================
 local ok, telescope = pcall(require, 'telescope')
 if not ok then
@@ -59,6 +60,8 @@ local extensions = {}
 local command_palette = {
     {
         "Vim",
+        { "Print workspace cwd", ":lua vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()[1]))" },
+        { "List trouble files", ":Trouble" },
         { "List TODO files", ":TodoTelescope" },
         { "Reload plugin load file", ":source " .. config.HOME .. "/lua/plugins.lua" },
         { "Reload nvim init.lua", ":source " .. config.HOME .. "/init.lua" },

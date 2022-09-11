@@ -3,12 +3,13 @@ local utils = require("utils")
 
 local home = require("plugins.packer.config").HOME
 
+-- 判断是否安装
 M.is_install_plugin = function (name)
-
     local install_path = utils.join_path(home, name)
     return utils.is_dir_exists(install_path)
 end
 
+-- 安装 packer
 M.install_packer = function ()
     -- 下载 packer
     local is_new_install
