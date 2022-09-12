@@ -38,7 +38,6 @@ if not _ok then
     return
 end
 
-
 -- 确保下载的列表
 local ensure_installed = {}
 
@@ -46,6 +45,14 @@ local append_ensure_installed = function (servers)
     for _, item in ipairs(servers) do
         table.insert(ensure_installed, item)
     end
+end
+
+-- load lsp servers
+local lspconfig_to_package = require("mason-lspconfig.mappings.server").lspconfig_to_package
+for lsp_name, _ in pairs(require("lsp.config").servers) do
+    -- 转换 mason 名称
+    local pck_name = lspconfig_to_package[lsp_name]
+    table.insert(ensure_installed, pck_name)
 end
 
 -- 加载 linter 的下载列表
@@ -84,7 +91,7 @@ mason_installer.setup {
   -- effective if run_on_start is set to true.
   -- e.g.: 5000 = 5 second delay, 10000 = 10 second delay, etc...
   -- Default: 0
-  start_delay = 1000, -- 3 second delay
+  start_delay = 100, -- 3 second delay
 }
 
 -- 完成下载或更新后自动通知

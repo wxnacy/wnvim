@@ -5,16 +5,15 @@ if not ok then
 end
 
 local lsp_config = require("lsp.config")
--- local lspconfig_to_package = require("mason-lspconfig.mappings.server").lspconfig_to_package
 
 -- 加载需要下载的 lsp server
 local ensure_installed = {}
-for lsp_name, _ in pairs(lsp_config.servers) do
-    -- 转换 mason 名称
-    -- local pck_name = lspconfig_to_package[lsp_name]
-    local pck_name = lsp_name
-    table.insert(ensure_installed, pck_name)
-end
+-- for lsp_name, _ in pairs(lsp_config.servers) do
+    -- -- 转换 mason 名称
+    -- -- local pck_name = lspconfig_to_package[lsp_name]
+    -- local pck_name = lsp_name
+    -- table.insert(ensure_installed, pck_name)
+-- end
 
 -- 启动 mason-lspconfig
 lsp_installer.setup({
