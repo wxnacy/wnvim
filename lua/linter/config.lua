@@ -10,6 +10,7 @@ M.servers = {
     "markdownlint",     -- markdown
     "shellcheck",       -- shell
     "eslint_d",         -- js
+    -- "stylelint",        -- css
     "cfn-lint",         -- json
     "yamllint",         -- yaml
 }
