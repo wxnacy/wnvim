@@ -11,7 +11,7 @@ M.servers = {
     "shellcheck",       -- shell
     "eslint_d",         -- js
     -- "stylelint",        -- css
-    "cfn-lint",         -- json
+    "cfn_lint",         -- json
     "yamllint",         -- yaml
 }
 
