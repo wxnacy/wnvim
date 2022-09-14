@@ -8,6 +8,7 @@ M.servers = {
     "prettierd",        -- css
     "jq",               -- json
     "yamlfmt",          -- yaml
+    "shfmt",            -- shell
 }
 
 
