@@ -43,16 +43,18 @@ local ensure_installed = {}
 
 local append_ensure_installed = function (servers)
     for _, item in ipairs(servers) do
+        local name, pck_name
         if type(item) == 'table' then
-            item = item
+            name = item[1]
         else
-            local pck_name = require("plugins.config.mason-null-ls").null_ls_to_mason[item]
-            if pck_name then
-                item = pck_name
-            end
+            name = item
         end
-        -- vim.notify(item)
-        table.insert(ensure_installed, item)
+        pck_name = require("plugins.config.mason-null-ls").get_mason_package_name(name)
+        if pck_name then
+            table.insert(ensure_installed, pck_name)
+        else
+            require("utils").notify_warn("Mason not found " .. name)
+        end
     end
 end
 

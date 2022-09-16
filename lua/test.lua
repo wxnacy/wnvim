@@ -16,4 +16,6 @@ end
 
 -- print(require("mason-lspconfig.mappings.server").lspconfig_to_package.tsserver)
 -- print_pairs(require("mason-lspconfig.mappings.server").package_to_lspconfig)
-print_pairs(require("mason-registry.index"))
+-- print_pairs(require("mason-registry.index"))
+-- print(require("mason-core.path").package_prefix("test"))
+print(require("mason-registry.index")['cfn-lint'])
