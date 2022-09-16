@@ -14,5 +14,6 @@ local function print_pairs(_table)
     print(count)
 end
 
-print(require("mason-lspconfig.mappings.server").lspconfig_to_package.tsserver)
+-- print(require("mason-lspconfig.mappings.server").lspconfig_to_package.tsserver)
 -- print_pairs(require("mason-lspconfig.mappings.server").package_to_lspconfig)
+print_pairs(require("mason-registry.index"))
