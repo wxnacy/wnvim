@@ -19,3 +19,4 @@ end
 -- print_pairs(require("mason-registry.index"))
 -- print(require("mason-core.path").package_prefix("test"))
 print(require("mason-registry.index")['cfn-lint'])
+print(vim.fn.executable('jsonlints'))

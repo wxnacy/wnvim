@@ -52,8 +52,8 @@ local append_ensure_installed = function (servers)
         pck_name = require("plugins.config.mason-null-ls").get_mason_package_name(name)
         if pck_name then
             table.insert(ensure_installed, pck_name)
-        else
-            require("utils").notify_warn("Mason not found " .. name)
+        -- else
+            -- require("utils").notify_warn("Mason not found " .. name)
         end
     end
 end

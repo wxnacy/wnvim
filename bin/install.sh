@@ -21,11 +21,14 @@
 
 # python >= 3.7
 
-npm install -g neovim
-
 # 安装插件
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 pipi pynvim neovim pyls-flake8 pylsp-mypy pyls-isort
+npm install -g neovim
 /Users/wxnacy/.pyenv/versions/3.7.12/bin/python3 -m pip install pynvim
+
+npm install jsonlint -g     # json lint
+npm install --save-dev stylelint stylelint-config-standard -g
+brew install google-java-format

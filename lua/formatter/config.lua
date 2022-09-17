@@ -9,7 +9,8 @@ M.servers = {
     "jq",               -- json
     "yamlfmt",          -- yaml
     "shfmt",            -- shell
-    "google_java_format",     -- java
+    -- "google_java_format",     -- java
+    "clang_format",     -- java
 }
 
 

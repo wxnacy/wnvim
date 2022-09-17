@@ -10,8 +10,9 @@ M.servers = {
     "markdownlint",     -- markdown
     "shellcheck",       -- shell
     "eslint_d",         -- js
-    -- "stylelint",        -- css
-    "cfn_lint",         -- json
+    -- https://github.com/stylelint/stylelint/blob/main/docs/user-guide/get-started.md#linting-css-files
+    "stylelint",        -- css
+    "jsonlint",         -- json
     "yamllint",         -- yaml
 }
 

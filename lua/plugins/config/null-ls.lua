@@ -18,7 +18,7 @@ local append_sources = function(typ, servers)
             name = item
         end
 
-        if require("plugins.config.mason-null-ls").is_install(name) then
+        if vim.fn.executable(name) or require("plugins.config.mason-null-ls").is_install(name) then
             local source = null_ls.builtins[typ][name]
             table.insert(sources, source)
         end
