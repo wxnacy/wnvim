@@ -69,6 +69,7 @@ local command_palette = {
     {
         "Telescope",
         -- { "Search packer projects", "<Cmd>Telescope packer<CR>" },
+        { "Search mason sources", ":Telescope mason" },
         { "Search packer projects", ":Telescope packer" },
     },
     {
@@ -171,6 +172,7 @@ load_extension("project")
 load_extension("packer")
 load_extension('command_palette')
 load_extension('hop')
+load_extension('mason')
 -- load_extension('smart_history')
 -- load_extension('repo')
 

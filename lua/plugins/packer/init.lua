@@ -177,6 +177,9 @@ local code_plugins = {
                 vim.g.vsnip_snippet_dir = config.HOME .. '/config/vsnip'
             end
         },
+        -- ultisnips
+        -- {'SirVer/ultisnips'},    -- { name = 'ultisnips' }
+        -- {'honza/vim-snippets'},    -- { name = 'ultisnips' }
     },
 
     -- Linter, Formatter
