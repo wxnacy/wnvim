@@ -9,19 +9,26 @@ local conf = require("telescope.config").values
 local utils = require("telescope._extensions.mason.utils")
 
 local results = {
+    {
+        name = 'test',
+        path = 'test.lua',
+        filetype = 'test.lua',
+        source = 'test.lua',
+    }
 }
 
-results = utils.extend_results('nvim-lspconfig', results)
+-- results = utils.extend_results('nvim-lspconfig', results)
+results = utils.extend_results('mason', results)
 
-local plugin_name_width = utils.get_max_name_width(results)
--- local plugin_name_width = 10
+local max_width_map = utils.get_max_width_map(results)
 
 local mason = function(opts)
     local displayer = entry_display.create {
         separator = "",
         items = {
-            { width = plugin_name_width + 1 },
-            { width = plugin_name_width + 1 },
+            { width = max_width_map['filetype'] + 1 },
+            { width = max_width_map.name + 1 },
+            { width = max_width_map.source + 1 },
             -- { remaining = true },
         },
     }
@@ -29,9 +36,9 @@ local mason = function(opts)
     local make_display = function(entry)
         -- local hl = entry.directory == "start" and "Operator" or "Number"
         return displayer {
-            { entry.name, "Operator", "Normal" }, -- TODO: parameter 2 intended to be override for matcher hl-group
-            -- { entry.name}, -- TODO: parameter 2 intended to be override for matcher hl-group
-            { entry.path, "Comment" },
+            { entry.value['filetype'], "Operator", "Normal" },
+            { entry.name, "Operator", "Normal" },
+            { entry.value.source, "Comment" },
         }
     end
 

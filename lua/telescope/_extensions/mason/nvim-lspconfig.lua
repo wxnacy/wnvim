@@ -9,16 +9,18 @@ end
 
 local dirname = packer_util.join_paths(installed_path, 'lua', 'lspconfig', 'server_configurations')
 local sources = {}
-for _, file in ipairs(utils.listdir(dirname)) do
-    if file.type == 'file' then
-        -- table.insert(sources, file.name)
+local lsp_filetypes = require("mason-lspconfig.mappings.filetype")
+for filetype, lsp_items in pairs(lsp_filetypes) do
+    for _, lsp_name in ipairs(lsp_items) do
         table.insert(sources, {
-            name = file.name,
-            path = packer_util.join_paths(dirname, file.name),
-            plugin_name = 'nvim-lspconfig'
+            name = lsp_name,
+            path = packer_util.join_paths(dirname, lsp_name .. '.lua'),
+            filetype = filetype,
+            source = 'nvim-lspconfig',
         })
     end
 end
 
 M.results = sources
+
 return M
