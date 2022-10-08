@@ -28,6 +28,9 @@ M.servers = {
     html = {capabilities = capabilities},
     cssls = {}, -- css
     yamlls = {},        -- yaml
+    volar = {
+        filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue'}
+    },        -- vue
     -- ["quick-lint-js"] = {},
 }
 
