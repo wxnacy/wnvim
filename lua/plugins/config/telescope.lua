@@ -13,6 +13,7 @@ if not ok then
 end
 
 local config = require("config")
+local utils = require("utils")
 local actions = require "telescope.actions"
 local fb_actions = require "telescope".extensions.file_browser.actions
 
@@ -136,12 +137,21 @@ extensions.file_browser = {
 extensions.project = {
     -- theme = "ivy",
     base_dirs = {
-        {'~/Documents/Projects'},
-        {'~/Documents/Configs'},
-        {'~/Projects'},
         {config.PLUGIN_HOME},
     }
 }
+
+-- 增加项目目录
+for _, value in ipairs({
+    {'~/Documents/Projects'},
+    {'~/Documents/Configs'},
+    {'~/Projects'},
+}) do
+    local dir = value[1]
+    if utils.is_dir_exists(dir) then
+        table.insert(extensions.project.base_dirs, value)
+    end
+end
 
 -- ui-select config
 -- extensions["ui-select"] = {

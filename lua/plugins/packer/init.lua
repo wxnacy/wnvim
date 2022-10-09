@@ -274,7 +274,7 @@ local other_plugins = {
     {
         'nvim-treesitter/nvim-treesitter',
         commit='11e88f6',
-        run = ':TSUpdate',
+        -- run = ':TSUpdate',
         config = function ()
             require('plugins.config.nvim-treesitter')
         end
