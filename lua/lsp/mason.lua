@@ -4,21 +4,11 @@ if not ok then
     return
 end
 
-local lsp_config = require("lsp.config")
-
--- 加载需要下载的 lsp server
-local ensure_installed = {}
--- for lsp_name, _ in pairs(lsp_config.servers) do
-    -- -- 转换 mason 名称
-    -- -- local pck_name = lspconfig_to_package[lsp_name]
-    -- local pck_name = lsp_name
-    -- table.insert(ensure_installed, pck_name)
--- end
-
 -- 启动 mason-lspconfig
 lsp_installer.setup({
     --确保下载的 lsp server
-    ensure_installed = ensure_installed,
+    ---启动到 lua/plugins/config/mason.lua 实现
+    ensure_installed = {},
     -- 是否自动下载
     automatic_installation = true,
 })
@@ -41,19 +31,42 @@ opts.flags = {
 
 -- 启动触发 lsp
 -- https://github.com/williamboman/nvim-config/blob/main/plugin/lsp/setup.lua
-local lspconfig = require("lspconfig")
+local function setup_lsp(name)
+    local language_config = require("lsp.config").servers[name]
+    if language_config then
+        -- 加载本地配置并启动
+        opts = vim.tbl_deep_extend("force", language_config, opts)
+        require("lspconfig")[name].setup(opts)
+    end
+end
+local function auto_setup_lsp(name)
+    if vim.tbl_contains(require("lsp.config").autoload_servers, name) then
+        setup_lsp(name)
+    end
+end
 lsp_installer.setup_handlers {
     -- This is a default handler that will be called for each installed server (also for new servers that are installed during a session)
-    function (server_name)
-        local language_config = lsp_config.servers[server_name]
-        if language_config then
-            -- 加载本地配置并启动
-            opts = vim.tbl_deep_extend("force", language_config, opts)
-            lspconfig[server_name].setup(opts)
-        end
-    end,
+    auto_setup_lsp,
     -- You can also override the default handler for specific servers by providing them as keys, like so:
     -- ["rust_analyzer"] = function ()
         -- require("rust-tools").setup {}
         -- end
 }
+
+vim.api.nvim_create_user_command("LSPStart", function(opts)
+    local name = opts.fargs[1]
+    if name then
+        print('setup', name)
+        setup_lsp(name)
+    end
+end, {
+    nargs = 1,
+    complete = function(_, line)
+        local l = vim.split(line, "%s+")
+        local keys = vim.tbl_keys(require("lsp.config").servers)
+        return vim.tbl_filter(function(val)
+            return vim.startswith(val, l[#l])
+        end, keys)
+    end,
+})
+

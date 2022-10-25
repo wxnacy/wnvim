@@ -31,7 +31,14 @@ M.servers = {
     volar = {
         filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue'}
     },        -- vue
-    -- ["quick-lint-js"] = {},
+}
+
+-- 自动启动的服务
+M.autoload_servers = {
+    "sumneko_lua",
+    "gopls",
+    "jedi_language_server",
+    -- jdtls = {},
 }
 
 return M
