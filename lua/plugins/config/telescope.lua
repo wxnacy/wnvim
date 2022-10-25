@@ -48,7 +48,7 @@ local setup_config = {
                 ["<C-j>"] = actions.move_selection_next,
                 ["<C-k>"] = actions.move_selection_previous,
                 -- hop.hop_toggle_selection
-                ["<space>"] = require("telescope").extensions.hop.hop,
+                ["<C-g>"] = require("telescope").extensions.hop.hop,
             }
         },
     },
