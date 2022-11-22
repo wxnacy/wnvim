@@ -1,0 +1,21 @@
+{
+    "struct": {
+        "prefix": ["struct"],
+        "body": [
+            "struct ${1:StructName} {",
+            "    ${2}",
+            "}"
+        ],
+        "description": "New struct"
+    },
+    "struct_func": {
+        "prefix": ["funcs"],
+        "body": [
+            "func (${1:StructName}) ${2:FuncName}() {",
+            "    ${2}",
+            "}"
+        ],
+        "description": "New struct func"
+    }
+}
+
