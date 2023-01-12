@@ -38,7 +38,8 @@ M.autoload_servers = {
     "sumneko_lua",
     "gopls",
     "jedi_language_server",
-    -- jdtls = {},
+    "tsserver",
+    "jdtls",
 }
 
 return M
