@@ -39,6 +39,8 @@ M.setup = function ()
     load_config()
     load_plugin()
     load_project_config()
+    -- 放在最后，避免被插件的配置覆盖
+    require('basic')
 end
 
 return M

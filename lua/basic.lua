@@ -1,3 +1,7 @@
+-- 修改临时文件存放位置
+vim.o.directory="/tmp/nvim//"            -- for swp
+vim.o.backupdir="/tmp/nvim//"
+
 -- utf8
 -- vim.g.encoding = "UTF-8"
 -- vim.o.fileencoding = 'utf-8'
