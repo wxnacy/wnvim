@@ -258,8 +258,6 @@ local other_plugins = {
         'junegunn/fzf.vim',
         requires = {"junegunn/fzf"}
     },
-    -- 文件搜索
-    { 'Yggdroot/LeaderF' },
 
     -- nvim-tree
     {
