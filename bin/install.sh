@@ -34,59 +34,110 @@
 # brew install google-java-format
 
 # has_command() {
-	# command -v $1
+# command -v $1
 # }
 # sudo pacman -S base-devel
 
 # For mason: python-pip npm wget go
 # mason install markdownlint 失败解决
 # https://blog.csdn.net/qq_35485875/article/details/120168944
-basic_softs="gcc git neovim python-pynvim python-pip npm wget go unzip"
-# python_softs="python-pynvim python-pip"
+basic_softs="gcc git wget unzip"
+python_softs="python python-pynvim python-pip"
+go_softs="go"
+node_softs="neovim npm"
+softs="${basic_softs} ${python_softs} ${go_softs} ${node_softs}"
+
+can_install='true'
 
 install_arch() {
 	echo 'Installing for archlinux'
-    echo ''
+	echo ''
 	for i in $basic_softs; do
-        path=$(sudo pacman -Q $i)
-        if [[ $path ]]; then
-            echo "Installed $path"
-        else
-            sudo pacman -S $i
+		path=$(sudo pacman -Q $i)
+		if [[ $path ]]; then
+			echo "Installed $path"
+		else
+			sudo pacman -S $i
 		fi
 	done
 }
 
-can_install='true'
-install() {
-	if [[ $(uname -s) == 'Linux' ]]; then
-		if [[ -f /etc/os-release ]]; then
-			source /etc/os-release
-			case $ID in
-			arch)
-				install_arch
-				# can_install='false'
-				;;
-			*)
-				can_install='false'
-				;;
-			esac
-
+install_ubuntu() {
+	echo 'Installing for ubuntu'
+	echo ''
+    # 更新软件
+    apt update
+    # 下载新版 neovim
+    apt install -y software-properties-common
+    add-apt-repository ppa:neovim-ppa/stable
+    apt update
+    apt install -y neovim
+	for i in $basic_softs; do
+        if [[ $(command -v $i >/dev/null 2>&1 && echo true  || { echo ""; }) ]]
+        then
+			echo "Installed $path"
+		else
+			apt install -y $i
 		fi
+	done
+}
 
-	fi
+install_linux() {
+    if [[ -f /etc/os-release ]]; then
+        source /etc/os-release
+        case $ID in
+        arch)
+            install_arch
+            ;;
+        ubuntu)
+            install_ubuntu
+            ;;
+        *)
+            can_install='false'
+            ;;
+        esac
+
+    fi
+}
+
+install_macos() {
+    if [[ $(command -v brew >/dev/null 2>&1 && echo true  || { echo ""; }) ]]
+    then
+        for soft in ${softs}; do
+            brew install ${soft}
+        done
+
+    else
+        echo '需要先安装 brew 才能继续 https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/'
+    fi
+}
+
+install() {
+    platform=$(uname -s)
+    case $platform in
+    Linux)
+        install_linux
+        ;;
+    Darwin)
+        install_macos
+        ;;
+    *)
+        can_install='false'
+        ;;
+    esac
 }
 
 main() {
-    # 安装必要工具
+	# 安装必要工具
 	install
 	if [[ $can_install == 'false' ]]; then
 		echo '不支持的平台'
 		return
 	fi
-    # 下载 wnvim
+	# 下载 wnvim
 	if [[ ! -d ~/.config/nvim ]]; then
-		git clone --depth 1 https://github.com/wxnacy/wnvim ~/.config/nvim
+		echo '下载 nvim'
+		git clone -b dev_sync_2023-03-20 --depth 1 https://github.com/wxnacy/wnvim ~/.config/nvim
 	fi
 }
 
