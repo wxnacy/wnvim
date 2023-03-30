@@ -3,7 +3,7 @@ if not ok then
     return
 end
 -- 设置 banner 样式
-db.default_banner = {
+default_banner = {
 "⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤",
 "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠟⠛⠛⠋⠉⠉⠉⠉⠛⠛⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿",
 "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠶⠖⠒⠒⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⢿⡝⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿",
@@ -43,43 +43,63 @@ db.default_banner = {
 "⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛",
 }
 
-db.custom_center = {
-    {
-        icon = '  ',
-        desc = '历史文件                              ',
-        shortcut = '; f h',
-        action ='Telescope oldfiles'
-    },
-    -- {icon = '  ',
-    -- desc = 'Recently opened files                   ',
-    -- action =  'DashboardFindHistory',
-    -- shortcut = 'SPC f h'},
-    {
-        icon = '  ',
-        desc = '查找文件                              ',
-        action = 'Telescope find_files',
-        shortcut = '; f f'
-    },
-    {
-        icon = '  ',
-        desc = '项目管理                              ',
-        action = 'Telescope project',
-        shortcut = '; f p'
-    },
-    {
-        icon = '  ',
-        desc ='文件管理                              ',
-        action =  'Telescope file_browser',
-        shortcut = '; f b'
-    },
-    {
-        icon = '  ',
-        desc = '查找文本                              ',
-        action = 'Telescope live_grep',
-        shortcut = '; f a'
-    },
-    -- {icon = '  ',
-    -- desc = 'Open Personal dotfiles                  ',
-    -- action = 'Telescope dotfiles path=' .. home ..'/.dotfiles',
-    -- shortcut = 'SPC f d'},
+center =  {
+      {
+        icon = ' ',
+        icon_hl = 'Title',
+        desc = 'History File           ',
+        desc_hl = 'String',
+        key = 'h',
+        keymap = '; f h',
+        key_hl = 'Number',
+        action = 'Telescope oldfiles'
+      },
+      {
+        icon = ' ',
+        icon_hl = 'Title',
+        desc = 'Search File           ',
+        desc_hl = 'String',
+        key = 'f',
+        keymap = '; f f',
+        key_hl = 'Number',
+        action = 'Telescope find_files'
+      },
+      {
+        icon = ' ',
+        icon_hl = 'Title',
+        desc = 'Search Content           ',
+        desc_hl = 'String',
+        key = 'a',
+        keymap = '; f a',
+        key_hl = 'Number',
+        action = 'Telescope live_grep'
+      },
+      {
+        icon = ' ',
+        icon_hl = 'Title',
+        desc = 'Project Manage           ',
+        desc_hl = 'String',
+        key = 'p',
+        keymap = '; f p',
+        key_hl = 'Number',
+        action = 'Telescope project'
+      },
+      {
+        icon = ' ',
+        icon_hl = 'Title',
+        desc = 'File Manage           ',
+        desc_hl = 'String',
+        key = 'b',
+        keymap = '; f b',
+        key_hl = 'Number',
+        action = 'Telescope file_browser'
+      },
+}
+
+db.setup {
+	theme = 'doom',
+	config = {
+        header = default_banner,
+        center = center
+	}
 }
