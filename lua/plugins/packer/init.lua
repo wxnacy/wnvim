@@ -55,7 +55,8 @@ local prettify_plugins = {
     --     nvim-tree
     --     bufferline.nvim
     --     diffview.nvim
-    { 'kyazdani42/nvim-web-devicons' },
+    --     glepnir/dashboard-nvim
+    { 'nvim-tree/nvim-web-devicons' },
 
     {
         -- 主题
@@ -67,7 +68,13 @@ local prettify_plugins = {
 
     -- dashboard
     -- https://github.com/glepnir/dashboard-nvim
-    {'glepnir/dashboard-nvim'},
+    {
+        'glepnir/dashboard-nvim',
+        event = 'VimEnter',
+        config = function ()
+            require("plugins.config.dashboard-nvim")
+        end
+    },
 
     -- 高亮相同单词
     {

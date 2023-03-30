@@ -1,5 +1,7 @@
--- local home = os.getenv('HOME')
-local db = require('dashboard')
+local ok, db = require("utils").require("dashboard", true)
+if not ok then
+    return
+end
 -- 设置 banner 样式
 db.default_banner = {
 "⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤",
