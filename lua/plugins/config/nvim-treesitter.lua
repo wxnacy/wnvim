@@ -1,10 +1,10 @@
 -- 代码美化
-local ok, null_ls = require("utils").require("nvim-treesitter.configs", true)
+local ok, treesitter = require("utils").require("nvim-treesitter.configs", true)
 if not ok then
     return
 end
 -- https://github.com/nvim-treesitter/nvim-treesitter
-null_ls.setup {
+treesitter.setup {
   -- A list of parser names, or "all"
   ensure_installed = { "c", "lua", "go", "python", "javascript", "java", "html" },
 
