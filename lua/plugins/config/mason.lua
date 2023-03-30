@@ -110,7 +110,8 @@ require("config").autocmd('User', {
     pattern = 'MasonToolsUpdateCompleted',
     group = require("config").auto_group,
     callback = function()
-        vim.notify 'mason-tool-installer has finished'
+        -- vim.notify 'mason-tool-installer has finished'
+        print('mason-tool-installer has finished')
         -- vim.schedule(vim.notify 'mason-tool-installer has finished')
     end,
 })
