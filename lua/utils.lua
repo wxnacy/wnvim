@@ -40,6 +40,15 @@ M.require = function (module, is_warn_notify)
     return ok, mod
 end
 
+-- 动态执行 setup 方法
+M.setup = function (module, configs, is_warn_notify)
+    local ok, mod = pcall(require, module)
+    if not ok and is_warn_notify then
+        M.notify_not_installed(module)
+    end
+    return mod.setup(configs)
+end
+
 -- 运行命令
 M.run_cmd = function (cmd)
     return pcall(vim.cmd, cmd)
