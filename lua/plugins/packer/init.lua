@@ -1,5 +1,6 @@
 local packer_config = require("plugins.packer.config")
 local config = require("config")
+local utils = require("utils")
 -- 基础插件
 local basic_plugins = {
     -- ============================ 基础插件
@@ -293,12 +294,15 @@ local other_plugins = {
     {
         "folke/trouble.nvim",
         config = function()
-            require("trouble").setup { }
+            utils.setup('trouble', {}, true)
         end
     },
     {
         "folke/todo-comments.nvim",
-        requires = "nvim-lua/plenary.nvim"
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            utils.setup('todo-comments', {}, true)
+        end
     },
 }
 

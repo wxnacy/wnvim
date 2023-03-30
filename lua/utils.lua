@@ -45,6 +45,7 @@ M.setup = function (module, configs, is_warn_notify)
     local ok, mod = pcall(require, module)
     if not ok and is_warn_notify then
         M.notify_not_installed(module)
+        return {}
     end
     return mod.setup(configs)
 end
