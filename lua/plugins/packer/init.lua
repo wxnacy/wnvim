@@ -13,16 +13,6 @@ local basic_plugins = {
         end
     },
 
-    -- wvim 基础设置
-    {
-        'wxnacy/wvim',
-        config = function ()
-            vim.api.nvim_command("source " .. packer_config.HOME .. "/wvim/vimrcs/basic.vim")
-            vim.api.nvim_command("source " .. packer_config.HOME .. "/wvim/vimrcs/mapping.vim")
-
-        end
-    },
-
     -- 中文帮助文档
     { 'yianwillis/vimcdoc' },
 

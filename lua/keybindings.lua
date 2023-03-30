@@ -1,3 +1,120 @@
+vim.cmd([[
+" 竖分屏打开帮助文档
+nnoremap <Leader>vh :vert h<space>
+" 快速查看 messages
+nnoremap <Leader>vm :messages<CR>
+" 修改撤销快捷键
+nnoremap U u
+nnoremap u <nop>
+" 折叠代码
+nnoremap <Leader>c zc
+nnoremap u <nop>
+
+" 模式切换 ================== {{{
+
+
+" 插入模式快速移动到行首和行尾
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+" }}}
+
+" Windows ================== {{{
+
+" 调整窗口大小
+nnoremap <c-w>> <c-w>30>
+nnoremap <c-w>< <c-w>30<
+nnoremap <c-w>- <c-w>30-
+nnoremap <c-w>+ <c-w>30+
+
+" }}}
+
+" 文本操作 ================== {{{
+
+" 删除全部
+nnoremap <Leader>da ggdG
+
+" 模拟IDE<tab>键，单行的缩紧退回和选中模式下的缩进退回
+nnoremap <tab> V>
+nnoremap <S-tab> V<
+vnoremap <tab> >gv
+vnoremap <S-tab> <gv
+
+" 上下移动文本
+nnoremap <Leader>k ddkP
+nnoremap <Leader>j ddp
+vnoremap <Leader>k dkP
+vnoremap <Leader>j dp
+
+" }}}
+
+" 光标移动 ================== {{{
+
+" 文本超出屏幕时左右移动
+nnoremap <Leader>l 79l
+nnoremap <Leader>h 79h
+
+
+" 插入模式快速左右移动一格
+inoremap <C-b> <esc>i
+inoremap <C-f> <esc>la
+
+" 插入模式快速删除字符
+inoremap <C-d> <esc>lxi
+
+
+" 使用 <C-hjkl> 进行移动窗口，不必输入 w
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" }}}
+
+
+" 复制粘贴 ================== {{{
+
+" 复制和系统剪贴板交互
+" set clipboard = unname
+nnoremap <C-y> "+Y
+vnoremap <C-y> "+y
+" 黏贴系统剪切版的内容
+nnoremap <C-p> "+p
+inoremap <C-p> <esc>"+pi
+" 复制黏贴
+nnoremap yp yyp
+
+" }}}
+
+" 快速添加成对标签
+" nnoremap <Leader>" eb<esc>i"<esc>ea"<esc>
+" nnoremap <Leader>" viw<esc>a"<esc>bi"<esc>lel
+nnoremap <Leader>" viw<esc>bi"<esc>ea"<esc>
+nnoremap <Leader>' viw<esc>bi'<esc>ea'<esc>
+nnoremap <Leader>` viw<esc>bi`<esc>ea`<esc>
+nnoremap <Leader>[ viw<esc>bi[<esc>ea]<esc>
+nnoremap <Leader>{ viw<esc>bi{<esc>ea}<esc>
+nnoremap <Leader>( viw<esc>bi(<esc>ea)<esc>
+vnoremap <Leader>" di""<esc>hp
+vnoremap <Leader>' di''<esc>hp
+vnoremap <Leader>` di``<esc>hp
+vnoremap <Leader>( di()<esc>hp
+vnoremap <Leader>{ di{}<esc>hp
+vnoremap <Leader>[ di[]<esc>hp
+nnoremap <Leader><Leader>" <s-i>"<esc><s-a>"<esc>
+nnoremap <Leader><Leader>' <s-i>'<esc><s-a>'<esc>
+nnoremap <Leader><Leader>` <s-i>`<esc><s-a>`<esc>
+nnoremap <Leader><Leader>[ <s-i>[<esc><s-a>]<esc>
+nnoremap <Leader><Leader>{ <s-i>{<esc><s-a>}<esc>
+nnoremap <Leader><Leader>( <s-i>(<esc><s-a>)<esc>
+
+" 快速在行尾巴插入分号;
+nnoremap <Leader>, mzA;<esc>`z
+inoremap <Leader>, <esc>mzA;<esc>`za
+nnoremap <Leader><Leader><space> viw<esc>a<space><esc>bi<space><esc>
+vnoremap <Leader><Leader><space> di<space><space><esc>hp
+
+]])
 -- 设置 leader 键位
 vim.g.mapleader = ";"
 vim.g.maplocalleader = ";"

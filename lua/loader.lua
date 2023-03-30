@@ -3,6 +3,7 @@ local utils = require("utils")
 local config = require("config")
 
 local function load_config()
+    require('basic')
     require('keybindings')
     if not utils.is_dir_exists(config.CONFIG_HOME) then
         os.execute("mkdir -p " .. config.CONFIG_HOME)
