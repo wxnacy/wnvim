@@ -278,7 +278,13 @@ local other_plugins = {
 
     -- git 相关
     { 'tpope/vim-fugitive' },
-    { 'lewis6991/gitsigns.nvim' },
+    {
+        -- https://github.com/lewis6991/gitsigns.nvim
+        'lewis6991/gitsigns.nvim',
+        config = function ()
+            require('plugins.config.gitsigns')
+        end
+    },
 
     -- diffview 查看文件不同
     { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },

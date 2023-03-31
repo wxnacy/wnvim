@@ -21,16 +21,6 @@ if 1 == 1 then
     ]])
 end
 
--- ===============================
--- gitsigns
--- git 相关操作
--- https://github.com/lewis6991/gitsigns.nvim
--- ===============================
-local gs_status, gitsigns = utils.require("gitsigns", true)
-if gs_status then
-    gitsigns.setup()
-end
---
 -- 设置主题
 vim.o.background = "dark"
 vim.g.tokyonight_style = "storm" -- day / night
