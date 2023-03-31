@@ -289,7 +289,17 @@ local other_plugins = {
     -- diffview 查看文件不同
     { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },
     -- simnalamburt/vim-mundo 文件历史记录
-    { 'simnalamburt/vim-mundo' },
+    -- https://github.com/simnalamburt/vim-mundo
+    {
+        'simnalamburt/vim-mundo',
+        config = function ()
+            vim.keymap.set('n', '<leader>h', '<Cmd>MundoToggle<CR>')
+            vim.cmd([[
+                set undofile
+                set undodir=~/.local/share/nvim/undo
+            ]])
+        end
+    },
 
     -- bufferline.nvim
     {'akinsho/bufferline.nvim'},

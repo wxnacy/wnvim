@@ -8,19 +8,6 @@ require('plugins.config/vista')
 require('plugins.config/mason')
 require('plugins.config/null-ls')
 
--- ===============================
--- simnalamburt/vim-mundo
--- 恢复本地历史记录
--- https://github.com/simnalamburt/vim-mundo
--- ===============================
-if 1 == 1 then
-    vim.keymap.set('n', '<leader>h', '<Cmd>MundoToggle<CR>')
-    vim.cmd([[
-    set undofile
-    set undodir=~/.local/share/nvim/undo
-    ]])
-end
-
 -- 设置主题
 vim.o.background = "dark"
 vim.g.tokyonight_style = "storm" -- day / night
