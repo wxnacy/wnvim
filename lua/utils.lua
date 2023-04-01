@@ -79,4 +79,10 @@ M.notify_not_installed = function (name)
     })
 end
 
+-- 公共 key options
+M.set_keymap = function (mode, lhs, rhs)
+    local opts = {noremap = true, silent = true }
+    vim.keymap.set(mode, lhs, rhs, opts)
+end
+
 return M
