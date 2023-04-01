@@ -63,12 +63,6 @@ inoremap <C-f> <esc>la
 inoremap <C-d> <esc>lxi
 
 
-" 使用 <C-hjkl> 进行移动窗口，不必输入 w
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
 " }}}
 
 
@@ -152,7 +146,7 @@ map("i", "<C-b>", "<esc>i", opt)
 map("i", "<C-d>", "<esc>lxi", opt)
 -- map("n", "<C-j>", "<C-e>", opt)
 
--- 窗口调整
+-- 使用 <C-hjkl> 进行移动窗口，不必输入 w
 map("n", "<C-h>", "<C-w>h", opt)
 map("n", "<C-j>", "<C-w>j", opt)
 map("n", "<C-k>", "<C-w>k", opt)
