@@ -8,24 +8,6 @@ require('plugins.config/vista')
 require('plugins.config/mason')
 require('plugins.config/null-ls')
 
--- 设置主题
-vim.o.background = "dark"
-vim.g.tokyonight_style = "storm" -- day / night
--- 半透明
--- vim.g.tokyonight_transparent = true
--- vim.g.tokyonight_transparent_sidebar = true
-local colorscheme = "tokyonight"
--- tokyonight
--- OceanicNext
--- gruvbox
--- zephyr
--- nord
--- onedark
--- nightfox
-if not utils.can_success_run_cmd("colorscheme " .. colorscheme) then
-    vim.notify("colorscheme: " .. colorscheme .. " 没有找到！")
-end
-
 local ok, toggleterm = utils.require('toggleterm')
 if ok then
     -- https://github.com/akinsho/toggleterm.nvim

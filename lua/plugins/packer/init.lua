@@ -50,10 +50,25 @@ local prettify_plugins = {
 
     {
         -- 主题
-        { "ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"} },
-        {'shaunsingh/nord.nvim'},
-        { 'glepnir/zephyr-nvim' },
-        { 'folke/tokyonight.nvim' },
+        -- { "ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"} },
+        -- {'shaunsingh/nord.nvim'},
+        -- { 'glepnir/zephyr-nvim' },
+        -- OceanicNext
+        -- onedark
+        -- nightfox
+        {
+            'folke/tokyonight.nvim',
+            config = function ()
+                vim.o.background = "dark"
+                vim.g.tokyonight_style = "storm" -- day / night
+                -- 半透明
+                -- vim.g.tokyonight_transparent = true
+                -- vim.g.tokyonight_transparent_sidebar = true
+                vim.cmd([[
+                    colorscheme tokyonight
+                ]])
+            end
+        },
     },
 
     -- dashboard
