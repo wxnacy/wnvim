@@ -146,11 +146,13 @@ map("i", "<C-b>", "<esc>i", opt)
 map("i", "<C-d>", "<esc>lxi", opt)
 -- map("n", "<C-j>", "<C-e>", opt)
 
+-- 窗口相关
 -- 使用 <C-hjkl> 进行移动窗口，不必输入 w
 map("n", "<C-h>", "<C-w>h", opt)
 map("n", "<C-j>", "<C-w>j", opt)
 map("n", "<C-k>", "<C-w>k", opt)
 map("n", "<C-l>", "<C-w>l", opt)
+map("n", "<leader>bw", ":bw<CR>", opt)
 
 -- 文本操作 {{{
 -- 选中全部

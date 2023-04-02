@@ -1,6 +1,5 @@
 local utils = require("utils")
 
-require('plugins.config/bufferline')
 require('plugins.config/fzf')
 require('plugins.config/vim-fugitive')
 require('plugins.config/hop')

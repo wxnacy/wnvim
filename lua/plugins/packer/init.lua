@@ -324,7 +324,12 @@ local other_plugins = {
     },
 
     -- bufferline.nvim
-    {'akinsho/bufferline.nvim'},
+    {
+        'akinsho/bufferline.nvim',
+        config = function ()
+            require('plugins.config/bufferline')
+        end
+    },
 
     {
         "folke/trouble.nvim",
