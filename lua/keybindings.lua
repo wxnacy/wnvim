@@ -114,7 +114,7 @@ vim.g.mapleader = ";"
 vim.g.maplocalleader = ";"
 
 -- 保存本地变量
-local map = vim.api.nvim_set_keymap
+local map = require("utils").set_keymap
 local opt = {noremap = true, silent = true }
 
 -- 去掉高亮
