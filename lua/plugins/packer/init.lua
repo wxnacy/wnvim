@@ -205,7 +205,14 @@ local code_plugins = {
 local tool_plugins = {
     -- ============================ 工具相关
     -- 多终端
-    {"akinsho/toggleterm.nvim", tag = 'v2.*'},
+    -- https://github.com/akinsho/toggleterm.nvim
+    {
+        "akinsho/toggleterm.nvim", tag = 'v2.*',
+        config = function ()
+            require("plugins.config.toggleterm")
+        end
+    },
+
     -- telescope 相关插件
     {
         -- 搜索工具
