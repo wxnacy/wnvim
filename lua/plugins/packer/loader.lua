@@ -1,4 +1,5 @@
 local M = {}
+local utils = require("utils")
 
 -- 加载 config 方法
 M.load_config = function (plugin)
@@ -16,14 +17,41 @@ M.load_config = function (plugin)
         -- print(name)
         -- print(_G.packer_plugins[name])
         -- print(_G.packer_plugins[name].loaded)
-        if plugin.config and require("plugins.packer.utils").is_install_plugin(name) then
+        if plugin.config and require("utils").is_install_plugin(name) then
             pcall(plugin.config)
         end
     end
 end
 
+M.install_packer = function ()
+    -- 下载 packer
+    local is_new_install
+    if not utils.is_install_plugin("packer.nvim") then
+        local install_path = utils.plugin_dir("/packer.nvim")
+        vim.notify("正在安装Pakcer.nvim，请稍后...")
+        is_new_install = vim.fn.system({
+            "git",
+            "clone",
+            "--depth",
+            "1",
+            "https://github.com/wbthomason/packer.nvim",
+            -- "https://gitcode.net/mirrors/wbthomason/packer.nvim",
+            install_path,
+        })
+        -- vim.cmd [[packadd packer.nvim]]
+
+        -- https://github.com/wbthomason/packer.nvim/issues/750
+        local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
+        if not string.find(vim.o.runtimepath, rtp_addition) then
+            vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
+        end
+        vim.notify("Packer.nvim 安装完毕")
+    end
+    return is_new_install
+end
+
 M.setup = function (configs)
-    local is_new_install = require("plugins.packer.utils").install_packer()
+    local is_new_install = M.install_packer()
     local status_ok, packer = require("utils").require("packer", true)
     if not status_ok then
         return

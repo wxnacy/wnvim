@@ -1,4 +1,3 @@
-local packer_config = require("plugins.packer.config")
 local config = require("config")
 local utils = require("utils")
 -- 基础插件
