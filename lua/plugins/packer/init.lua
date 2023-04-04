@@ -1,5 +1,6 @@
 local config = require("config")
 local utils = require("utils")
+local map = utils.set_keymap
 -- 基础插件
 local basic_plugins = {
     -- ============================ 基础插件
@@ -252,7 +253,24 @@ local tool_plugins = {
 local other_plugins = {
     -- ============================ 其他插件
     -- tagbar
-    { "liuchengxu/vista.vim" },
+    {
+        "simrat39/symbols-outline.nvim",
+        config = function ()
+            require("symbols-outline").setup({
+                -- auto_close = true    -- 跳转后自动关闭
+                map('n', 'tb', '<Cmd>SymbolsOutline<CR>')
+            })
+            config.autocmd("BufEnter", {
+                nested = true,
+                group = config.auto_group,
+                callback = function()
+                    if #vim.api.nvim_list_wins() <= 2 and vim.api.nvim_buf_get_name(0):match("OUTLINE") ~= nil then
+                        vim.cmd("quit")
+                    end
+                end,
+            })
+        end
+    },
 
     -- 快速注释
     {
