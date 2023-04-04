@@ -10,7 +10,6 @@ require("utils").setup('gitsigns', {
     },
     on_attach = function(bufnr)
         local map = require("utils").set_keymap
-        map('n', '<leader>g', ':G<CR>')
         map('n', '<leader>gn', '<cmd>Gitsigns next_hunk<CR>')   -- 下个修改
         map('n', '<leader>gp', '<cmd>Gitsigns prev_hunk<CR>')   -- 上个修改
         map('n', '<leader>gr', ':Gitsigns reset_hunk<CR>')      -- 重置修改

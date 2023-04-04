@@ -328,7 +328,19 @@ local other_plugins = {
     },
 
     -- git 相关
-    { 'tpope/vim-fugitive' },
+    {
+        'tpope/vim-fugitive',
+        config = function ()
+            -- http://vimcasts.org/episodes/fugitive-vim-working-with-the-git-index/
+            -- gs 状态下
+            -- - add/reset Unpush - git push
+            -- = 展示 diff
+            -- cc commit 信息
+            -- <enter> 打开文件
+            map('n', '<leader>g', ':G<CR>')         -- 打开提交面板
+            map('n', '<leader>gb', ':G blame<CR>')  -- 展示文件 blame
+        end
+    },
     {
         -- https://github.com/lewis6991/gitsigns.nvim
         'lewis6991/gitsigns.nvim',
