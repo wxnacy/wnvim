@@ -181,10 +181,12 @@ pluginKeys.maplsp = function(mapbuf)
   -- go xx
   -- 调整方法定义
   -- mapbuf('n', '<leader>g', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
-  mapbuf('n', '<leader>g', '<cmd>Telescope lsp_definitions<CR>', opt)
+  -- mapbuf('n', '<leader>g', '<cmd>Telescope lsp_definitions<CR>', opt)
   -- mapbuf('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
   mapbuf('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opt)
   -- 显示帮助文档
+  mapbuf('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt)
+  mapbuf('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt)
   mapbuf('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)
   mapbuf('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
   mapbuf('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opt)

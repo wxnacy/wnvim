@@ -191,6 +191,19 @@ local code_plugins = {
         -- ultisnips
         -- {'SirVer/ultisnips'},    -- { name = 'ultisnips' }
         -- {'honza/vim-snippets'},    -- { name = 'ultisnips' }
+        -- 签名增强
+        -- https://github.com/ray-x/lsp_signature.nvim
+        {
+            'ray-x/lsp_signature.nvim',
+            config = function ()
+                utils.setup('lsp_signature', {
+                    fix_pos = true, -- set to true, the floating window will not auto-close until finish all parameters
+                    -- always_trigger = true,
+                    hi_parameter = 'IncSearch',
+                }, true)
+            end
+
+        },
     },
 
     -- Linter, Formatter
