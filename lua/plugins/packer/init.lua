@@ -7,7 +7,7 @@ local basic_plugins = {
     -- Packer can manage itself
     {
         'wbthomason/packer.nvim',
-        config = function ()
+        config = function()
             vim.keymap.set("n", "<leader>ps", ":PackerSync<CR>")
             vim.keymap.set("n", "<leader>pi", ":PackerInstall<CR>")
         end
@@ -23,7 +23,7 @@ local basic_plugins = {
     -- https://github.com/rcarriga/nvim-notify
     {
         'rcarriga/nvim-notify',
-        config = function ()
+        config = function()
             vim.opt.termguicolors = true
             local notify = require("notify")
             notify.setup({
@@ -58,7 +58,7 @@ local prettify_plugins = {
         -- nightfox
         -- {
         'folke/tokyonight.nvim',
-        config = function ()
+        config = function()
             vim.o.background = "dark"
             vim.g.tokyonight_style = "storm" -- day / night
             -- 半透明
@@ -75,7 +75,7 @@ local prettify_plugins = {
     -- https://github.com/glepnir/dashboard-nvim
     {
         'glepnir/dashboard-nvim',
-        config = function ()
+        config = function()
             require("plugins.config.dashboard-nvim")
         end
     },
@@ -88,7 +88,7 @@ local prettify_plugins = {
     {
         -- 缩进美化展示
         "lukas-reineke/indent-blankline.nvim",
-        config = function ()
+        config = function()
             -- https://github.com/lukas-reineke/indent-blankline.nvim
             vim.opt.list = true
             -- vim.opt.listchars:append "space:⋅"
@@ -110,7 +110,7 @@ local prettify_plugins = {
     -- https://github.com/nvim-lualine/lualine.nvim
     {
         'nvim-lualine/lualine.nvim',
-        config = function ()
+        config = function()
             require('lualine').setup {
                 options = {
                     theme = 'tokyonight'
@@ -130,21 +130,21 @@ local code_plugins = {
         -- 需要先下载 rust
         -- brew install rust
         run = 'bash ./install.sh',
-        config = function ()
+        config = function()
             -- 执行当前文件
-            vim.keymap.set('n', '<Leader>r', 'ggvG<Plug>SnipRun', {silent = true})
+            vim.keymap.set('n', '<Leader>r', 'ggvG<Plug>SnipRun', { silent = true })
             -- 执行选中片段
-            vim.keymap.set('v', '<leader>r', '<Plug>SnipRun', {silent = true})
+            vim.keymap.set('v', '<leader>r', '<Plug>SnipRun', { silent = true })
             return require('sniprun').setup({
                 display = {
                     -- 底部弹窗展示结果
                     -- "Classic",
                     "VirtualTextOk",
-                    "VirtualTextErr",          --# display error results as virtual text
-                    "NvimNotify",              --# display with the nvim-notify plugin
+                    "VirtualTextErr", --# display error results as virtual text
+                    "NvimNotify",     --# display with the nvim-notify plugin
                 },
                 show_no_output = {
-                    "NvimNotify",              --# display with the nvim-notify plugin
+                    "NvimNotify", --# display with the nvim-notify plugin
                 }
             })
         end
@@ -159,20 +159,20 @@ local code_plugins = {
 
     {
         -- lsp 相关
-        {'neovim/nvim-lspconfig'},
-        {'rafamadriz/friendly-snippets'},
-        {'onsails/lspkind-nvim'},
+        { 'neovim/nvim-lspconfig' },
+        { 'rafamadriz/friendly-snippets' },
+        { 'onsails/lspkind-nvim' },
         -- nvim-cmp
-        {'hrsh7th/nvim-cmp'},
-        {'hrsh7th/cmp-nvim-lsp'}, -- { name = nvim_lsp }
-        {'hrsh7th/cmp-buffer'},   -- { name = 'buffer' },
-        {'hrsh7th/cmp-path'},     -- { name = 'path' }
-        {'hrsh7th/cmp-cmdline'},  -- { name = 'cmdline' }
+        { 'hrsh7th/nvim-cmp' },
+        { 'hrsh7th/cmp-nvim-lsp' }, -- { name = nvim_lsp }
+        { 'hrsh7th/cmp-buffer' }, -- { name = 'buffer' },
+        { 'hrsh7th/cmp-path' },   -- { name = 'path' }
+        { 'hrsh7th/cmp-cmdline' }, -- { name = 'cmdline' }
         -- vsnip
-        {'hrsh7th/cmp-vsnip'},    -- { name = 'vsnip' }
+        { 'hrsh7th/cmp-vsnip' },  -- { name = 'vsnip' }
         {
             'hrsh7th/vim-vsnip',
-            config = function ()
+            config = function()
                 vim.cmd([[
                 imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<Tab>'
                 smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<Tab>'
@@ -196,19 +196,18 @@ local code_plugins = {
         -- https://github.com/ray-x/lsp_signature.nvim
         {
             'ray-x/lsp_signature.nvim',
-            config = function ()
+            config = function()
                 utils.setup('lsp_signature', {
                     fix_pos = true, -- set to true, the floating window will not auto-close until finish all parameters
                     -- always_trigger = true,
                     hi_parameter = 'IncSearch',
                 }, true)
             end
-
         },
     },
 
     -- Linter, Formatter
-    {"jose-elias-alvarez/null-ls.nvim"},
+    { "jose-elias-alvarez/null-ls.nvim" },
 
     -- for golang
     { 'fatih/vim-go' },
@@ -219,8 +218,9 @@ local tool_plugins = {
     -- 多终端
     -- https://github.com/akinsho/toggleterm.nvim
     {
-        "akinsho/toggleterm.nvim", tag = 'v2.*',
-        config = function ()
+        "akinsho/toggleterm.nvim",
+        tag = 'v2.*',
+        config = function()
             require("plugins.config.toggleterm")
         end
     },
@@ -229,9 +229,10 @@ local tool_plugins = {
     {
         -- 搜索工具
         {
-            'nvim-telescope/telescope.nvim', tag = '0.1.0',
-            requires = { {'nvim-lua/plenary.nvim'} },
-            config = function ()
+            'nvim-telescope/telescope.nvim',
+            tag = '0.1.0',
+            requires = { { 'nvim-lua/plenary.nvim' } },
+            config = function()
                 require("plugins.config.telescope")
             end
         },
@@ -242,7 +243,7 @@ local tool_plugins = {
         -- 管理 packer require file-browser
         { 'nvim-telescope/telescope-packer.nvim' },
         -- telescope 快速跳转
-        {'nvim-telescope/telescope-hop.nvim'},
+        { 'nvim-telescope/telescope-hop.nvim' },
         -- 管理命令
         { "LinArcX/telescope-command-palette.nvim" },
     },
@@ -255,7 +256,7 @@ local other_plugins = {
     -- tagbar
     {
         "simrat39/symbols-outline.nvim",
-        config = function ()
+        config = function()
             require("symbols-outline").setup({
                 -- auto_close = true    -- 跳转后自动关闭
                 map('n', 'tb', '<Cmd>SymbolsOutline<CR>')
@@ -275,9 +276,9 @@ local other_plugins = {
     -- 快速注释
     {
         'scrooloose/nerdcommenter',
-        config = function ()
+        config = function()
             -- https://github.com/scrooloose/nerdcommenter
-            vim.g.NERDSpaceDelims = 1   -- 注释后面保留一个空格
+            vim.g.NERDSpaceDelims = 1 -- 注释后面保留一个空格
         end
     },
 
@@ -291,7 +292,7 @@ local other_plugins = {
     -- 快速去掉行尾空格
     {
         'ntpeters/vim-better-whitespace',
-        config = function ()
+        config = function()
             -- https://github.com/bronson/vim-trailing-whitespace
             -- 修复空格
             vim.keymap.set('n', '<leader><space>', ':StripWhitespace<CR>')
@@ -305,13 +306,13 @@ local other_plugins = {
     -- fzf 插件
     {
         'junegunn/fzf.vim',
-        requires = {"junegunn/fzf"}
+        requires = { "junegunn/fzf" }
     },
 
     -- nvim-tree
     {
         'kyazdani42/nvim-tree.lua',
-        config = function ()
+        config = function()
             require("plugins.config.nvim-tree")
         end,
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
@@ -322,7 +323,7 @@ local other_plugins = {
         'nvim-treesitter/nvim-treesitter',
         -- commit='11e88f6',
         -- run = ':TSUpdate',
-        config = function ()
+        config = function()
             require('plugins.config.nvim-treesitter')
         end
     },
@@ -330,21 +331,21 @@ local other_plugins = {
     -- git 相关
     {
         'tpope/vim-fugitive',
-        config = function ()
+        config = function()
             -- http://vimcasts.org/episodes/fugitive-vim-working-with-the-git-index/
             -- gs 状态下
             -- - add/reset Unpush - git push
             -- = 展示 diff
             -- cc commit 信息
             -- <enter> 打开文件
-            map('n', '<leader>g', ':G<CR>')         -- 打开提交面板
-            map('n', '<leader>gb', ':G blame<CR>')  -- 展示文件 blame
+            map('n', '<leader>g', ':G<CR>')        -- 打开提交面板
+            map('n', '<leader>gb', ':G blame<CR>') -- 展示文件 blame
         end
     },
     {
         -- https://github.com/lewis6991/gitsigns.nvim
         'lewis6991/gitsigns.nvim',
-        config = function ()
+        config = function()
             require('plugins.config.gitsigns')
         end
     },
@@ -355,7 +356,7 @@ local other_plugins = {
     -- https://github.com/simnalamburt/vim-mundo
     {
         'simnalamburt/vim-mundo',
-        config = function ()
+        config = function()
             vim.keymap.set('n', '<leader>h', '<Cmd>MundoToggle<CR>')
             vim.cmd([[
                 set undofile
@@ -367,7 +368,7 @@ local other_plugins = {
     -- bufferline.nvim
     {
         'akinsho/bufferline.nvim',
-        config = function ()
+        config = function()
             require('plugins.config/bufferline')
         end
     },
