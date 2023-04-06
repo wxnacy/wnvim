@@ -186,7 +186,7 @@ local code_plugins = {
                 smap <expr> <C-p>   vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<C-p>'
                 ]])
                 -- 设置代码片段目录
-                vim.g.vsnip_snippet_dir = config.HOME .. '/config/vsnip'
+                vim.g.vsnip_snippet_dir = require("config").HOME .. '/config/vsnip'
             end
         },
         -- ultisnips
@@ -197,11 +197,11 @@ local code_plugins = {
         {
             'ray-x/lsp_signature.nvim',
             config = function()
-                utils.setup('lsp_signature', {
+                require("lsp_signature").setup({
                     fix_pos = true, -- set to true, the floating window will not auto-close until finish all parameters
                     -- always_trigger = true,
                     hi_parameter = 'IncSearch',
-                }, true)
+                })
             end
         },
     },
@@ -259,11 +259,11 @@ local other_plugins = {
         config = function()
             require("symbols-outline").setup({
                 -- auto_close = true    -- 跳转后自动关闭
-                map('n', 'tb', '<Cmd>SymbolsOutline<CR>')
+                require("utils").set_keymap('n', 'tb', '<Cmd>SymbolsOutline<CR>')
             })
-            config.autocmd("BufEnter", {
+            require("config").autocmd("BufEnter", {
                 nested = true,
-                group = config.auto_group,
+                group = require("config").auto_group,
                 callback = function()
                     if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("OUTLINE") ~= nil then
                         vim.cmd("quit")
@@ -338,8 +338,8 @@ local other_plugins = {
             -- = 展示 diff
             -- cc commit 信息
             -- <enter> 打开文件
-            map('n', '<leader>g', ':G<CR>')        -- 打开提交面板
-            map('n', '<leader>gb', ':G blame<CR>') -- 展示文件 blame
+            require("utils").set_keymap('n', '<leader>g', ':G<CR>')        -- 打开提交面板
+            require("utils").set_keymap('n', '<leader>gb', ':G blame<CR>') -- 展示文件 blame
         end
     },
     {
@@ -376,14 +376,14 @@ local other_plugins = {
     {
         "folke/trouble.nvim",
         config = function()
-            utils.setup('trouble', {}, true)
+            require("trouble")
         end
     },
     {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function()
-            utils.setup('todo-comments', {}, true)
+            require("todo-comments").setup()
         end
     },
 }
