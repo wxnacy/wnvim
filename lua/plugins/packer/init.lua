@@ -386,6 +386,32 @@ local other_plugins = {
             require("todo-comments").setup()
         end
     },
+    {
+        -- https://github.com/toppair/peek.nvim
+        -- https://github.com/iamcco/markdown-preview.nvim
+        -- 需要先安装 deno
+        -- peek.nvim 支持 webview 双屏时预览更方便
+        'toppair/peek.nvim',
+        run = 'deno task --quiet build:fast',
+        config = function()
+            require("peek").setup()
+            local peek = require('peek')
+
+            vim.api.nvim_create_user_command('PeekToggle', function()
+                if peek.is_open() then
+                    peek.close()
+                else
+                    if vim.bo[vim.api.nvim_get_current_buf()].filetype == 'markdown' then
+                        peek.open()
+                    else
+                        require("utils").notify_warn("不是 markdown 文件，无法预览")
+                    end
+                end
+            end, {})
+
+            require("utils").set_keymap({'n', 'i'}, '<leader>mp', '<Cmd>PeekToggle<CR>')
+        end
+    },
 }
 
 local plugins = {}
