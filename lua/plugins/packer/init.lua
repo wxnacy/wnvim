@@ -119,6 +119,43 @@ local prettify_plugins = {
         end
     },
 
+    -- 标签
+    -- https://github.com/utilyre/barbecue.nvim
+    {
+        "utilyre/barbecue.nvim",
+        tag = "*",
+        requires = {
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+        after = "nvim-web-devicons",       -- keep this if you're using NvChad
+        config = function()
+            -- triggers CursorHold event faster
+            vim.opt.updatetime = 200
+
+            require("barbecue").setup({
+                create_autocmd = false, -- prevent barbecue from updating itself automatically
+            })
+
+            vim.api.nvim_create_autocmd({
+                "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
+                "BufWinEnter",
+                "CursorHold",
+                "InsertLeave",
+
+                -- include these if you have set `show_modified` to `true`
+                "BufWritePost",
+                "TextChanged",
+                "TextChangedI",
+            }, {
+                group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+                callback = function()
+                    require("barbecue.ui").update()
+                end,
+            })
+        end,
+    },
+
 }
 
 local code_plugins = {
