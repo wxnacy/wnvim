@@ -13,9 +13,13 @@ config.autocmd("BufEnter", {
 
 -- 保存 plugins.lua 自动重新加载
 config.autocmd('BufWritePost', {
-    pattern = '*/plugins/packer/init.lua',
+    pattern = {
+        '*nvim/lua/*.lua',
+    },
+    group = config.group_auto,
     callback = function()
-        -- vim.api.nvim_command("source " .. config.HOME .. "/lua/plugins.lua")
         vim.api.nvim_command("source %")
+        require("plugins.config.bufferline").setup()
+        require("packer").compile()
     end,
 })
