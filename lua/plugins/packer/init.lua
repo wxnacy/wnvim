@@ -410,7 +410,7 @@ local other_plugins = {
         tag = "v3.*",
         requires = 'nvim-tree/nvim-web-devicons',
         config = function()
-            require('plugins.config/bufferline')
+            require('plugins.config/bufferline').setup()
         end
     },
 

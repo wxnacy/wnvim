@@ -1,6 +1,10 @@
+-- https://github.com/akinsho/bufferline.nvim
+local M = {}
 local ok, bufferline = require("utils").require('bufferline', true)
 if not ok then
-    return
+    M.setup = function()
+    end
+    return M
 end
 vim.opt.termguicolors = true
 local map = require("utils").set_keymap
@@ -18,44 +22,49 @@ map("n", "<leader>8", ":BufferLineGoToBuffer 8<CR>")
 map("n", "<leader>9", ":BufferLineGoToBuffer 9<CR>")
 map("n", "<leader>bp", ":BufferLinePick<CR>")
 map("n", "<leader>bd", ":BufferLinePickClose<CR>")
--- https://github.com/akinsho/bufferline.nvim
-bufferline.setup {
-    options = {
-        -- 使用 nvim 内置lsp
-        diagnostics = "nvim_lsp",
-        -- 左侧让出 nvim-tree 的位置
-        offsets = { {
-            filetype = "NvimTree",
-            text = "File Explorer",
-            highlight = "Directory",
-            text_align = "left"
-        } },
-        custom_areas = {
-            right = function()
-                local result = {}
-                local seve = vim.diagnostic.severity
-                local error = #vim.diagnostic.get(0, { severity = seve.ERROR })
-                local warning = #vim.diagnostic.get(0, { severity = seve.WARN })
-                local info = #vim.diagnostic.get(0, { severity = seve.INFO })
-                local hint = #vim.diagnostic.get(0, { severity = seve.HINT })
 
-                if error ~= 0 then
-                    table.insert(result, { text = "  " .. error, fg = "#EC5241" })
-                end
+M.setup = function()
+    bufferline.setup {
+        options = {
+            -- 使用 nvim 内置lsp
+            diagnostics = "nvim_lsp",
+            -- 左侧让出 nvim-tree 的位置
+            offsets = { {
+                filetype = "NvimTree",
+                text = "File Explorer",
+                highlight = "Directory",
+                text_align = "left"
+            } },
+            separator_style = 'thick',  -- 粗隔档
+            -- 右侧自定义区域
+            custom_areas = {
+                right = function()
+                    local result = {}
+                    local seve = vim.diagnostic.severity
+                    local error = #vim.diagnostic.get(0, { severity = seve.ERROR })
+                    local warning = #vim.diagnostic.get(0, { severity = seve.WARN })
+                    local info = #vim.diagnostic.get(0, { severity = seve.INFO })
+                    local hint = #vim.diagnostic.get(0, { severity = seve.HINT })
 
-                if warning ~= 0 then
-                    table.insert(result, { text = "  " .. warning, fg = "#EFB839" })
-                end
+                    if error ~= 0 then
+                        table.insert(result, { text = "  " .. error, fg = "#EC5241" })
+                    end
 
-                if hint ~= 0 then
-                    table.insert(result, { text = "  " .. hint, fg = "#A3BA5E" })
-                end
+                    if warning ~= 0 then
+                        table.insert(result, { text = "  " .. warning, fg = "#EFB839" })
+                    end
 
-                if info ~= 0 then
-                    table.insert(result, { text = "  " .. info, fg = "#7EA9A7" })
-                end
-                return result
-            end,
+                    if hint ~= 0 then
+                        table.insert(result, { text = "  " .. hint, fg = "#A3BA5E" })
+                    end
+
+                    if info ~= 0 then
+                        table.insert(result, { text = "  " .. info, fg = "#7EA9A7" })
+                    end
+                    return result
+                end,
+            }
         }
     }
-}
+end
+return M
