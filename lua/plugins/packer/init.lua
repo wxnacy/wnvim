@@ -407,6 +407,8 @@ local other_plugins = {
     -- bufferline.nvim
     {
         'akinsho/bufferline.nvim',
+        tag = "v3.*",
+        requires = 'nvim-tree/nvim-web-devicons',
         config = function()
             require('plugins.config/bufferline')
         end

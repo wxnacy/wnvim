@@ -3,7 +3,7 @@ if not ok then
     return
 end
 vim.opt.termguicolors = true
-map = require("utils").set_keymap
+local map = require("utils").set_keymap
 map("n", "<S-h>", ":BufferLineCyclePrev<CR>")
 map("n", "<S-l>", ":BufferLineCycleNext<CR>")
 map("n", "<leader>bo", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>")
@@ -24,12 +24,38 @@ bufferline.setup {
         -- 使用 nvim 内置lsp
         diagnostics = "nvim_lsp",
         -- 左侧让出 nvim-tree 的位置
-        offsets = {{
+        offsets = { {
             filetype = "NvimTree",
             text = "File Explorer",
             highlight = "Directory",
             text_align = "left"
-        }}
+        } },
+        custom_areas = {
+            right = function()
+                local result = {}
+                local seve = vim.diagnostic.severity
+                local error = #vim.diagnostic.get(0, { severity = seve.ERROR })
+                local warning = #vim.diagnostic.get(0, { severity = seve.WARN })
+                local info = #vim.diagnostic.get(0, { severity = seve.INFO })
+                local hint = #vim.diagnostic.get(0, { severity = seve.HINT })
+
+                if error ~= 0 then
+                    table.insert(result, { text = "  " .. error, fg = "#EC5241" })
+                end
+
+                if warning ~= 0 then
+                    table.insert(result, { text = "  " .. warning, fg = "#EFB839" })
+                end
+
+                if hint ~= 0 then
+                    table.insert(result, { text = "  " .. hint, fg = "#A3BA5E" })
+                end
+
+                if info ~= 0 then
+                    table.insert(result, { text = "  " .. info, fg = "#7EA9A7" })
+                end
+                return result
+            end,
+        }
     }
 }
-
