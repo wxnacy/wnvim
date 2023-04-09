@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# https://zhuanlan.zhihu.com/p/554650619    从零开始配置vim(导读)
 # https://zhuanlan.zhihu.com/p/445331508
 # http://xfyuan.github.io/2021/02/neovim-builtin-lsp-basic-configuration/
 # http://vimdoc.sourceforge.net/htmldoc/intro.html#key-notation
@@ -41,11 +42,16 @@
 # For mason: python-pip npm wget go
 # mason install markdownlint 失败解决
 # https://blog.csdn.net/qq_35485875/article/details/120168944
-basic_softs="gcc git wget unzip"
+basic_softs="gcc git wget unzip neovim"
 python_softs="python python-pynvim python-pip"
 go_softs="go"
-node_softs="neovim npm"
-softs="${basic_softs} ${python_softs} ${go_softs} ${node_softs}"
+node_softs="node"
+# telescope need fd
+# telescope live_grep need rg
+# sniprun need rust
+# peek.nvim need deno
+plugin_softs="rg fd rust deno"
+softs="${basic_softs} ${python_softs} ${go_softs} ${node_softs} ${plugin_softs}"
 
 can_install='true'
 
@@ -101,12 +107,14 @@ install_linux() {
 }
 
 install_macos() {
+    xcode-select --install
     if [[ $(command -v brew >/dev/null 2>&1 && echo true  || { echo ""; }) ]]
     then
         for soft in ${softs}; do
             brew install ${soft}
         done
-
+        # 安装 rust
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     else
         echo '需要先安装 brew 才能继续 https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/'
     fi
