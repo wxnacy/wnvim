@@ -14,6 +14,7 @@ M.servers = {
     "stylelint",        -- css
     "jsonlint",         -- json
     "yamllint",         -- yaml
+    "commitlint",         -- git commit lint https://commitlint.js.org/#/
 }
 
 return M

@@ -1,24 +1,15 @@
-local packer_config = require("plugins.packer.config")
 local config = require("config")
+local utils = require("utils")
+local map = utils.set_keymap
 -- 基础插件
 local basic_plugins = {
     -- ============================ 基础插件
     -- Packer can manage itself
     {
         'wbthomason/packer.nvim',
-        config = function ()
+        config = function()
             vim.keymap.set("n", "<leader>ps", ":PackerSync<CR>")
             vim.keymap.set("n", "<leader>pi", ":PackerInstall<CR>")
-        end
-    },
-
-    -- wvim 基础设置
-    {
-        'wxnacy/wvim',
-        config = function ()
-            vim.api.nvim_command("source " .. packer_config.HOME .. "/wvim/vimrcs/basic.vim")
-            vim.api.nvim_command("source " .. packer_config.HOME .. "/wvim/vimrcs/mapping.vim")
-
         end
     },
 
@@ -32,7 +23,7 @@ local basic_plugins = {
     -- https://github.com/rcarriga/nvim-notify
     {
         'rcarriga/nvim-notify',
-        config = function ()
+        config = function()
             vim.opt.termguicolors = true
             local notify = require("notify")
             notify.setup({
@@ -54,19 +45,40 @@ local prettify_plugins = {
     --     nvim-tree
     --     bufferline.nvim
     --     diffview.nvim
-    { 'kyazdani42/nvim-web-devicons' },
+    --     glepnir/dashboard-nvim
+    { 'nvim-tree/nvim-web-devicons' },
 
     {
         -- 主题
-        { "ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"} },
-        {'shaunsingh/nord.nvim'},
-        { 'glepnir/zephyr-nvim' },
-        { 'folke/tokyonight.nvim' },
+        -- { "ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"} },
+        -- {'shaunsingh/nord.nvim'},
+        -- { 'glepnir/zephyr-nvim' },
+        -- OceanicNext
+        -- onedark
+        -- nightfox
+        -- {
+        'folke/tokyonight.nvim',
+        config = function()
+            vim.o.background = "dark"
+            vim.g.tokyonight_style = "storm" -- day / night
+            -- 半透明
+            -- vim.g.tokyonight_transparent = true
+            -- vim.g.tokyonight_transparent_sidebar = true
+            vim.cmd([[
+                colorscheme tokyonight
+            ]])
+        end
+        -- },
     },
 
     -- dashboard
     -- https://github.com/glepnir/dashboard-nvim
-    {'glepnir/dashboard-nvim'},
+    {
+        'glepnir/dashboard-nvim',
+        config = function()
+            require("plugins.config.dashboard-nvim")
+        end
+    },
 
     -- 高亮相同单词
     {
@@ -76,7 +88,7 @@ local prettify_plugins = {
     {
         -- 缩进美化展示
         "lukas-reineke/indent-blankline.nvim",
-        config = function ()
+        config = function()
             -- https://github.com/lukas-reineke/indent-blankline.nvim
             vim.opt.list = true
             -- vim.opt.listchars:append "space:⋅"
@@ -98,13 +110,50 @@ local prettify_plugins = {
     -- https://github.com/nvim-lualine/lualine.nvim
     {
         'nvim-lualine/lualine.nvim',
-        config = function ()
+        config = function()
             require('lualine').setup {
                 options = {
                     theme = 'tokyonight'
                 }
             }
         end
+    },
+
+    -- 标签
+    -- https://github.com/utilyre/barbecue.nvim
+    {
+        "utilyre/barbecue.nvim",
+        tag = "*",
+        requires = {
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+        after = "nvim-web-devicons",       -- keep this if you're using NvChad
+        config = function()
+            -- triggers CursorHold event faster
+            vim.opt.updatetime = 200
+
+            require("barbecue").setup({
+                create_autocmd = false, -- prevent barbecue from updating itself automatically
+            })
+
+            vim.api.nvim_create_autocmd({
+                "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
+                "BufWinEnter",
+                "CursorHold",
+                "InsertLeave",
+
+                -- include these if you have set `show_modified` to `true`
+                "BufWritePost",
+                "TextChanged",
+                "TextChangedI",
+            }, {
+                group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+                callback = function()
+                    require("barbecue.ui").update()
+                end,
+            })
+        end,
     },
 
 }
@@ -118,21 +167,21 @@ local code_plugins = {
         -- 需要先下载 rust
         -- brew install rust
         run = 'bash ./install.sh',
-        config = function ()
+        config = function()
             -- 执行当前文件
-            vim.keymap.set('n', '<Leader>r', 'ggvG<Plug>SnipRun', {silent = true})
+            vim.keymap.set('n', '<Leader>r', 'ggvG<Plug>SnipRun', { silent = true })
             -- 执行选中片段
-            vim.keymap.set('v', '<leader>r', '<Plug>SnipRun', {silent = true})
+            vim.keymap.set('v', '<leader>r', '<Plug>SnipRun', { silent = true })
             return require('sniprun').setup({
                 display = {
                     -- 底部弹窗展示结果
                     -- "Classic",
                     "VirtualTextOk",
-                    "VirtualTextErr",          --# display error results as virtual text
-                    "NvimNotify",              --# display with the nvim-notify plugin
+                    "VirtualTextErr", --# display error results as virtual text
+                    "NvimNotify",     --# display with the nvim-notify plugin
                 },
                 show_no_output = {
-                    "NvimNotify",              --# display with the nvim-notify plugin
+                    "NvimNotify", --# display with the nvim-notify plugin
                 }
             })
         end
@@ -147,20 +196,20 @@ local code_plugins = {
 
     {
         -- lsp 相关
-        {'neovim/nvim-lspconfig'},
-        {'rafamadriz/friendly-snippets'},
-        {'onsails/lspkind-nvim'},
+        { 'neovim/nvim-lspconfig' },
+        { 'rafamadriz/friendly-snippets' },
+        { 'onsails/lspkind-nvim' },
         -- nvim-cmp
-        {'hrsh7th/nvim-cmp'},
-        {'hrsh7th/cmp-nvim-lsp'}, -- { name = nvim_lsp }
-        {'hrsh7th/cmp-buffer'},   -- { name = 'buffer' },
-        {'hrsh7th/cmp-path'},     -- { name = 'path' }
-        {'hrsh7th/cmp-cmdline'},  -- { name = 'cmdline' }
+        { 'hrsh7th/nvim-cmp' },
+        { 'hrsh7th/cmp-nvim-lsp' }, -- { name = nvim_lsp }
+        { 'hrsh7th/cmp-buffer' },   -- { name = 'buffer' },
+        { 'hrsh7th/cmp-path' },     -- { name = 'path' }
+        { 'hrsh7th/cmp-cmdline' },  -- { name = 'cmdline' }
         -- vsnip
-        {'hrsh7th/cmp-vsnip'},    -- { name = 'vsnip' }
+        { 'hrsh7th/cmp-vsnip' },    -- { name = 'vsnip' }
         {
             'hrsh7th/vim-vsnip',
-            config = function ()
+            config = function()
                 vim.cmd([[
                 imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<Tab>'
                 smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<Tab>'
@@ -174,16 +223,28 @@ local code_plugins = {
                 smap <expr> <C-p>   vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<C-p>'
                 ]])
                 -- 设置代码片段目录
-                vim.g.vsnip_snippet_dir = config.HOME .. '/config/vsnip'
+                vim.g.vsnip_snippet_dir = require("config").HOME .. '/config/vsnip'
             end
         },
         -- ultisnips
         -- {'SirVer/ultisnips'},    -- { name = 'ultisnips' }
         -- {'honza/vim-snippets'},    -- { name = 'ultisnips' }
+        -- 签名增强
+        -- https://github.com/ray-x/lsp_signature.nvim
+        {
+            'ray-x/lsp_signature.nvim',
+            config = function()
+                require("lsp_signature").setup({
+                    fix_pos = true, -- set to true, the floating window will not auto-close until finish all parameters
+                    -- always_trigger = true,
+                    hi_parameter = 'IncSearch',
+                })
+            end
+        },
     },
 
     -- Linter, Formatter
-    {"jose-elias-alvarez/null-ls.nvim"},
+    { "jose-elias-alvarez/null-ls.nvim" },
 
     -- for golang
     { 'fatih/vim-go' },
@@ -192,14 +253,23 @@ local code_plugins = {
 local tool_plugins = {
     -- ============================ 工具相关
     -- 多终端
-    {"akinsho/toggleterm.nvim", tag = 'v2.*'},
+    -- https://github.com/akinsho/toggleterm.nvim
+    {
+        "akinsho/toggleterm.nvim",
+        tag = 'v2.*',
+        config = function()
+            require("plugins.config.toggleterm")
+        end
+    },
+
     -- telescope 相关插件
     {
         -- 搜索工具
         {
-            'nvim-telescope/telescope.nvim', tag = '0.1.0',
-            requires = { {'nvim-lua/plenary.nvim'} },
-            config = function ()
+            'nvim-telescope/telescope.nvim',
+            tag = '0.1.0',
+            requires = { { 'nvim-lua/plenary.nvim' } },
+            config = function()
                 require("plugins.config.telescope")
             end
         },
@@ -210,25 +280,81 @@ local tool_plugins = {
         -- 管理 packer require file-browser
         { 'nvim-telescope/telescope-packer.nvim' },
         -- telescope 快速跳转
-        {'nvim-telescope/telescope-hop.nvim'},
+        { 'nvim-telescope/telescope-hop.nvim' },
         -- 管理命令
         { "LinArcX/telescope-command-palette.nvim" },
     },
     -- 多光标选择
     { "mg979/vim-visual-multi" },
+    -- notes
+    -- 备选
+    -- https://github.com/renerocksai/telekasten.nvim
+    {
+        -- https://github.com/epwalsh/obsidian.nvim
+        'epwalsh/obsidian.nvim',
+        tag = 'v1.*',
+        config = function()
+            require("obsidian").setup({
+                dir = vim.fn.expand(os.getenv("WNVIM_OBSIDIAN_DIR") or "~/Documents/Obsidian/nvim"),
+                completion = {
+                    nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
+                },
+                notes_subdir = os.getenv("WNVIM_OBSIDIAN_NOTES_SUBDIR") or "notes",
+                daily_notes = {
+                    folder = os.getenv("WNVIM_OBSIDIAN_DAILY_FOLDER") or "notes/dailies",
+                },
+                templates = {
+                    subdir = "templates",
+                    date_format = "%Y-%m-%d-%a",
+                    time_format = "%H:%M"
+                },
+                note_id_func = function(title)
+                    -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+                    local suffix = ""
+                    if title ~= nil then
+                    -- If title is given, transform it into valid file name.
+                    suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+                    else
+                    -- If title is nil, just add 4 random uppercase letters to the suffix.
+                    for _ = 1, 4 do
+                        suffix = suffix .. string.char(math.random(65, 90))
+                    end
+                    end
+                    return tostring(os.time()) .. "-" .. suffix
+                end
+            })
+        end
+    },
 }
 
 local other_plugins = {
     -- ============================ 其他插件
     -- tagbar
-    { "liuchengxu/vista.vim" },
+    {
+        "simrat39/symbols-outline.nvim",
+        config = function()
+            require("symbols-outline").setup({
+                -- auto_close = true    -- 跳转后自动关闭
+                require("utils").set_keymap('n', 'tb', '<Cmd>SymbolsOutline<CR>')
+            })
+            require("config").autocmd("BufEnter", {
+                nested = true,
+                group = require("config").auto_group,
+                callback = function()
+                    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("OUTLINE") ~= nil then
+                        vim.cmd("quit")
+                    end
+                end,
+            })
+        end
+    },
 
     -- 快速注释
     {
         'scrooloose/nerdcommenter',
-        config = function ()
+        config = function()
             -- https://github.com/scrooloose/nerdcommenter
-            vim.g.NERDSpaceDelims = 1   -- 注释后面保留一个空格
+            vim.g.NERDSpaceDelims = 1 -- 注释后面保留一个空格
         end
     },
 
@@ -242,7 +368,7 @@ local other_plugins = {
     -- 快速去掉行尾空格
     {
         'ntpeters/vim-better-whitespace',
-        config = function ()
+        config = function()
             -- https://github.com/bronson/vim-trailing-whitespace
             -- 修复空格
             vim.keymap.set('n', '<leader><space>', ':StripWhitespace<CR>')
@@ -256,15 +382,13 @@ local other_plugins = {
     -- fzf 插件
     {
         'junegunn/fzf.vim',
-        requires = {"junegunn/fzf"}
+        requires = { "junegunn/fzf" }
     },
-    -- 文件搜索
-    { 'Yggdroot/LeaderF' },
 
     -- nvim-tree
     {
         'kyazdani42/nvim-tree.lua',
-        config = function ()
+        config = function()
             require("plugins.config.nvim-tree")
         end,
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
@@ -273,34 +397,98 @@ local other_plugins = {
     -- nvim-treesitter
     {
         'nvim-treesitter/nvim-treesitter',
-        commit='11e88f6',
+        -- commit='11e88f6',
         -- run = ':TSUpdate',
-        config = function ()
+        config = function()
             require('plugins.config.nvim-treesitter')
         end
     },
 
     -- git 相关
-    { 'tpope/vim-fugitive' },
-    { 'lewis6991/gitsigns.nvim' },
+    {
+        'tpope/vim-fugitive',
+        config = function()
+            -- http://vimcasts.org/episodes/fugitive-vim-working-with-the-git-index/
+            -- gs 状态下
+            -- - add/reset Unpush - git push
+            -- = 展示 diff
+            -- cc commit 信息
+            -- <enter> 打开文件
+            require("utils").set_keymap('n', '<leader>g', ':G<CR>')        -- 打开提交面板
+            require("utils").set_keymap('n', '<leader>gb', ':G blame<CR>') -- 展示文件 blame
+        end
+    },
+    {
+        -- https://github.com/lewis6991/gitsigns.nvim
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('plugins.config.gitsigns')
+        end
+    },
 
     -- diffview 查看文件不同
     { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },
     -- simnalamburt/vim-mundo 文件历史记录
-    { 'simnalamburt/vim-mundo' },
+    -- https://github.com/simnalamburt/vim-mundo
+    {
+        'simnalamburt/vim-mundo',
+        config = function()
+            vim.keymap.set('n', '<leader>h', '<Cmd>MundoToggle<CR>')
+            vim.cmd([[
+                set undofile
+                set undodir=~/.local/share/nvim/undo
+            ]])
+        end
+    },
 
     -- bufferline.nvim
-    {'akinsho/bufferline.nvim'},
+    {
+        'akinsho/bufferline.nvim',
+        tag = "v3.*",
+        requires = 'nvim-tree/nvim-web-devicons',
+        config = function()
+            require('plugins.config/bufferline').setup()
+        end
+    },
 
     {
         "folke/trouble.nvim",
         config = function()
-            require("trouble").setup { }
+            require("trouble")
         end
     },
     {
         "folke/todo-comments.nvim",
-        requires = "nvim-lua/plenary.nvim"
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("todo-comments").setup()
+        end
+    },
+    {
+        -- https://github.com/toppair/peek.nvim
+        -- https://github.com/iamcco/markdown-preview.nvim
+        -- 需要先安装 deno
+        -- peek.nvim 支持 webview 双屏时预览更方便
+        'toppair/peek.nvim',
+        run = 'deno task --quiet build:fast',
+        config = function()
+            require("peek").setup()
+            local peek = require('peek')
+
+            vim.api.nvim_create_user_command('PeekToggle', function()
+                if peek.is_open() then
+                    peek.close()
+                else
+                    if vim.bo[vim.api.nvim_get_current_buf()].filetype == 'markdown' then
+                        peek.open()
+                    else
+                        require("utils").notify_warn("不是 markdown 文件，无法预览")
+                    end
+                end
+            end, {})
+
+            require("utils").set_keymap({ 'n', 'i' }, '<leader>mp', '<Cmd>PeekToggle<CR>')
+        end
     },
 }
 

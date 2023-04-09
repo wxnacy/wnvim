@@ -1,9 +1,120 @@
+vim.cmd([[
+" 竖分屏打开帮助文档
+nnoremap <Leader>vh :vert h<space>
+" 快速查看 messages
+nnoremap <Leader>vm :messages<CR>
+" 修改撤销快捷键
+nnoremap U u
+nnoremap u <nop>
+" 折叠代码
+nnoremap <Leader>c zc
+nnoremap u <nop>
+
+" 模式切换 ================== {{{
+
+
+" 插入模式快速移动到行首和行尾
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+" }}}
+
+" Windows ================== {{{
+
+" 调整窗口大小
+nnoremap <c-w>> <c-w>30>
+nnoremap <c-w>< <c-w>30<
+nnoremap <c-w>- <c-w>30-
+nnoremap <c-w>+ <c-w>30+
+
+" }}}
+
+" 文本操作 ================== {{{
+
+" 删除全部
+nnoremap <Leader>da ggdG
+
+" 模拟IDE<tab>键，单行的缩紧退回和选中模式下的缩进退回
+nnoremap <tab> V>
+nnoremap <S-tab> V<
+vnoremap <tab> >gv
+vnoremap <S-tab> <gv
+
+" 上下移动文本
+nnoremap <Leader>k ddkP
+nnoremap <Leader>j ddp
+vnoremap <Leader>k dkP
+vnoremap <Leader>j dp
+
+" }}}
+
+" 光标移动 ================== {{{
+
+" 文本超出屏幕时左右移动
+nnoremap <Leader>l 79l
+nnoremap <Leader>h 79h
+
+
+" 插入模式快速左右移动一格
+inoremap <C-b> <esc>i
+inoremap <C-f> <esc>la
+
+" 插入模式快速删除字符
+inoremap <C-d> <esc>lxi
+
+
+" }}}
+
+
+" 复制粘贴 ================== {{{
+
+" 复制和系统剪贴板交互
+" set clipboard = unname
+nnoremap <C-y> "+Y
+vnoremap <C-y> "+y
+" 黏贴系统剪切版的内容
+nnoremap <C-p> "+p
+inoremap <C-p> <esc>"+pi
+" 复制黏贴
+nnoremap yp yyp
+
+" }}}
+
+" 快速添加成对标签
+" nnoremap <Leader>" eb<esc>i"<esc>ea"<esc>
+" nnoremap <Leader>" viw<esc>a"<esc>bi"<esc>lel
+nnoremap <Leader>" viw<esc>bi"<esc>ea"<esc>
+nnoremap <Leader>' viw<esc>bi'<esc>ea'<esc>
+nnoremap <Leader>` viw<esc>bi`<esc>ea`<esc>
+nnoremap <Leader>[ viw<esc>bi[<esc>ea]<esc>
+nnoremap <Leader>{ viw<esc>bi{<esc>ea}<esc>
+nnoremap <Leader>( viw<esc>bi(<esc>ea)<esc>
+vnoremap <Leader>" di""<esc>hp
+vnoremap <Leader>' di''<esc>hp
+vnoremap <Leader>` di``<esc>hp
+vnoremap <Leader>( di()<esc>hp
+vnoremap <Leader>{ di{}<esc>hp
+vnoremap <Leader>[ di[]<esc>hp
+nnoremap <Leader><Leader>" <s-i>"<esc><s-a>"<esc>
+nnoremap <Leader><Leader>' <s-i>'<esc><s-a>'<esc>
+nnoremap <Leader><Leader>` <s-i>`<esc><s-a>`<esc>
+nnoremap <Leader><Leader>[ <s-i>[<esc><s-a>]<esc>
+nnoremap <Leader><Leader>{ <s-i>{<esc><s-a>}<esc>
+nnoremap <Leader><Leader>( <s-i>(<esc><s-a>)<esc>
+
+" 快速在行尾巴插入分号;
+nnoremap <Leader>, mzA;<esc>`z
+inoremap <Leader>, <esc>mzA;<esc>`za
+nnoremap <Leader><Leader><space> viw<esc>a<space><esc>bi<space><esc>
+vnoremap <Leader><Leader><space> di<space><space><esc>hp
+
+]])
 -- 设置 leader 键位
 vim.g.mapleader = ";"
 vim.g.maplocalleader = ";"
 
 -- 保存本地变量
-local map = vim.api.nvim_set_keymap
+local map = require("utils").set_keymap
 local opt = {noremap = true, silent = true }
 
 -- 去掉高亮
@@ -35,11 +146,13 @@ map("i", "<C-b>", "<esc>i", opt)
 map("i", "<C-d>", "<esc>lxi", opt)
 -- map("n", "<C-j>", "<C-e>", opt)
 
--- 窗口调整
+-- 窗口相关
+-- 使用 <C-hjkl> 进行移动窗口，不必输入 w
 map("n", "<C-h>", "<C-w>h", opt)
 map("n", "<C-j>", "<C-w>j", opt)
 map("n", "<C-k>", "<C-w>k", opt)
 map("n", "<C-l>", "<C-w>l", opt)
+map("n", "<leader>bw", ":bw<CR>", opt)
 
 -- 文本操作 {{{
 -- 选中全部
@@ -68,10 +181,12 @@ pluginKeys.maplsp = function(mapbuf)
   -- go xx
   -- 调整方法定义
   -- mapbuf('n', '<leader>g', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
-  mapbuf('n', '<leader>g', '<cmd>Telescope lsp_definitions<CR>', opt)
+  -- mapbuf('n', '<leader>g', '<cmd>Telescope lsp_definitions<CR>', opt)
   -- mapbuf('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
   mapbuf('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opt)
   -- 显示帮助文档
+  mapbuf('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt)
+  mapbuf('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt)
   mapbuf('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)
   mapbuf('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
   mapbuf('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opt)
@@ -87,8 +202,8 @@ pluginKeys.maplsp = function(mapbuf)
   mapbuf('n', 'gn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opt)
   -- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
   -- leader + =
-  mapbuf('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opt)
-  mapbuf('v', '<leader>=', ":'<,'>lua vim.lsp.buf.range_formatting()<CR>", opt)
+  mapbuf('n', '<leader>=', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', opt)
+  mapbuf('v', '<leader>=', ":'<,'>lua vim.lsp.buf.format { async = true }<CR>", opt)
   -- mapbuf('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt)
   -- mapbuf('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
   -- mapbuf('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)

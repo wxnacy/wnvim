@@ -3,9 +3,6 @@ if not ok then
     return
 end
 
-vim.keymap.set('n', '<leader>=', '<CMD>lua vim.lsp.buf.formatting()<CR>')
-vim.keymap.set('v', '<leader>=', ":'<,'>lua vim.lsp.buf.range_formatting()<CR>")
-
 -- 资源列表
 local sources = {}
 
@@ -35,7 +32,4 @@ append_sources('formatting', require("formatter.config").servers)
 -- 启动配置 https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/CONFIG.md
 null_ls.setup({
     sources = sources
-    -- sources = {
-    -- null_ls.builtins.formatting.google_java_format,
-    -- }
 })

@@ -1,0 +1,11 @@
+{
+    "classmethod": {
+        "prefix": ["confu"],
+        "body": [
+            "config = function()",
+            "   $1",
+            "end"
+        ],
+        "description": "config function"
+    }
+}

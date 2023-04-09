@@ -1,8 +1,8 @@
 local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
+table.insert(runtime_path, vim.fn.stdpath("config") .. "/lua/?.lua")
+table.insert(runtime_path, vim.fn.stdpath("config") .. "/lua/?/init.lua")
+local library = vim.api.nvim_get_runtime_file("", true)
 return {
--- local config = {
   settings = {
     Lua = {
       runtime = {
@@ -17,7 +17,7 @@ return {
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = library
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
@@ -26,14 +26,3 @@ return {
     },
   },
 }
-
--- local M = {}
-
--- M.setup = function (opts)
-    -- print('lua')
-    -- opts = vim.tbl_deep_extend("force", config, opts)
-    -- require("lspconfig").sumneko_lua.setup(opts)
--- end
-
--- return M
-

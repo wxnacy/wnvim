@@ -1,6 +1,10 @@
 -- 代码美化
+local ok, treesitter = require("utils").require("nvim-treesitter.configs", true)
+if not ok then
+    return
+end
 -- https://github.com/nvim-treesitter/nvim-treesitter
-require'nvim-treesitter.configs'.setup {
+treesitter.setup {
   -- A list of parser names, or "all"
   ensure_installed = { "c", "lua", "go", "python", "javascript", "java", "html" },
 
@@ -27,6 +31,8 @@ require'nvim-treesitter.configs'.setup {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
+    -- additional_vim_regex_highlighting = false,
+    -- for obsidian.nvim
+    additional_vim_regex_highlighting = { "markdown" },
   },
 }
