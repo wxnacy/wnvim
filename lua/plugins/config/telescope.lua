@@ -77,6 +77,7 @@ local command_palette = {
         "LSP",
         { "Print workspace cwd", ":lua vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()[1]))" },
         { "Format code", ":lua vim.lsp.buf.formatting()" },
+        { "LspRestart gopls", ":LspRestart gopls" },
     }
 }
 

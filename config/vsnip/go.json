@@ -11,11 +11,48 @@
     "struct_func": {
         "prefix": ["funcs"],
         "body": [
-            "func (${1:StructName}) ${2:FuncName}() {",
-            "    ${2}",
+            "func (${1:StructName}) ${2:FuncName}() $3 {",
+            "    ${4}",
             "}"
         ],
         "description": "New struct func"
+    },
+    "if_err_return": {
+        "prefix": ["errr"],
+        "body": [
+            "if err != nil {",
+            "    return ${1:nil,} err",
+            "}"
+        ],
+        "description": "err return"
+    },
+    "testing_func": {
+        "prefix": ["funct"],
+        "body": [
+            "func Test${1:FuncName}(t *testing.T) {",
+            "    $2",
+            "}"
+        ],
+        "description": "testing func"
+    },
+    "init_func": {
+        "prefix": ["init"],
+        "body": [
+            "func init() {",
+            "    $1",
+            "}"
+        ],
+        "description": "init func"
+    },
+    "cobra_rune_func": {
+        "prefix": ["funcre"],
+        "body": [
+            "func $1(cmd *cobra.Command, args []string) error{",
+            "    $2",
+            "    return nil",
+            "}"
+        ],
+        "description": "init func"
     }
 }
 
