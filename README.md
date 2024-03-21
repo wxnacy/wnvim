@@ -3,7 +3,7 @@
 ## 安装
 
 ```bash
-curl -L https://raw.githubusercontent.com/wxnacy/wnvim/dev_sync_2023-03-20/bin/install.sh | bash
+curl -L https://raw.githubusercontent.com/wxnacy/wnvim/master/bin/nvim-install | bash
 ```
 
 ## 环境变量
