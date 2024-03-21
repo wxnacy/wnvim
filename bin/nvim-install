@@ -145,7 +145,7 @@ main() {
 	# 下载 wnvim
 	if [[ ! -d ~/.config/nvim ]]; then
 		echo '下载 nvim'
-		git clone -b dev_sync_2023-03-20 --depth 1 https://github.com/wxnacy/wnvim ~/.config/nvim
+		git clone --depth 1 https://github.com/wxnacy/wnvim ~/.config/nvim
 	fi
 }
 
