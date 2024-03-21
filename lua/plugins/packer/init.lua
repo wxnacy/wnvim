@@ -387,7 +387,7 @@ local other_plugins = {
 
     -- nvim-tree
     {
-        'kyazdani42/nvim-tree.lua',
+        'nvim-tree/nvim-tree.lua',
         config = function()
             require("plugins.config.nvim-tree")
         end,

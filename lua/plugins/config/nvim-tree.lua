@@ -15,20 +15,20 @@ vim.keymap.set('n', 'tt', ':NvimTreeToggle<CR>')
 vim.keymap.set('n', 'tf', ':NvimTreeFindFileToggle<CR>')
 
 tree.setup({
-    open_on_setup = true,
+    -- open_on_setup = true,
     sort_by = "case_sensitive",
     view = {
         adaptive_size = true,
-        mappings = {
-            list = {
-                -- 半屏打开文件
-                { key = "s", action = "vsplit" },
-                -- 使用系统打开文件
-                { key = "O", action = "system_open" },
-                -- 显示帮助文档
-                { key = "?",action = "toggle_help" },
-            },
-        },
+        -- mappings = {
+            -- list = {
+                -- -- 半屏打开文件
+                -- { key = "s", action = "vsplit" },
+                -- -- 使用系统打开文件
+                -- { key = "O", action = "system_open" },
+                -- -- 显示帮助文档
+                -- { key = "?",action = "toggle_help" },
+            -- },
+        -- },
     },
     renderer = {
         group_empty = true,
