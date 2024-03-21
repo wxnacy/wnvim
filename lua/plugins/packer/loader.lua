@@ -19,6 +19,8 @@ M.install_packer = function ()
         -- vim.cmd [[packadd packer.nvim]]
 
         -- https://github.com/wbthomason/packer.nvim/issues/750
+        -- 插件存储目录
+        -- ~/.local/share/nvim/site/pack/packer/start
         local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
         if not string.find(vim.o.runtimepath, rtp_addition) then
             vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
