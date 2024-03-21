@@ -87,19 +87,32 @@ local prettify_plugins = {
 
     {
         -- 缩进美化展示
+        -- v3 新版本文档
+        -- https://github.com/lukas-reineke/indent-blankline.nvim/wiki/Migrate-to-version-3
         "lukas-reineke/indent-blankline.nvim",
+        main='ibl',
         config = function()
             -- https://github.com/lukas-reineke/indent-blankline.nvim
             vim.opt.list = true
             -- vim.opt.listchars:append "space:⋅"
             -- vim.opt.listchars:append "eol:↴"
-            require("indent_blankline").setup {
+            require("ibl").setup {
                 -- show_end_of_line = true,
                 -- space_char_blankline = " ",
                 -- 代码块缩进竖线
-                show_current_context = true,
+                -- show_current_context = true, v3 去掉替换为下面的方式
+                scope = {
+                    enabled = true
+                },
                 -- 过滤文件类型
-                filetype_exclude = { "dashboard" }
+                -- filetype_exclude = { "dashboard" }
+                -- filetype_exclude 在 v3 版本移除，详见 issues
+                -- https://github.com/lukas-reineke/indent-blankline.nvim/issues/644
+                exclude = {
+                    filetypes = {
+                        "dashboard",
+                    },
+                },
                 -- 代码块首行标下划线
                 -- show_current_context_start = true,
             }
