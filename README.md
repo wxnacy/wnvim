@@ -8,11 +8,6 @@ curl -L https://raw.githubusercontent.com/wxnacy/wnvim/master/bin/nvim-install |
 
 ## 环境变量
 
-| 字段  | 默认值   | 描述   |
-|-------------- | -------------- | -------------- |
-| WNVIM_OBSIDIAN_DIR    | ~/Documents/Obsidian/nvim     | obsidian.nvim dir 取值     |
-| WNVIM_OBSIDIAN_NOTES_SUBDIR    | notes     | obsidian.nvim notes_subdir 取值     |
-| WNVIM_OBSIDIAN_DAILY_FOLDER    | notes/dailies     | obsidian.nvim daily_notes.folder 取值     |
 
 
 ## TODO
