@@ -299,45 +299,6 @@ local tool_plugins = {
     },
     -- 多光标选择
     { "mg979/vim-visual-multi" },
-    -- notes
-    -- 备选
-    -- https://github.com/renerocksai/telekasten.nvim
-    {
-        -- https://github.com/epwalsh/obsidian.nvim
-        'epwalsh/obsidian.nvim',
-        tag = 'v1.*',
-        config = function()
-            require("obsidian").setup({
-                dir = vim.fn.expand(os.getenv("WNVIM_OBSIDIAN_DIR") or "~/Documents/Obsidian/nvim"),
-                completion = {
-                    nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
-                },
-                notes_subdir = os.getenv("WNVIM_OBSIDIAN_NOTES_SUBDIR") or "notes",
-                daily_notes = {
-                    folder = os.getenv("WNVIM_OBSIDIAN_DAILY_FOLDER") or "notes/dailies",
-                },
-                templates = {
-                    subdir = "templates",
-                    date_format = "%Y-%m-%d-%a",
-                    time_format = "%H:%M"
-                },
-                note_id_func = function(title)
-                    -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
-                    local suffix = ""
-                    if title ~= nil then
-                    -- If title is given, transform it into valid file name.
-                    suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-                    else
-                    -- If title is nil, just add 4 random uppercase letters to the suffix.
-                    for _ = 1, 4 do
-                        suffix = suffix .. string.char(math.random(65, 90))
-                    end
-                    end
-                    return tostring(os.time()) .. "-" .. suffix
-                end
-            })
-        end
-    },
 }
 
 local other_plugins = {
