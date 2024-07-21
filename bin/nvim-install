@@ -147,6 +147,11 @@ main() {
 		echo '下载 nvim'
 		git clone --depth 1 https://github.com/wxnacy/wnvim ~/.config/nvim
 	fi
+
+    # 手动安装 nvim
+    pack_dir=${HOME}/.local/share/nvim/site/pack/packer/start
+    mkdir -p ${pack_dir}
+    git clone --depth 1 https://github.com/nvim-tree/nvim-tree.lua.git ${pack_dir}/nvim-tree.lua
 }
 
 main
