@@ -43,7 +43,7 @@
 # mason install markdownlint 失败解决
 # https://blog.csdn.net/qq_35485875/article/details/120168944
 basic_softs="gcc git wget unzip neovim"
-python_softs="python python-pynvim python-pip flake8"
+python_softs="python python-pynvim python-pip flake8 autopep8"
 go_softs="go"
 node_softs="node"
 # telescope need fd
