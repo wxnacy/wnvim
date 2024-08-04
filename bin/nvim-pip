@@ -1,3 +1,10 @@
 #!/usr/bin/env bash
 
-${HOME}/.local/share/nvim/mason/packages/jedi-language-server/venv/bin/pip -i https://pypi.tuna.tsinghua.edu.cn/simple $@
+action=$1
+_pip=${HOME}/.local/share/nvim/mason/packages/jedi-language-server/venv/bin/pip
+
+if [[ "${action}" == "install" ]]; then
+    $_pip "$@" -i https://pypi.tuna.tsinghua.edu.cn/simple
+else
+    $_pip "$@"
+fi
