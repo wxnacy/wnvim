@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-${HOME}/.local/share/nvim/mason/packages/jedi-language-server/venv/bin/pip $@
+${HOME}/.local/share/nvim/mason/packages/jedi-language-server/venv/bin/pip -i https://pypi.tuna.tsinghua.edu.cn/simple $@
