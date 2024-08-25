@@ -261,6 +261,13 @@ local code_plugins = {
 
     -- for golang
     { 'fatih/vim-go' },
+
+    -- for rust
+    {
+        'mrcjkb/rustaceanvim',
+        tag = '5.*', -- Recommended
+        -- lazy = false, -- This plugin is already lazy
+    },
 }
 
 local tool_plugins = {
@@ -418,7 +425,7 @@ local other_plugins = {
     -- bufferline.nvim
     {
         'akinsho/bufferline.nvim',
-        tag = "v3.*",
+        tag = "*",
         requires = 'nvim-tree/nvim-web-devicons',
         config = function()
             require('plugins.config/bufferline').setup()
