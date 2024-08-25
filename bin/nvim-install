@@ -152,6 +152,9 @@ main() {
     pack_dir=${HOME}/.local/share/nvim/site/pack/packer/start
     mkdir -p ${pack_dir}
     git clone --depth 1 https://github.com/nvim-tree/nvim-tree.lua.git ${pack_dir}/nvim-tree.lua
+
+    # 安装 rust-analyzer
+    rustup component add rust-analyzer
 }
 
 main
