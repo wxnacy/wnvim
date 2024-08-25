@@ -12,6 +12,7 @@ M.servers = {
     jedi_language_server = require "lsp.python",
     jdtls = require "lsp.java",
     bashls = {},
+    rust_analyzer = {},
     -- 需要当前目录添加 tsconfig.js 文件
     -- {
         -- "compilerOptions": {
