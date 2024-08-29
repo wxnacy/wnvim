@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+require_file="poetry_requirements.txt"
+require_dump="poetry_requirements_easy.txt"
+
+poetry export -f "${require_file}" -o "${require_file}" --without-hashes
+
+grep '==' "${require_file}" | awk -v FS='==' '{print $1}' > "${require_dump}"
+
+nvim-pip install -r "${require_dump}"
+
+rm "${require_file}"
+rm "${require_dump}"
