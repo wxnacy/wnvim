@@ -23,3 +23,11 @@ config.autocmd('BufWritePost', {
         require("packer").compile()
     end,
 })
+
+-- 设置 filetype
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    pattern = {"*.envrc"},
+    callback = function()
+        vim.bo.filetype = "bash"
+    end
+})
