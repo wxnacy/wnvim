@@ -46,12 +46,13 @@ basic_softs="gcc git wget unzip neovim"
 python_softs="python python-pynvim python-pip flake8 autopep8"
 go_softs="go"
 node_softs="node"
+shell_softs="shellcheck"
 # telescope need fd
 # telescope live_grep need rg
 # sniprun need rust
 # peek.nvim need deno
 plugin_softs="rg fd rust deno"
-softs="${basic_softs} ${python_softs} ${go_softs} ${node_softs} ${plugin_softs}"
+softs="${basic_softs} ${python_softs} ${go_softs} ${node_softs} ${shell_softs} ${plugin_softs}"
 
 can_install='true'
 
