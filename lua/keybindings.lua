@@ -103,8 +103,8 @@ nnoremap <Leader><Leader>{ <s-i>{<esc><s-a>}<esc>
 nnoremap <Leader><Leader>( <s-i>(<esc><s-a>)<esc>
 
 " 快速在行尾巴插入分号;
-nnoremap <Leader>, mzA;<esc>`z
-inoremap <Leader>, <esc>mzA;<esc>`za
+" nnoremap <Leader>, mzA;<esc>`z
+" inoremap <Leader>, <esc>mzA;<esc>`za
 nnoremap <Leader><Leader><space> viw<esc>a<space><esc>bi<space><esc>
 vnoremap <Leader><Leader><space> di<space><space><esc>hp
 
@@ -165,6 +165,10 @@ map("n", "cig", "dg_a", opt)
 map("n", "vv", "g_v0", opt)
 -- 模拟IDE<tab>键，单行的缩紧退回和选中模式下的缩进退回
 map("n", "<tab>", "V>", opt)
+
+-- 快速在行尾增加分号 ；
+map("n", "<leader>,", "mzA;<esc>`z", opt)
+map("i", "<leader>,", "<esc>mzA;<esc>`za", opt)
 -- }}}
 
 --map("n", "<tabl")
