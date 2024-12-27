@@ -115,7 +115,7 @@ install_macos() {
             brew install ${soft}
         done
         # 安装 rust
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+        # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     else
         echo '需要先安装 brew 才能继续 https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/'
     fi
