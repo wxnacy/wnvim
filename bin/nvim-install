@@ -51,7 +51,8 @@ shell_softs="shellcheck"
 # telescope live_grep need rg
 # sniprun need rust
 # peek.nvim need deno
-plugin_softs="rg fd rust deno"
+# nvim-spectre need ripgrep gnu-sed
+plugin_softs="rg fd rust deno gnu-sed ripgrep"
 softs="${basic_softs} ${python_softs} ${go_softs} ${node_softs} ${shell_softs} ${plugin_softs}"
 
 can_install='true'

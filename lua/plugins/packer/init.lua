@@ -446,6 +446,28 @@ local other_plugins = {
         end
     },
     {
+        -- 查找并替换
+        -- https://github.com/nvim-pack/nvim-spectre
+        "nvim-pack/nvim-spectre",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "folke/trouble.nvim",
+        },
+        config = function()
+            require('spectre').setup()
+            require("utils").set_keymap('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
+                desc = "Toggle Spectre"
+            })
+            require("utils").set_keymap('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+                desc = "Search current word"
+            })
+            require("utils").set_keymap('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+                desc = "Search on current file"
+            })
+        end
+    },
+    {
         -- https://github.com/toppair/peek.nvim
         -- https://github.com/iamcco/markdown-preview.nvim
         -- 需要先安装 deno
