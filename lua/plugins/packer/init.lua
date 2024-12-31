@@ -132,6 +132,18 @@ local prettify_plugins = {
         end
     },
 
+    -- 展示图片
+    -- https://github.com/edluffy/hologram.nvim
+    -- TODO: 需要解决图片大小问题
+    {
+        'edluffy/hologram.nvim',
+        config = function()
+            require('hologram').setup{
+                auto_display = true -- WIP automatic markdown image display, may be prone to breaking
+            }
+        end
+    },
+
     -- 标签
     -- https://github.com/utilyre/barbecue.nvim
     {
