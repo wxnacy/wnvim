@@ -296,6 +296,9 @@ local code_plugins = {
         'mrcjkb/rustaceanvim',
         tag = '5.*', -- Recommended
         -- lazy = false, -- This plugin is already lazy
+        config = function()
+            require("plugins.config.rustaceanvim")
+        end
     },
 }
 
