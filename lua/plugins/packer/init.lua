@@ -48,8 +48,8 @@ local prettify_plugins = {
     --     glepnir/dashboard-nvim
     { 'nvim-tree/nvim-web-devicons' },
 
+    -- begin theme
     {
-        -- 主题
         -- { "ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"} },
         -- {'shaunsingh/nord.nvim'},
         -- { 'glepnir/zephyr-nvim' },
@@ -57,19 +57,36 @@ local prettify_plugins = {
         -- onedark
         -- nightfox
         -- {
-        'folke/tokyonight.nvim',
-        config = function()
-            vim.o.background = "dark"
-            vim.g.tokyonight_style = "storm" -- day / night
-            -- 半透明
-            -- vim.g.tokyonight_transparent = true
-            -- vim.g.tokyonight_transparent_sidebar = true
-            vim.cmd([[
-                colorscheme tokyonight
-            ]])
-        end
+
+        -- 2024-12-31 停止使用
+        -- 'folke/tokyonight.nvim',
+        -- config = function()
+            -- vim.o.background = "dark"
+            -- vim.g.tokyonight_style = "storm" -- day / night
+            -- -- 半透明
+            -- -- vim.g.tokyonight_transparent = true
+            -- -- vim.g.tokyonight_transparent_sidebar = true
+            -- vim.cmd([[
+                -- colorscheme tokyonight
+            -- ]])
+        -- end
+
         -- },
     },
+
+    -- catppuccin
+    -- https://github.com/catppuccin/nvim
+    {
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function()
+            require("catppuccin").setup({
+                flavour = "frappe", -- latte, frappe, macchiato, mocha
+            })
+            vim.cmd.colorscheme "catppuccin"
+        end
+    },
+    -- end theme
 
     -- dashboard
     -- https://github.com/glepnir/dashboard-nvim
@@ -126,7 +143,7 @@ local prettify_plugins = {
         config = function()
             require('lualine').setup {
                 options = {
-                    theme = 'tokyonight'
+                    theme = 'catppuccin'
                 }
             }
         end
