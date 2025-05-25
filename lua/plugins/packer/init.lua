@@ -284,7 +284,7 @@ local code_plugins = {
     },
 
     -- Linter, Formatter
-    { "jose-elias-alvarez/null-ls.nvim" },
+    { "nvimtools/none-ls.nvim" },
 
     -- for golang
     { 'fatih/vim-go' },

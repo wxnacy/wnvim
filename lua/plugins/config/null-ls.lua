@@ -1,4 +1,4 @@
-local ok, null_ls = require("utils").require("null-ls", true)
+local ok, null_ls = require("utils").require("none-ls", true)
 if not ok then
     return
 end
