@@ -229,12 +229,10 @@ local code_plugins = {
         end
     },
 
-    {
-        -- lsp, dap, linter, formatter 包管理
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        'WhoIsSethDaniel/mason-tool-installer.nvim',
-    },
+    -- lsp, dap, linter, formatter 包管理
+    { "williamboman/mason.nvim", tag = "v1.11.0" },
+    { "williamboman/mason-lspconfig.nvim", tag = "v1.32.0" },
+    { 'WhoIsSethDaniel/mason-tool-installer.nvim', },
 
     {
         -- lsp 相关
