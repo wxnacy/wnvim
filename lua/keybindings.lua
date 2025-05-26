@@ -80,27 +80,6 @@ nnoremap yp yyp
 
 " }}}
 
-" 快速添加成对标签
-" nnoremap <Leader>" eb<esc>i"<esc>ea"<esc>
-" nnoremap <Leader>" viw<esc>a"<esc>bi"<esc>lel
-nnoremap <Leader>" viw<esc>bi"<esc>ea"<esc>
-nnoremap <Leader>' viw<esc>bi'<esc>ea'<esc>
-nnoremap <Leader>` viw<esc>bi`<esc>ea`<esc>
-nnoremap <Leader>[ viw<esc>bi[<esc>ea]<esc>
-nnoremap <Leader>{ viw<esc>bi{<esc>ea}<esc>
-nnoremap <Leader>( viw<esc>bi(<esc>ea)<esc>
-vnoremap <Leader>" di""<esc>hp
-vnoremap <Leader>' di''<esc>hp
-vnoremap <Leader>` di``<esc>hp
-vnoremap <Leader>( di()<esc>hp
-vnoremap <Leader>{ di{}<esc>hp
-vnoremap <Leader>[ di[]<esc>hp
-nnoremap <Leader><Leader>" <s-i>"<esc><s-a>"<esc>
-nnoremap <Leader><Leader>' <s-i>'<esc><s-a>'<esc>
-nnoremap <Leader><Leader>` <s-i>`<esc><s-a>`<esc>
-nnoremap <Leader><Leader>[ <s-i>[<esc><s-a>]<esc>
-nnoremap <Leader><Leader>{ <s-i>{<esc><s-a>}<esc>
-nnoremap <Leader><Leader>( <s-i>(<esc><s-a>)<esc>
 
 " 快速在行尾巴插入分号;
 " nnoremap <Leader>, mzA;<esc>`z
