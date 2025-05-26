@@ -1,33 +1,48 @@
 local config = require("config")
 
--- nvim-tree 自动关闭
-config.autocmd("BufEnter", {
-    nested = true,
-    group = config.group_auto,
-    callback = function()
-        if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-            vim.cmd("quit")
-        end
-    end,
-})
-
--- 保存 plugins.lua 自动重新加载
-config.autocmd('BufWritePost', {
-    pattern = {
-        '*nvim/lua/*.lua',
-    },
-    group = config.group_auto,
-    callback = function()
-        vim.api.nvim_command("source %")
-        require("plugins.config.bufferline").setup()
-        require("packer").compile()
-    end,
-})
-
 -- 设置 filetype
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-    pattern = {"*.envrc"},
-    callback = function()
-        vim.bo.filetype = "bash"
-    end
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.envrc" },
+	callback = function()
+		vim.bo.filetype = "sh"
+	end,
+})
+
+-- 自动创建 pyrightconfig.json 文件
+vim.api.nvim_create_autocmd("VimEnter", {
+	pattern = "*",
+	callback = function()
+		-- 获取当前目录路径
+		local cwd = vim.fn.getcwd()
+
+		-- 检查所需文件是否存在
+		local has_pyproject = vim.fn.filereadable(cwd .. "/pyproject.toml") == 1
+		local has_envrc = vim.fn.filereadable(cwd .. "/.envrc") == 1
+		local has_pyrightconfig = vim.fn.filereadable(cwd .. "/pyrightconfig.json") == 1
+
+		-- 如果条件满足但缺少 pyrightconfig.json
+		if has_pyproject and has_envrc and not has_pyrightconfig then
+			-- 获取环境变量
+			local venv_path = os.getenv("CONDA_PREFIX") or ""
+			local venv_name = os.getenv("CONDA_DEFAULT_ENV") or ""
+
+			-- 截取 venvPath 到 envs 目录（如果路径有效）
+			if venv_path ~= "" then
+				venv_path = venv_path:match("^(.*/envs)") or venv_path
+			end
+
+			-- 构建配置内容
+			local config_content = string.format('{\n  "venvPath": "%s",\n  "venv": "%s"\n}', venv_path, venv_name)
+
+			-- 写入文件
+			local file = io.open(cwd .. "/pyrightconfig.json", "w")
+			if file then
+				file:write(config_content)
+				file:close()
+				print("[Pyright] 已自动创建 pyrightconfig.json")
+			else
+				print("[Pyright] 错误: 无法创建 pyrightconfig.json")
+			end
+		end
+	end,
 })
