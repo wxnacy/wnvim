@@ -50,7 +50,6 @@ local function config_pyright()
 	})
 end
 
-
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
@@ -58,7 +57,7 @@ return {
 		{ "mason-org/mason-lspconfig.nvim" },
 		{ "MysticalDevil/inlay-hints.nvim", event = "LspAttach" },
 	},
-    event = {'BufReadPre', 'BufNewFile'},
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		-- 通过mason来自动安装语言服务器并启用
 		require("mason").setup({})
@@ -69,6 +68,7 @@ return {
 				"rust_analyzer",
 				"pyright",
 				"gopls",
+				"bashls",
 			},
 			automatic_enable = {
 				exclude = {},
@@ -76,7 +76,10 @@ return {
 			automatic_installation = true, -- 新增自动安装
 			handlers = { -- 新增自动配置
 				function(server_name)
-					require("lspconfig")[server_name].setup({})
+					vim.lsp.enable(server_name)
+					require("lspconfig")[server_name].setup({
+						capabilities = capabilities, -- 携带全局补全能力
+					})
 				end,
 				pyright = function()
 					config_pyright()
@@ -87,7 +90,7 @@ return {
 		-- 快捷键的映射
 		vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts) -- <space>h显示提示文档
 		--vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- gd跳转到定义的位置
-        vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
+		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
 		vim.keymap.set("n", "go", vim.lsp.buf.type_definition, opts) -- go跳转到变量类型定义的位置
 		-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)           -- gr跳转到引用了对应变量或函数的位置
 		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)

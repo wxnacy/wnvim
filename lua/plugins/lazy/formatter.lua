@@ -10,6 +10,7 @@ return {
 			python = { "isort", "black" },
 			rust = { "rust-analyzer", lsp_format = "fallback" },
 			toml = { "templ" },
+			sh = { "shfmt" },
 		},
 	},
 	config = function(_, opts)
