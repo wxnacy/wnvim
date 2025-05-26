@@ -38,7 +38,9 @@ end
 
 M.setup = function ()
     load_config()
-    load_plugin()
+    require("autocmds")
+    -- load_plugin()
+    require("config.lazy").setup()
     load_project_config()
     -- 放在最后，避免被插件的配置覆盖
     require('basic')
