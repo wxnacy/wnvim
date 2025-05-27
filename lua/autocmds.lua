@@ -1,5 +1,3 @@
-local config = require("config")
-
 -- 设置 filetype
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	pattern = { "*.envrc" },
@@ -32,7 +30,19 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			end
 
 			-- 构建配置内容
-			local config_content = string.format('{\n  "venvPath": "%s",\n  "venv": "%s"\n}', venv_path, venv_name)
+			local config_content = string.format(
+				[[
+{
+    "reportCallIssue": "none",
+    "reportAttributeAccessIssue": "none",
+    "reportOptionalMemberAccess": "none",
+    "reportArgumentType": "none",
+    "venvPath": "%s",
+    "venv": "%s"
+}]],
+				venv_path,
+				venv_name
+			)
 
 			-- 写入文件
 			local file = io.open(cwd .. "/pyrightconfig.json", "w")
