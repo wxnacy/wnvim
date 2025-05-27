@@ -6,7 +6,7 @@ return {
   keys = {
     {
       "<leader>xx",
-      "<cmd>Trouble diagnostics toggle<cr>",
+      "<cmd>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR focus=true<cr>",
       desc = "Diagnostics (Trouble)",
     },
     {
@@ -15,8 +15,8 @@ return {
       desc = "Buffer Diagnostics (Trouble)",
     },
     {
-      "<leader>cs",
-      "<cmd>Trouble symbols toggle focus=false<cr>",
+      "tb",
+      "<cmd>Trouble symbols toggle focus=true<cr>",
       desc = "Symbols (Trouble)",
     },
     {
