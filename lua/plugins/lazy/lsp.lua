@@ -90,7 +90,12 @@ return {
 		-- 快捷键的映射
 		vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts) -- <space>h显示提示文档
 		--vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- gd跳转到定义的位置
-		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+		--vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+		vim.keymap.set("n", "gd", function()
+			require("telescope.builtin").lsp_definitions({
+				position_encoding = "utf-8",
+			})
+		end, opts)
 		vim.keymap.set("n", "go", vim.lsp.buf.type_definition, opts) -- go跳转到变量类型定义的位置
 		-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)           -- gr跳转到引用了对应变量或函数的位置
 		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
