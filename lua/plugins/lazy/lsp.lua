@@ -50,6 +50,30 @@ local function config_pyright()
 	})
 end
 
+local function config_vue_ls()
+	vim.lsp.enable("vue_ls")
+	--require("inlay-hints").refresh()
+	require("lspconfig").vue_ls.setup({
+		capabilities = capabilities,
+		filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+		init_options = {
+			vue = {
+				hybridMode = true, -- 启用 Hybrid 模式
+			},
+			typescript = {
+				tsdk = "/opt/homebrew/lib/node_modules/typescript/lib", -- 确保路径存在！
+			},
+			plugins = { -- 我认为这才是让我成功的突破点
+				{
+					name = "@vue/typescript-plugin",
+					location = "/opt/homebrew/lib/node_modules/@vue/language-server",
+					languages = { "vue" },
+				},
+			},
+		},
+	})
+end
+
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
@@ -69,6 +93,11 @@ return {
 				"pyright",
 				"gopls",
 				"bashls",
+				"vue_ls",
+				"ts_ls",
+				"html",
+				"cssls",
+				"eslint",
 			},
 			automatic_enable = {
 				exclude = {},
@@ -84,6 +113,7 @@ return {
 				pyright = function()
 					config_pyright()
 				end,
+				vue_ls = config_vue_ls,
 			},
 		})
 
