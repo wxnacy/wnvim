@@ -34,6 +34,7 @@ return {
                 always_show = { -- remains visible even if other settings would normally hide it
                     ".gitignore",
                     ".flake8",
+                    "pyrightconfig.json",
                 },
                 always_show_by_pattern = { -- uses glob style patterns
                     ".env*",
