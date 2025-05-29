@@ -16,12 +16,12 @@ return {
             "<cmd>Neotree<cr>",
             desc = "Open Neotree",
         },
-        {
-            "tf",
-            mode = { "n", "v" },
-            "<cmd>Neotree filesystem reveal<cr>",
-            desc = "Open Neotree focus file",
-        },
+        --{
+            --"tf",
+            --mode = { "n", "v" },
+            --"<cmd>Neotree filesystem reveal<cr>",
+            --desc = "Open Neotree focus file",
+        --},
 
     },
     ---@module "neo-tree"
