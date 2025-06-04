@@ -81,10 +81,10 @@ return {
 			},
 			providers = {
 				-- score_offset设置优先级数字越大优先级越高
-				buffer = { score_offset = 5 },
+				buffer = { score_offset = 1 },
 				path = { score_offset = 3 },
-				lsp = { score_offset = 2 },
-				snippets = { score_offset = 1 },
+				lsp = { score_offset = 7 },
+				snippets = { score_offset = 6 },
 				cmdline = {
 					min_keyword_length = function(ctx)
 						-- when typing a command, only show when the keyword is 3 characters or longer
