@@ -33,10 +33,14 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			local config_content = string.format(
 				[[
 {
-    "reportCallIssue": "none",
+    "reportAssignmentType": "none",
     "reportAttributeAccessIssue": "none",
-    "reportOptionalMemberAccess": "none",
     "reportArgumentType": "none",
+    "reportCallIssue": "none",
+    "reportOptionalMemberAccess": "none",
+    "reportGeneralTypeIssues": "none",
+    "reportReturnType": "none",
+    "reportInvalidTypeForm": "none",
     "venvPath": "%s",
     "venv": "%s"
 }]],
