@@ -11,6 +11,7 @@ return {
 			rust = { "rust-analyzer", lsp_format = "fallback" },
 			toml = { "templ" },
 			sh = { "shfmt" },
+			zsh = { "shfmt" },
 		},
 	},
 	config = function(_, opts)
