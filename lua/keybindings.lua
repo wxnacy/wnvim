@@ -222,10 +222,13 @@ pluginKeys.cmp = function(cmp)
   }
 end
 
--- pluginKeys.keymap_vim_better_whitespace = {
-    -- normal_mode = {
-        -- ['<leader><space>'] = ':StripWhitespace<CR>'
-    -- }
--- }
+-- 打开文件
+pluginKeys.edit_file = function(mapbuf)
+  mapbuf('n', '<leader>ep', '<cmd>e pyrightconfig.json<CR>', opt)
+  mapbuf('n', '<leader>eg', '<cmd>e .gitignore<CR>', opt)
+  mapbuf('n', '<leader>eb', '<cmd>e ~/.bash_profile<CR>', opt)
+end
+
+pluginKeys.edit_file(vim.keymap.set)
 
 return pluginKeys
