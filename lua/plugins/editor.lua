@@ -4,6 +4,8 @@ return {
     -- 快速跳转
     -- https://github.com/smoka7/hop.nvim
     require("plugins.lazy.hop"),
+    -- 多光标操作
+    require("plugins.lazy.multicursor"),
 
     -- 成对括号
     -- https://github.com/windwp/nvim-autopairs
