@@ -37,6 +37,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
     "reportAttributeAccessIssue": "none",
     "reportArgumentType": "none",
     "reportCallIssue": "none",
+    "reportOptionalCall": "none",
     "reportOptionalMemberAccess": "none",
     "reportGeneralTypeIssues": "none",
     "reportReturnType": "none",

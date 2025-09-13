@@ -26,7 +26,7 @@ set encoding=utf-8              "打开文件时编码格式
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1         "vim会根据该设置识别文件编码
 
 " set fileencoding=utf-8        在保存文件时，指定编码
-set termencoding=utf-8          "终端环境告诉vim使用编码
+" set termencoding=utf-8          "终端环境告诉vim使用编码
 set ffs=unix,dos,mac            "在创建文件或写入时，这三种文件格式分别决定了行末要添加什么特殊字符，而在读入文件时，又分别决定了要从行末移去什么特殊字符。
 set formatoptions+=m
 set formatoptions+=B
