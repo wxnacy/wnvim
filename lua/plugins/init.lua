@@ -34,6 +34,18 @@ M.setup = function()
 		install = { colorscheme = { "catppuccin" } },
 		-- automatically check for plugin updates
 		checker = { enabled = true },
+		-- 性能优化选项
+		performance = {
+			cache = {
+				enabled = true,
+			},
+			reset_packpath = true, -- reset the package path to improve startup time
+			rtp = {
+				reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
+				---@type string[]
+				paths = {}, -- add any custom paths here that you want to includes in the rtp
+			},
+		},
 	})
 	vim.keymap.set("n", "<leader>l", "<Cmd>Lazy<CR>")
 end
