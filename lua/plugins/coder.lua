@@ -13,7 +13,13 @@ return {
 	-- 代码折叠
 	require("plugins.lazy.fold"),
 	-- for golang
-	{ "fatih/vim-go" },
+	{
+		"fatih/vim-go",
+		config = function()
+			-- 加载 Go 语言的专用配置
+			require("plugins.lazy.go").setup()
+		end,
+	},
 
 	-- https://github.com/folke/todo-comments.nvim
 	{
@@ -63,3 +69,4 @@ return {
 		},
 	},
 }
+

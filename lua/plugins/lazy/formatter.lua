@@ -12,6 +12,15 @@ return {
 			toml = { "templ" },
 			sh = { "shfmt" },
 			zsh = { "shfmt" },
+			-- 为 Go 语言添加格式化工具
+			go = { "goimports", "gofumpt" },
+		},
+		-- 添加格式化选项
+		format_on_save = {
+			-- 为 Go 语言启用保存时自动格式化
+			go = { "goimports", "gofumpt" },
+			-- 也可以使用函数来控制格式化条件
+			timeout_ms = 500,
 		},
 	},
 	config = function(_, opts)
@@ -51,5 +60,15 @@ return {
 			end
 			require("conform").format({ async = true, lsp_fallback = true })
 		end, { desc = "格式化代码（检测安装缺失工具）" })
+		
+		-- 添加自动保存时格式化
+		vim.api.nvim_create_augroup("FormatAutogroup", { clear = true })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = "FormatAutogroup",
+			pattern = "*.go",
+			callback = function()
+				require("conform").format({ async = false, lsp_format = "never" })
+			end,
+		})
 	end,
 }

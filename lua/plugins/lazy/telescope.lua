@@ -1,7 +1,8 @@
 -- https://github.com/nvim-telescope/telescope.nvim
 return {
 	"nvim-telescope/telescope.nvim",
-	branch = "0.1.x",
+	-- 使用最新的主分支以获得最新的修复
+	branch = "master",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		local builtin = require("telescope.builtin")
@@ -42,6 +43,10 @@ return {
 						-- ["<C-g>"] = require("telescope").extensions.hop.hop,
 					},
 				},
+				-- 更新 LSP 集成配置，避免使用已弃用的函数
+				lsp = {
+					-- 配置 LSP 集成选项
+				}
 			},
 		})
 	end,

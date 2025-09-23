@@ -105,6 +105,10 @@ return {
 			automatic_installation = true, -- 新增自动安装
 			handlers = { -- 新增自动配置
 				function(server_name)
+					-- 对于 gopls，我们使用专门的配置
+					if server_name == "gopls" then
+						return
+					end
 					vim.lsp.enable(server_name)
 					require("lspconfig")[server_name].setup({
 						capabilities = capabilities, -- 携带全局补全能力
@@ -122,13 +126,13 @@ return {
 		--vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- gd跳转到定义的位置
 		--vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
 		vim.keymap.set("n", "gd", function()
-			require("telescope.builtin").lsp_definitions({
-				position_encoding = "utf-8",
-			})
+			require("telescope.builtin").lsp_definitions()
 		end, opts)
 		vim.keymap.set("n", "go", vim.lsp.buf.type_definition, opts) -- go跳转到变量类型定义的位置
 		-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)           -- gr跳转到引用了对应变量或函数的位置
-		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+		vim.keymap.set("n", "gr", function()
+			require("telescope.builtin").lsp_references()
+		end, opts)
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- <space>rn变量重命名
 		vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts) -- <space>aw可以在出现警告或错误的地方打开建议的修复方法
 		vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- <space>d浮动窗口显示所在行警告或错误信息
@@ -165,21 +169,6 @@ return {
 							"require",
 							"opts",
 						},
-					},
-				},
-			},
-		})
-		vim.lsp.config("gopls", {
-			settings = {
-				["gopls"] = {
-					hints = { -- gopls开启hints
-						rangeVariableTypes = true,
-						parameterNames = true,
-						constantValues = true,
-						assignVariableTypes = true,
-						compositeLiteralFields = true,
-						compositeLiteralTypes = true,
-						functionTypeParameters = true,
 					},
 				},
 			},
