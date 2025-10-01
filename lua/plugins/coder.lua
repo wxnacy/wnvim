@@ -12,6 +12,8 @@ return {
 	require("plugins.lazy.trouble"),
 	-- 代码折叠
 	require("plugins.lazy.fold"),
+	-- Markdown view
+	require("plugins.lazy.markview"),
 	-- for golang
 	{
 		"fatih/vim-go",
