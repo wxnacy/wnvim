@@ -17,4 +17,10 @@ return {
 			desc = "Markview Toggle",
 		},
 	},
+    opts = {
+        preview = {
+        filetypes = { "markdown", "codecompanion" },
+        ignore_buftypes = {},
+        },
+    },
 };
