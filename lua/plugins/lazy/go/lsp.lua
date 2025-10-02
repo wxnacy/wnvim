@@ -38,7 +38,7 @@ vim.api.nvim_create_user_command("GoLspReload", reload_gopls_workspace, {})
 
 -- 为 gopls 创建专门的配置函数
 function M.setup()
-	require("lspconfig").gopls.setup({
+	vim.lsp.config("gopls", {
 		capabilities = capabilities,
 		-- 优化 gopls 性能配置
 		settings = {

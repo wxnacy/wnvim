@@ -36,7 +36,7 @@ local function config_pyright()
 	})
 
 	-- 在配置中添加性能监控
-	require("lspconfig").pyright.setup({
+	vim.lsp.config("pyright", {
 		capabilities = capabilities, -- 携带全局补全能力
 		handlers = {
 			["textDocument/completion"] = function(_, result, ctx)
@@ -53,7 +53,7 @@ end
 local function config_vue_ls()
 	vim.lsp.enable("vue_ls")
 	--require("inlay-hints").refresh()
-	require("lspconfig").vue_ls.setup({
+	vim.lsp.config("vue_ls", {
 		capabilities = capabilities,
 		filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact" },
 		init_options = {
@@ -110,7 +110,7 @@ return {
 						return
 					end
 					vim.lsp.enable(server_name)
-					require("lspconfig")[server_name].setup({
+					vim.lsp.config(server_name, {
 						capabilities = capabilities, -- 携带全局补全能力
 					})
 				end,
