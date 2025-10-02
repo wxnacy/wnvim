@@ -14,6 +14,8 @@ return {
 	require("plugins.lazy.fold"),
 	-- Markdown view
 	require("plugins.lazy.markview"),
+	-- AI Coding Assistant
+	require("plugins.lazy.codecompanion"),
 	-- for golang
 	{
 		"fatih/vim-go",
