@@ -6,6 +6,13 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	end,
 })
 
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "zprofile" },
+	callback = function()
+		vim.bo.filetype = "zsh"
+	end,
+})
+
 -- 自动创建 pyrightconfig.json 文件
 vim.api.nvim_create_autocmd("VimEnter", {
 	pattern = "*",
