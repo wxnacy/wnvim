@@ -1,17 +1,24 @@
--- 设置 filetype
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = { "*.envrc" },
-	callback = function()
-		vim.bo.filetype = "sh"
-	end,
-})
+local config_loader = require("config_loader")
+local config = vim.g.wnvim_config or config_loader.load()
 
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = { "zprofile" },
-	callback = function()
-		vim.bo.filetype = "zsh"
-	end,
-})
+if type(config.filetype) == "table" then
+	local group = vim.api.nvim_create_augroup("WNvimFiletype", { clear = true })
+	for ft, opts in pairs(config.filetype) do
+		local patterns = opts.pattern
+		if patterns ~= nil then
+			if type(patterns) ~= "table" then
+				patterns = { patterns }
+			end
+			vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+				group = group,
+				pattern = patterns,
+				callback = function()
+					vim.bo.filetype = ft
+				end,
+			})
+		end
+	end
+end
 
 -- 自动创建 pyrightconfig.json 文件
 vim.api.nvim_create_autocmd("VimEnter", {

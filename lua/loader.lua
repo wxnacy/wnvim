@@ -1,6 +1,7 @@
 local M = {}
 local utils = require("utils")
 local config = require("config")
+local config_loader = require("config_loader")
 
 local function load_config()
     require('basic')
@@ -22,6 +23,7 @@ local function load_project_config()
 end
 
 M.setup = function ()
+    config_loader.load()
     load_config()
     require("autocmds")
     -- load_plugin()
