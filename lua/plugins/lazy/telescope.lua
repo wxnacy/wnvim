@@ -46,8 +46,17 @@ return {
 				-- 更新 LSP 集成配置，避免使用已弃用的函数
 				lsp = {
 					-- 配置 LSP 集成选项
-				}
+				},
+			},
+			pickers = {
+				find_files = {
+					hidden = true,
+					no_ignore = true,
+					-- 如果仍想排除 .git 目录可加上：
+					file_ignore_patterns = { "%.git/" },
+				},
 			},
 		})
 	end,
 }
+
