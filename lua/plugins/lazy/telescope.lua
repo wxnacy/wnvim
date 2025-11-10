@@ -50,13 +50,13 @@ return {
 			},
 			pickers = {
 				find_files = {
+					-- 查找文件包括隐藏和忽略文件
 					hidden = true,
 					no_ignore = true,
-					-- 如果仍想排除 .git 目录可加上：
-					file_ignore_patterns = { "%.git/" },
+					-- 如果仍想排除的目录可加上：
+					file_ignore_patterns = { "%.git/", "target/" },
 				},
 			},
 		})
 	end,
 }
-
