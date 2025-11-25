@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#统一使用 brew 安装依赖
+
+main() {
+    if ! command -v "brew" >/dev/null 2>&1; then
+        echo '需要先安装 brew 才能继续 https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/'
+    fi
+
+	if [[ $(uname -s) == 'Darwin' ]]; then
+        xcode-select --install
+	fi
+
+    NVIM_HOME=~/.config/nvim
+	# 下载 wnvim
+	if [[ ! -d "${NVIM_HOME}" ]]; then
+		echo '下载 nvim'
+		git clone --depth 1 https://github.com/wxnacy/wnvim "${NVIM_HOME}"
+	fi
+    b=brew
+    if command -v "wbrew" >/dev/null 2>&1; then
+        b=wbrew
+    fi
+
+    $b bundle install --file="${NVIM_HOME}/Brewfile"
+
+    # 安装 rust-analyzer
+    # rustup component add rust-analyzer
+}
+
+main
