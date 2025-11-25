@@ -2,6 +2,17 @@
 
 这是一个基于 Lazy 插件管理器的 Neovim 配置。
 
+## 安装
+
+**需要的依赖** `homebrew, curl, git`
+
+使用 `curl` 安装
+
+```bash
+curl -L https://raw.githubusercontent.com/wxnacy/wnvim/refs/heads/master/scripts/installer | bash
+```
+
+
 ## 优化 gopls 性能问题
 
 针对 gopls 在首次保存文件时卡顿的问题，已经进行了以下优化：
