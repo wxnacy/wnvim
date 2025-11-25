@@ -34,6 +34,9 @@ M.setup = function()
 		install = { colorscheme = { "catppuccin" } },
 		-- automatically check for plugin updates
 		checker = { enabled = true },
+		git = {
+			url_format = "git@github.com:%s.git",
+		},
 		-- 性能优化选项
 		performance = {
 			cache = {
