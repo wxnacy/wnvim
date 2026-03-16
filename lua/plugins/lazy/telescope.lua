@@ -54,7 +54,7 @@ return {
 					hidden = true,
 					no_ignore = true,
 					-- 如果仍想排除的目录可加上：
-					file_ignore_patterns = { "%.git/", "target/" },
+					file_ignore_patterns = { "%.git/", "target/", ".venv/" },
 				},
 			},
 		})
